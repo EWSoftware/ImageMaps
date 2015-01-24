@@ -48,8 +48,8 @@ The demo web application included in the source code is available online so you 
 
 NuGet packages are available:
 
-    * [EWSoftware.ImageMap.Web](http://www.nuget.org/packages/EWSoftware.ImageMap.Web)
-    * [EWSoftware.ImageMap.WinForms](http://www.nuget.org/packages/EWSoftware.ImageMap.WinForms)
+* [EWSoftware.ImageMap.Web](http://www.nuget.org/packages/EWSoftware.ImageMap.Web)
+* [EWSoftware.ImageMap.WinForms](http://www.nuget.org/packages/EWSoftware.ImageMap.WinForms)
 
 See the [online help content](http://EWSoftware.github.io/ImageMaps/index.html) for usage and API information.
 
