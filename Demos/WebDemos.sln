@@ -1,0 +1,66 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ImageMapWebCS", "ImageMapWebCS\", "{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/ImageMapWebCS"
+		Debug.AspNetCompiler.PhysicalPath = "ImageMapWebCS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ImageMapWebCS\"
+		Debug.AspNetCompiler.Updateable = "false"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/ImageMapWebCS"
+		Release.AspNetCompiler.PhysicalPath = "ImageMapWebCS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\ImageMapWebCS\"
+		Release.AspNetCompiler.Updateable = "false"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1454"
+		SlnRelativePath = "ImageMapWebCS\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ImageMapWebVB", "ImageMapWebVB\", "{26986589-2EBA-402A-9658-D0D16C1E8269}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/ImageMapWebVB"
+		Debug.AspNetCompiler.PhysicalPath = "ImageMapWebVB\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ImageMapWebVB\"
+		Debug.AspNetCompiler.Updateable = "false"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/ImageMapWebVB"
+		Release.AspNetCompiler.PhysicalPath = "ImageMapWebVB\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\ImageMapWebVB\"
+		Release.AspNetCompiler.Updateable = "false"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1486"
+		SlnRelativePath = "ImageMapWebVB\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4FAA1ACB-C9E4-4ABB-9787-1909DD6E4D3E}"
+	ProjectSection(SolutionItems) = preProject
+		EWSImageMapDemos.ruleset = EWSImageMapDemos.ruleset
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Release|.NET = Release|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{26986589-2EBA-402A-9658-D0D16C1E8269}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{26986589-2EBA-402A-9658-D0D16C1E8269}.Release|.NET.ActiveCfg = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

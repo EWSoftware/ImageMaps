@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="467f220c-c617-4cf8-9c54-a9fc8103a5b2" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Version 1.2.0.0 was released on December 18th, 2004.</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+				<para>Fixed a bug in the use of custom attributes in the web control (i.e. <codeInline>onmouseover</codeInline>
+and <codeInline>onmouseout</codeInline> handlers on image areas).  The web demos have been updated to include an
+example of their use.</para>
+
+				<alert class="note">
+					<para>If you use the Visual Studio designer to edit the collection of image areas, custom attributes on
+the image area items will be lost (i.e. things like <codeInline>onmouseover</codeInline> or other such attributes
+that are not normal properties of the image area object).  This appears to be a bug in the designer as the same
+thing happens to <codeInline>ListItem</codeInline> objects in controls such as the <codeInline>ListBox</codeInline>
+and <codeInline>DropDownList</codeInline>.  Use code to add custom attributes to the image areas instead as show
+in the demo.</para>
+				</alert>
+
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="ad1fd96f-bab4-4925-b620-29b634cfc4b0" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

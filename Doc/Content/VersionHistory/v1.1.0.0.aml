@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0a003f62-58fb-4018-9b20-f2a4580afc34" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Version 1.1.0.0 was released on October 30th, 2004.</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+				<list class="bullet">
+					<listItem>
+						<para>Added a <codeInline>TagString</codeInline> property to the Web Image Area controls so that the
+tag value could be set in the design-time HTML.  ASP.NET is unable to convert a value to an Object at runtime if
+assigned to the <codeInline>Tag</codeInline> property in the design-time HTML.  As such, use the
+<codeInline>TagString</codeInline> property instead.  The <codeInline>Tag</codeInline> property can be used in
+code to assign values of any type to the tag value.</para>
+					</listItem>
+
+					<listItem>
+						<para>The default behavior of throwing an exception if the page's form control cannot be found when
+post back image areas are used has been changed.  If not found, it now defaults to using element zero of the
+forms collection (<codeInline>forms[0]</codeInline>).  If you need to override this behavior and specify an
+actual form ID, use the new <codeInline>FormId</codeInline> property on the first image map control that appears
+on the page.</para>
+					</listItem>
+
+					<listItem>
+						<para>Added culture awareness where needed to the conversion to/from string values.</para>
+					</listItem>
+
+				</list>
+			</content>
+		</section>
+		<relatedTopics>
+			<link xlink:href="ad1fd96f-bab4-4925-b620-29b634cfc4b0" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

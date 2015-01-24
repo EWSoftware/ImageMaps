@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "EWSoftwareImageMaps", "EWSoftwareImageMaps.shfbproj", "{B9FC15BB-F809-48F1-8888-D8BE8D2E77CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		ReleaseNoDoc|Any CPU = ReleaseNoDoc|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9FC15BB-F809-48F1-8888-D8BE8D2E77CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FC15BB-F809-48F1-8888-D8BE8D2E77CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FC15BB-F809-48F1-8888-D8BE8D2E77CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FC15BB-F809-48F1-8888-D8BE8D2E77CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FC15BB-F809-48F1-8888-D8BE8D2E77CA}.ReleaseNoDoc|Any CPU.ActiveCfg = ReleaseNoDoc|Any CPU
+		{B9FC15BB-F809-48F1-8888-D8BE8D2E77CA}.ReleaseNoDoc|Any CPU.Build.0 = ReleaseNoDoc|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="7e07e290-7738-4d8b-bcf1-8eb4b33706b0" visible="True" isDefault="true" title="Welcome">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="usage notes" />
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="562d9967-e690-4042-b9d6-f6db567c1c29" visible="True" title="License Agreement">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="license agreement" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="5f8d60e8-3767-47f9-92af-8570d42d5e37" visible="True" title="Design-time Support">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="design-time support" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="cfea76cd-95fb-4e01-9452-91ee91ad8b58" visible="True" isSelected="true" title="Making a Donation">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="donate" />
+      <HelpKeyword index="K" term="support, donate" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="ad1fd96f-bab4-4925-b620-29b634cfc4b0" visible="True" isExpanded="true" title="Version History">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="History" />
+      <HelpKeyword index="K" term="Version History" />
+    </HelpKeywords>
+    <Topic id="7907a67d-8c70-4beb-87f3-0d6b925048e4" visible="True" title="Version 2015.1.19.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 2015.1.19.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="6bbaf03a-d29f-49ef-b37a-687a893e0a26" visible="True" title="Version 2.0.0.3">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 2.0.0.3" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="508bb304-92b9-4bd1-9fd6-d543d90d9c4b" visible="True" title="Version 2.0.0.2">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 2.0.0.2" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="cd04209d-3eed-414a-9d24-dfb78659d2fb" visible="True" title="Version 2.0.0.1">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 2.0.0.1" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="dedf3c43-19c5-499c-be7d-07ca00518c64" visible="True" title="Version 2.0.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 2.0.0.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="2b72cbd9-6dc4-434c-aaf3-54d782118a7e" visible="True" title="Version 1.4.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 1.4.0.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="8db22e22-7856-41d7-80db-dd70aa1827a1" visible="True" title="Version 1.3.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 1.3.0.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="467f220c-c617-4cf8-9c54-a9fc8103a5b2" visible="True" title="Version 1.2.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 1.2.0.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="0a003f62-58fb-4018-9b20-f2a4580afc34" visible="True" title="Version 1.1.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 1.1.0.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="bebce453-f3c3-4075-84cb-f08ff898a48a" visible="True" title="Version 1.0.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 1.0.0.0" />
+      </HelpKeywords>
+    </Topic>
+  </Topic>
+</Topics>

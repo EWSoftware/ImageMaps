@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMapWinFormsCS", "ImageMapWinFormsCS\ImageMapWinFormsCS.csproj", "{5B91EAC1-0C18-4720-BF03-72FCFAA2FD53}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ImageMapWinFormsVB", "ImageMapWinFormsVB\ImageMapWinFormsVB.vbproj", "{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12356D6B-AF7F-4150-9FCF-61D8213FEAB5}"
+	ProjectSection(SolutionItems) = preProject
+		EWSImageMapDemos.ruleset = EWSImageMapDemos.ruleset
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B91EAC1-0C18-4720-BF03-72FCFAA2FD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B91EAC1-0C18-4720-BF03-72FCFAA2FD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B91EAC1-0C18-4720-BF03-72FCFAA2FD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B91EAC1-0C18-4720-BF03-72FCFAA2FD53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

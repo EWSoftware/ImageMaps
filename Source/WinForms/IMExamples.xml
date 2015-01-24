@@ -1,0 +1,233 @@
+<Examples>
+    <ImageMap>
+        <HelpEx name="Ex3">
+<example>
+This example demonstrates creating a Windows Forms image map and its areas.
+
+<code language="cs">
+using EWSoftware.ImageMaps;
+using EWSoftware.ImageMaps.Windows.Forms;
+
+// Example code that creates an image map and adds some image areas
+ImageMap imMap = new ImageMap();
+
+ImageAreaRectangle imageAreaRectangle1 = new ImageAreaRectangle();
+ImageAreaCircle imageAreaCircle1 = new ImageAreaCircle();
+ImageAreaPolygon imageAreaPolygon1 = new ImageAreaPolygon();
+ImageAreaRectangle imageAreaRectangle2 = new ImageAreaRectangle();
+ImageAreaEllipse imageAreaEllipse1 = new ImageAreaEllipse();
+
+imageAreaRectangle1.AccessKey = "R";
+imageAreaRectangle1.Rectangle = new System.Drawing.Rectangle(16, 16, 150, 94);
+imageAreaRectangle1.TabIndex = 3;
+imageAreaRectangle1.ToolTip = "A rectangle area";
+
+imageAreaCircle1.AccessKey = "C";
+imageAreaCircle1.CenterPoint = new System.Drawing.Point(380, 88);
+imageAreaCircle1.Radius = 60;
+imageAreaCircle1.TabIndex = 1;
+imageAreaCircle1.ToolTip = "A circle area";
+
+imageAreaPolygon1.AccessKey = "P";
+imageAreaPolygon1.Points.AddRange(new System.Drawing.Point[] {
+    new System.Drawing.Point(42, 186),
+    new System.Drawing.Point(110, 286),
+    new System.Drawing.Point(144, 250),
+    new System.Drawing.Point(138, 230),
+    new System.Drawing.Point(160, 216),
+    new System.Drawing.Point(190, 214),
+    new System.Drawing.Point(152, 168),
+    new System.Drawing.Point(112, 172),
+    new System.Drawing.Point(70, 154)});
+
+imageAreaPolygon1.TabIndex = 2;
+imageAreaPolygon1.ToolTip = "A polygon area";
+
+imageAreaRectangle2.Action = AreaClickAction.None;
+imageAreaRectangle2.Rectangle = new System.Drawing.Rectangle(316, 176, 206, 118);
+imageAreaRectangle2.ToolTip = "A tool tip only area";
+
+imageAreaEllipse1.AccessKey = "E";
+imageAreaEllipse1.Ellipse = new System.Drawing.Rectangle(199, 88, 128, 58);
+imageAreaEllipse1.TabIndex = 4;
+imageAreaEllipse1.ToolTip = "An ellipse area";
+
+imMap.Areas.AddRange(new IImageArea[] {
+    imageAreaRectangle1,
+    imageAreaCircle1,
+    imageAreaPolygon1,
+    imageAreaRectangle2
+    imageAreaEllipse1 });
+
+imMap.Anchor = ((System.Windows.Forms.AnchorStyles)
+    ((((System.Windows.Forms.AnchorStyles.Top |
+    System.Windows.Forms.AnchorStyles.Bottom)
+    | System.Windows.Forms.AnchorStyles.Left)
+    | System.Windows.Forms.AnchorStyles.Right)));
+
+imMap.Image = ((System.Drawing.Image)(resources.GetObject("imMap.Image")));
+imMap.Location = new System.Drawing.Point(8, 8);
+imMap.Name = "imMap";
+imMap.Size = new System.Drawing.Size(552, 448);
+imMap.TabIndex = 0;
+imMap.ToolTip = "A test image";
+
+// Add a click event handler
+imMap.Click += imMap_Click;
+
+// A simple image area click handler
+private void imMap_Click(object sender, ImageMapClickEventArgs e)
+{
+    MessageBox.Show(String.Format(
+        "You clicked area #{0} ({1}) at point {2}, {3}",
+            e.AreaIndex + 1, imMap.Areas[e.AreaIndex].ToolTip,
+            e.XCoordinate, e.YCoordinate), "Image Map Clicked",
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+}
+</code>
+<code language="vbnet">
+Imports EWSoftware.ImageMaps
+Imports EWSoftware.ImageMaps.Windows.Forms
+
+' Example code that creates an image map and adds some image areas
+Dim WithEvents imMap As ImageMap = New ImageMap()
+
+Dim ImageAreaRectangle1 As ImageAreaRectangle = New ImageAreaRectangle()
+Dim ImageAreaCircle1 As ImageAreaCircle = New ImageAreaCircle()
+Dim ImageAreaPolygon1 As ImageAreaPolygon = New ImageAreaPolygon()
+Dim ImageAreaRectangle2 As ImageAreaRectangle = New ImageAreaRectangle()
+Dim ImageAreaEllipse1 As New ImageAreaEllipse()
+
+ImageAreaRectangle1.AccessKey = "R"
+ImageAreaRectangle1.Rectangle = New System.Drawing.Rectangle(16, 16, 150, 94)
+ImageAreaRectangle1.TabIndex = 3
+ImageAreaRectangle1.ToolTip = "A rectangle area"
+
+ImageAreaCircle1.AccessKey = "C"
+ImageAreaCircle1.CenterPoint = New System.Drawing.Point(380, 88)
+ImageAreaCircle1.Radius = 60
+ImageAreaCircle1.TabIndex = 1
+ImageAreaCircle1.ToolTip = "A circle area"
+
+ImageAreaPolygon1.AccessKey = "P"
+ImageAreaPolygon1.Points.AddRange( New System.Drawing.Point() {
+    New System.Drawing.Point(42, 186),
+    New System.Drawing.Point(110, 286),
+    New System.Drawing.Point(144, 250),
+    New System.Drawing.Point(138, 230),
+    New System.Drawing.Point(160, 216),
+    New System.Drawing.Point(190, 214),
+    New System.Drawing.Point(152, 168),
+    New System.Drawing.Point(112, 172),
+    New System.Drawing.Point(70, 154)})
+
+ImageAreaPolygon1.TabIndex = 2
+ImageAreaPolygon1.ToolTip = "A polygon area"
+
+ImageAreaRectangle2.Action = EWSoftware.ImageMaps.Windows.Forms.AreaClickAction.None
+ImageAreaRectangle2.Rectangle = New System.Drawing.Rectangle(316, 176, 206, 118)
+ImageAreaRectangle2.ToolTip = "A tool tip only area"
+
+ImageAreaEllipse1.AccessKey = "E"
+ImageAreaEllipse1.Ellipse = new System.Drawing.Rectangle(199, 88, 128, 58)
+ImageAreaEllipse1.TabIndex = 4
+ImageAreaEllipse1.ToolTip = "An ellipse area"
+
+imMap.Areas.AddRange(New EWSoftware.ImageMaps.IImageArea() {
+    ImageAreaRectangle1,
+    ImageAreaCircle1,
+    ImageAreaPolygon1,
+    ImageAreaRectangle2
+    ImageAreaEllipse1 })
+
+imMap.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top _
+    Or System.Windows.Forms.AnchorStyles.Bottom) _
+    Or System.Windows.Forms.AnchorStyles.Left) _
+    Or System.Windows.Forms.AnchorStyles.Right), _
+    System.Windows.Forms.AnchorStyles)
+
+imMap.Image = CType(resources.GetObject("imMap.Image"), System.Drawing.Image)
+imMap.Location = New System.Drawing.Point(8, 8)
+imMap.Name = "imMap"
+imMap.Size = New System.Drawing.Size(552, 448)
+imMap.TabIndex = 0
+imMap.ToolTip = "A test image"
+
+' A simple image area click event handler
+Private Sub imMap_Click(ByVal sender As Object, _
+  ByVal e As ImageMapClickEventArgs) Handles imMap.Click
+    MessageBox.Show(String.Format( _
+        "You clicked area #{0} ({1}) at point {2}, {3}", _
+        e.AreaIndex + 1, imMap.Areas(e.AreaIndex).ToolTip, _
+        e.XCoordinate, e.YCoordinate), "Image Map Clicked", _
+        MessageBoxButtons.OK, MessageBoxIcon.Information)
+End Sub
+</code>
+
+</example>
+        </HelpEx>
+        <HelpEx name="Ex4">
+<example>
+This is an example of an owner drawn image area event handler.  For some other examples, see the demo
+application.  As shown, the image area event properties are not accessible in the designer so you must write
+code to connect the event handlers.  For example, add the code in the form's constructor after the call to
+<c>InitializeComponent</c>.
+
+<code language="cs">
+        public ImageMapEventsForm()
+        {
+            InitializeComponent();
+
+            // Hook up the event handlers.  Since they are not accessible in the
+            // designer, we must do it manually.
+            ImageAreaBase a = (ImageAreaBase)imMap.Areas[4];
+            a.DrawImage += Button_DrawImage;
+
+            a = (ImageAreaBase)imMap.Areas[5];
+            a.DrawImage += Button_DrawImage;
+
+            a = (ImageAreaBase)imMap.Areas[6];
+            a.DrawImage += Button_DrawImage;
+
+            .
+            .
+            .
+        }
+        <code source="..\Demos\ImageMapWinFormsCS\ImageMapEventsForm.cs" region="Owner drawn area help example" />
+</code>
+<code language="vbnet">
+    Public Sub New()
+        MyBase.New()
+
+        InitializeComponent()
+
+        ' Hook up the event handlers.  Since they are not accessible in the
+        ' designer, we must do it manually.
+        Dim a As ImageAreaBase = DirectCast(imMap.Areas(4), ImageAreaBase)
+
+        AddHandler a.DrawImage, AddressOf Button_DrawImage
+
+        a = DirectCast(imMap.Areas(5), ImageAreaBase)
+        AddHandler a.DrawImage, AddressOf Button_DrawImage
+
+        a = DirectCast(imMap.Areas(6), ImageAreaBase)
+        AddHandler a.DrawImage, AddressOf Button_DrawImage
+        .
+        .
+        .
+
+    End Sub
+    <code source="..\Demos\ImageMapWinFormsVB\ImageMapEventsForm.vb" region="Owner drawn area help example" />
+</code>
+</example>
+    </HelpEx>
+    <HelpEx name="Ex5">
+<example>
+This is an example of an owner drawn image event handler.  For some other examples, see the demo application.
+
+<code language="cs" source="..\Demos\ImageMapWinFormsCS\ImageMapEventsForm.cs" region="Owner drawn image map help example" />
+<code language="vbnet" source="..\Demos\ImageMapWinFormsVB\ImageMapEventsForm.vb" region="Owner drawn image map help example" />
+</example>
+    </HelpEx>
+    </ImageMap>
+</Examples>

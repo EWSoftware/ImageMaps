@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="dedf3c43-19c5-499c-be7d-07ca00518c64" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Version 2.0.0.0 was released on December 22nd, 2006.</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+				<para>Created a .NET 2.0 version of the controls.  Due to some issues with the Visual Studio 2005
+designers, the web controls and Windows Forms controls now each reside in a separate assembly.  Changes were also
+made in the .NET 2.0 version to take advantage of some of the new features in .NET 2.0.</para>
+
+				<list class="bullet">
+					<listItem>
+						<para>The <codeInline>DrawImageEventHandler</codeInline> delegate has been removed.  Use the new
+generic <codeInline>EventHandler&lt;DrawImageEventArgs&gt;</codeInline> delegate instead.</para>
+					</listItem>
+
+					<listItem>
+						<para>The <codeInline>ImageMapClickEventHandler</codeInline> delegate has been removed.  Use the new
+generic <codeInline>EventHandler&lt;ImageMapClickEventArgs&gt;</codeInline> delegate instead.</para>
+					</listItem>
+
+					<listItem>
+						<para>The base class for <codeInline>ImageAreaCollection</codeInline> has been changed to
+<codeInline>Collection&lt;IImageArea&gt;</codeInline>.</para>
+					</listItem>
+
+					<listItem>
+						<para>The base class for <codeInline>PointCollection</codeInline> has been changed to
+<codeInline>Collection&lt;Point&gt;</codeInline>.</para>
+					</listItem>
+
+				</list>
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="ad1fd96f-bab4-4925-b620-29b634cfc4b0" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

@@ -1,0 +1,113 @@
+<Examples>
+    <ImageMap>
+        <HelpEx name="Ex1">
+<example>
+<para>This example demonstrates creating web server <see cref="ImageMap"/> controls and the various shapes
+derived from <see cref="ImageAreaBase"/>.</para>
+
+<para>The control definitions are in the HTML.  This shows an example of each image area type and the various
+actions that can be performed.</para>
+
+<code language="xml" title="Example Control Usage">
+&lt;%@ Register TagPrefix="ewsi" Namespace="EWSoftware.ImageMaps.Web.Controls"
+  Assembly="EWSoftware.ImageMaps.Web.Controls" %&gt;
+
+&lt;ewsi:ImageMap id="imMap" runat="server" ToolTip="A test image"
+  ImageUrl="Images/Shapes.jpg" BorderStyle="Solid" BorderWidth="1px"&gt;
+  &lt;ewsi:ImageAreaPolygon
+    ToolTip="Load google.com in search pane"
+    NavigateUrl="http://www.google.com" Target="Search"
+    Coordinates="150,156,218,256,250,222,244,200,268,188,294,188,258,140,220,144,178,124"
+    TabIndex="4" AccessKey="P"&gt;&lt;/ewsi:ImageAreaPolygon&gt;
+  &lt;ewsi:ImageAreaRectangle ToolTip="Go to www.EWoodruff.us"
+    Rectangle="15, 16, 149, 93" NavigateUrl="http://www.ewoodruff.us"
+    TabIndex="2" AccessKey="R"&gt;&lt;/ewsi:ImageAreaRectangle&gt;
+  &lt;ewsi:ImageAreaRectangle ToolTip="Only displays this tool tip"
+    Rectangle="316, 175, 208, 122" Action="None"&gt;
+    &lt;/ewsi:ImageAreaRectangle&gt;
+  &lt;ewsi:ImageAreaCircle
+    ToolTip="Load Microsoft.com in a new window" CenterPoint="380, 88"
+    Radius="60" NavigateUrl="http://www.microsoft.com" Target="Blank"
+    TabIndex="3" AccessKey="C"&gt;&lt;/ewsi:ImageAreaCircle&gt;
+  &lt;ewsi:ImageAreaRectangle ToolTip="Execute client-side script"
+    Rectangle="12, 202, 134, 46"
+    NavigateUrl="javascript: alert('Execute any client-side script');"
+    TabIndex="5"&gt;&lt;/ewsi:ImageAreaRectangle&gt;
+  &lt;ewsi:ImageAreaRectangle
+    ToolTip="Click to enable/disable the other image map"
+    Rectangle="6, 262, 194, 40" TabIndex="6" Action="PostBack"
+    AccessKey="D"&gt;&lt;/ewsi:ImageAreaRectangle&gt;
+&lt;/ewsi:ImageMap&gt;
+
+&lt;ewsi:ImageMap id="imClickMap" runat="server" ToolTip="Click an area to post back"
+  ImageUrl="Images/PostBack.jpg" CausesValidation="True"&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="0,0,20,20" Action="PostBack"
+    ToolTip="Area 1" TabIndex="7" AccessKey="1" /&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="80,0,20,20" Action="PostBack"
+    ToolTip="Area 2" TabIndex="8" AccessKey="2" /&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="0,80,20,20" Action="PostBack"
+    ToolTip="Area 3" TabIndex="9" AccessKey="3" /&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="80,80,20,20" Action="PostBack"
+    ToolTip="Area 4" TabIndex="10" AccessKey="4" /&gt;
+&lt;/ewsi:ImageMap&gt;
+</code>
+
+<para>The code in the code-behind file for the event handlers fired by the image areas that have their
+<see cref="ImageAreaBase.Action"/> set to <c>PostBack</c>:</para>
+
+<code language="cs" source="..\Demos\ImageMapWebCS\Default.aspx.cs" region="Click event examples" />
+<code language="vbnet" source="..\Demos\ImageMapWebVB\Default.aspx.vb" region="Click event examples" />
+</example>
+        </HelpEx>
+        <HelpEx name="Ex2">
+<example>
+This example demonstrates creating web server image map areas.  It shows the various ways that the
+<see cref="ImageAreaBase.Action"/>, <see cref="NavigateUrl"/>, and <see cref="Target"/> properties can be used.
+
+<code language="xml" title="Example Control Usage">
+&lt;%@ Register TagPrefix="EWSI" Namespace="EWSoftware.ImageMaps.Web.Controls"
+  Assembly="EWSoftware.ImageMaps.Web.Controls" %&gt;
+
+&lt;ewsi:ImageMap id="imMap"  runat="server" ToolTip="A test image"
+  ImageUrl="Images/Shapes.jpg" BorderStyle="Solid" BorderWidth="1px"&gt;
+  &lt;ewsi:ImageAreaPolygon
+    ToolTip="Load google.com in search pane"
+    NavigateUrl="http://www.google.com" Target="Search"
+    Coordinates="150,156,218,256,250,222,244,200,268,188,294,188,258,140,220,144,178,124"
+    TabIndex="4" AccessKey="P"&gt;&lt;/ewsi:ImageAreaPolygon&gt;
+  &lt;ewsi:ImageAreaRectangle ToolTip="Go to www.EWoodruff.us"
+    Rectangle="15, 16, 149, 93" NavigateUrl="http://www.ewoodruff.us"
+    TabIndex="2" AccessKey="R"&gt;&lt;/ewsi:ImageAreaRectangle&gt;
+  &lt;ewsi:ImageAreaRectangle ToolTip="Only displays this tool tip"
+    Rectangle="316, 175, 208, 122" Action="None"&gt;
+    &lt;/ewsi:ImageAreaRectangle&gt;
+  &lt;ewsi:ImageAreaCircle
+    ToolTip="Load Microsoft.com in a new window" CenterPoint="380, 88"
+    Radius="60" NavigateUrl="http://www.microsoft.com" Target="Blank"
+    TabIndex="3" AccessKey="C"&gt;&lt;/ewsi:ImageAreaCircle&gt;
+  &lt;ewsi:ImageAreaRectangle ToolTip="Execute client-side script"
+    Rectangle="12, 202, 134, 46"
+    NavigateUrl="javascript: alert('Execute any client-side script');"
+    TabIndex="5"&gt;&lt;/ewsi:ImageAreaRectangle&gt;
+  &lt;ewsi:ImageAreaRectangle
+    ToolTip="Click to enable/disable the other image map"
+    Rectangle="6, 262, 194, 40" TabIndex="6" Action="PostBack"
+    AccessKey="D"&gt;&lt;/ewsi:ImageAreaRectangle&gt;
+&lt;/ewsi:ImageMap&gt;
+
+&lt;ewsi:ImageMap id="imClickMap" runat="server" ToolTip="Click an area to post back"
+  ImageUrl="Images/PostBack.jpg" CausesValidation="True"&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="0,0,20,20" Action="PostBack"
+    ToolTip="Area 1" TabIndex="7" AccessKey="1" /&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="80,0,20,20" Action="PostBack"
+    ToolTip="Area 2" TabIndex="8" AccessKey="2" /&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="0,80,20,20" Action="PostBack"
+    ToolTip="Area 3" TabIndex="9" AccessKey="3" /&gt;
+  &lt;ewsi:ImageAreaRectangle Rectangle="80,80,20,20" Action="PostBack"
+    ToolTip="Area 4" TabIndex="10" AccessKey="4" /&gt;
+&lt;/ewsi:ImageMap&gt;
+</code>
+</example>
+        </HelpEx>
+    </ImageMap>
+</Examples>

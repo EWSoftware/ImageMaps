@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cd04209d-3eed-414a-9d24-dfb78659d2fb" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Version 2.0.0.1 was released on July 7th, 2007.</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+				<list class="bullet">
+					<listItem>
+						<para>Added a <codeInline>ForceScriptRegistration</codeInline> property to the web
+<codeInline>ImageMap</codeInline> control.  This allows you to force registration of the postback script even if
+it may not be used.  This is useful when the control appears in an Ajax panel and has no image areas when the
+page is first loaded.</para>
+					</listItem>
+				</list>
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="ad1fd96f-bab4-4925-b620-29b634cfc4b0" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which
+         assemblies to include from solution and project documentation
+         sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{b9fc15bb-f809-48f1-8888-d8be8d2e77ca}</ProjectGuid>
+    <SHFBSchemaVersion>1.9.9.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
+         Studio adds them anyway -->
+    <AssemblyName>Documentation</AssemblyName>
+    <RootNamespace>Documentation</RootNamespace>
+    <Name>Documentation</Name>
+    <!-- SHFB properties -->
+    <OutputPath>Help\</OutputPath>
+    <HtmlHelpName>EWSoftware.ImageMaps</HtmlHelpName>
+    <ProjectSummary>.NET Image Map controls for web and Windows Forms applications developed by Eric Woodruff.
+</ProjectSummary>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath>
+    </HtmlHelp1xCompilerPath>
+    <HtmlHelp2xCompilerPath>
+    </HtmlHelp2xCompilerPath>
+    <WorkingPath>
+    </WorkingPath>
+    <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
+    <HelpTitle>EWSoftware.ImageMaps Control Library Documentation</HelpTitle>
+    <CopyrightHref>https://github.com/EWSoftware/ImageMaps</CopyrightHref>
+    <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2004-2015, Eric Woodruff, All Rights Reserved</CopyrightText>
+    <FeedbackEMailAddress>Eric%40EWoodruff.us</FeedbackEMailAddress>
+    <PresentationStyle>VS2013</PresentationStyle>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <ComponentConfigurations>
+      <ComponentConfig id="IntelliSense Component" enabled="True">
+        <component id="IntelliSense Component">
+          <!-- Output options (optional)
+  Attributes:
+    Include namespaces (false by default)
+    Namespaces comments filename ("Namespaces" if not specified or empty)
+    Output folder (current folder if not specified or empty) -->
+          <output includeNamespaces="false" namespacesFile="Namespaces" folder="{@ProjectFolder}..\Deployment" />
+        </component>
+      </ComponentConfig>
+    </ComponentConfigurations>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="..\Source\WinForms\WinForms.csproj" />
+      <DocumentationSource sourceFile="..\Source\WebControls\WebControls.csproj" />
+    </DocumentationSources>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+      <NamespaceSummaryItem name="EWSoftware.ImageMaps" isDocumented="True">This is the main name space for all of the ImageMap control classes.  It contains classes common to both the Windows Forms and web server controls.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="EWSoftware.ImageMaps.Web.Controls" isDocumented="True">This namespace contains the classes related to the web server image map control and image areas.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="EWSoftware.ImageMaps.Windows.Forms" isDocumented="True">This namespace contains the classes related to the Windows Forms image map control and image areas.</NamespaceSummaryItem>
+    </NamespaceSummaries>
+    <HelpFileVersion>2015.1.19.0</HelpFileVersion>
+    <ApiFilter />
+    <HelpAttributes />
+    <PlugInConfigurations>
+      <PlugInConfig id="Output Deployment" enabled="True">
+        <configuration deleteAfterDeploy="true">
+          <deploymentLocation id="help1x" location="..\Deployment\">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="help2x" location="">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="helpViewer" location="" renameMSHA="false">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="website" location="..\Deployment\DocWebsite\">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="openXml" location="">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+        </configuration>
+      </PlugInConfig>
+    </PlugInConfigurations>
+    <BuildLogFile />
+    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
+    <IndentHtml>False</IndentHtml>
+    <KeepLogFile>True</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <CleanIntermediates>True</CleanIntermediates>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <Preliminary>False</Preliminary>
+    <NamingMethod>Guid</NamingMethod>
+    <Language>en-US</Language>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <MSHelp2SdkLinkType>Msdn</MSHelp2SdkLinkType>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <ComponentPath />
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <NamespaceGrouping>False</NamespaceGrouping>
+    <CatalogName>VisualStudio12</CatalogName>
+    <TocParentId>-1</TocParentId>
+    <TocParentVersion>100</TocParentVersion>
+    <TopicVersion>100</TopicVersion>
+    <TocOrder>-1</TocOrder>
+    <MSHelpViewerSdkLinkType>Msdn</MSHelpViewerSdkLinkType>
+    <CatalogVersion>100</CatalogVersion>
+    <CatalogProductId>VS</CatalogProductId>
+  </PropertyGroup>
+  <!-- There are no properties for these two groups but they need to appear in
+       order for Visual Studio to perform the build. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'ReleaseNoDoc' ">
+    <OutputPath>bin\ReleaseNoDoc\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+    <Folder Include="Content\VersionHistory\" />
+    <Folder Include="Media\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Media\ImageEditor.png">
+      <AlternateText>Image editor</AlternateText>
+      <ImageId>ImageEditor</ImageId>
+    </Image>
+    <Image Include="Media\CoordinateEditor.png">
+      <AlternateText>Coordinate editor</AlternateText>
+      <ImageId>CoordinateEditor</ImageId>
+    </Image>
+    <Image Include="Media\CollectionEditor.png">
+      <AlternateText>Collection editor</AlternateText>
+      <ImageId>CollectionEditor</ImageId>
+    </Image>
+    <Image Include="Media\AreaEditor.png">
+      <AlternateText>Area editor</AlternateText>
+      <ImageId>AreaEditor</ImageId>
+    </Image>
+    <Image Include="Media\PayPal.gif">
+      <ImageId>PayPal</ImageId>
+      <AlternateText>Pay Pal</AlternateText>
+      <CopyToMedia>True</CopyToMedia>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\DesignTimeSupport.aml" />
+    <None Include="Content\Donate.aml" />
+    <None Include="Content\License.aml" />
+    <None Include="Content\UsageNotes.aml" />
+    <None Include="Content\VersionHistory\VersionHistory.aml" />
+    <None Include="Content\VersionHistory\v1.0.0.0.aml" />
+    <None Include="Content\VersionHistory\v1.1.0.0.aml" />
+    <None Include="Content\VersionHistory\v1.2.0.0.aml" />
+    <None Include="Content\VersionHistory\v1.3.0.0.aml" />
+    <None Include="Content\VersionHistory\v1.4.0.0.aml" />
+    <None Include="Content\VersionHistory\v2.0.0.0.aml" />
+    <None Include="Content\VersionHistory\v2.0.0.1.aml" />
+    <None Include="Content\VersionHistory\v2.0.0.2.aml" />
+    <None Include="Content\VersionHistory\v2.0.0.3.aml" />
+    <None Include="Content\VersionHistory\v2015.1.19.0.aml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentLayout Include="ContentLayout.content" />
+  </ItemGroup>
+  <!-- Import the SHFB build targets -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+</Project>

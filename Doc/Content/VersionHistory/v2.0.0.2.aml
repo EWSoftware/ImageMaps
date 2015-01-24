@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="508bb304-92b9-4bd1-9fd6-d543d90d9c4b" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Version 2.0.0.2 was released on July 20th, 2007.</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+				<list class="bullet">
+					<listItem>
+						<para>Removed code in the Windows Forms control that disposed of the image when the control is
+disposed.  If using a project resource as the image, it should not be disposed of as the image can be used
+elsewhere or in the same control at a later time.</para>
+					</listItem>
+				</list>
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="ad1fd96f-bab4-4925-b620-29b634cfc4b0" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

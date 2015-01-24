@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{34CFEE36-4AAB-4C80-B34A-9794D127090C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>EWSoftware.ImageMaps.Windows.Forms</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\EWSImageMaps.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Flow</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EWSoftware.ImageMaps.Windows.Forms</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile>bin\Debug\EWSoftware.ImageMaps.Windows.Forms.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1699</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\EWSImageMaps.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\EWSoftware.ImageMaps.Windows.Forms.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1699</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Design\WindowsForms\EllipseCoordinateEditor.cs" />
+    <Compile Include="Design\WindowsForms\ImageAreaCollectionEditor.cs" />
+    <Compile Include="Design\WindowsForms\ImageAreaCoordinateEditor.cs" />
+    <Compile Include="Design\WindowsForms\ImageMapDesigner.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\AssemblyInfoShared.cs" />
+    <Compile Include="Design\ImageMapAreaEditorDlg.Designer.cs">
+      <DependentUpon>ImageMapAreaEditorDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageAreaShape.cs" />
+    <Compile Include="UnsafeNativeMethods.cs" />
+    <Compile Include="IImageArea.cs" />
+    <Compile Include="IImageMap.cs" />
+    <Compile Include="ImageAreaCollection.cs" />
+    <Compile Include="ImageMapClickEvent.cs" />
+    <Compile Include="PointCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Design\WindowsForms\ImageAreaTypeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsForms\AreaClickAction.cs" />
+    <Compile Include="WindowsForms\DrawImageEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WindowsForms\DrawState.cs" />
+    <Compile Include="WindowsForms\ImageAreaPolygon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WindowsForms\ImageAreaBase.cs" />
+    <Compile Include="WindowsForms\ImageAreaCircle.cs" />
+    <Compile Include="WindowsForms\ImageAreaEllipse.cs" />
+    <Compile Include="WindowsForms\ImageAreaEvent.cs" />
+    <Compile Include="WindowsForms\ImageAreaRectangle.cs" />
+    <Compile Include="WindowsForms\ImageMap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\ImageMapAreaEditorDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForms\ImageMap.Designer.cs">
+      <DependentUpon>ImageMap.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForms\ImageMap.resx">
+      <DependentUpon>ImageMap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\ImageMapAreaEditorDlg.resx">
+      <DependentUpon>ImageMapAreaEditorDlg.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\EWSImageMaps.snk">
+      <Link>EWSImageMaps.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IMExamples.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImageMap.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\DecAll.bmp" />
+    <None Include="Images\DecBottom.bmp" />
+    <None Include="Images\DecLeft.bmp" />
+    <None Include="Images\DecLeftBottom.bmp" />
+    <None Include="Images\DecLeftTop.bmp" />
+    <None Include="Images\DecRight.bmp" />
+    <None Include="Images\DecRightBottom.bmp" />
+    <None Include="Images\DecRightTop.bmp" />
+    <None Include="Images\DecTop.bmp" />
+    <None Include="Images\IncAll.bmp" />
+    <None Include="Images\IncBottom.bmp" />
+    <None Include="Images\IncLeft.bmp" />
+    <None Include="Images\IncLeftBottom.bmp" />
+    <None Include="Images\IncLeftTop.bmp" />
+    <None Include="Images\IncRight.bmp" />
+    <None Include="Images\IncRightBottom.bmp" />
+    <None Include="Images\IncRightTop.bmp" />
+    <None Include="Images\IncTop.bmp" />
+    <None Include="Images\MoveDown.bmp" />
+    <None Include="Images\MoveLeft.bmp" />
+    <None Include="Images\MoveLeftDown.bmp" />
+    <None Include="Images\MoveLeftUp.bmp" />
+    <None Include="Images\MoveRight.bmp" />
+    <None Include="Images\MoveRightDown.bmp" />
+    <None Include="Images\MoveRightUp.bmp" />
+    <None Include="Images\MoveUp.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>IF NOT EXIST "$(SolutionDir)..\Deployment" MD "$(SolutionDir)..\Deployment"
+
+COPY "$(SolutionDir)WinForms\bin\$(Configuration)\*.dll" "$(SolutionDir)..\Deployment"
+COPY "$(SolutionDir)WinForms\bin\$(Configuration)\*.xml" "$(SolutionDir)..\Deployment"
+COPY "$(SolutionDir)WebControls\bin\$(Configuration)\*.dll" "$(SolutionDir)..\Deployment"
+COPY "$(SolutionDir)WebControls\bin\$(Configuration)\*.xml" "$(SolutionDir)..\Deployment"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
