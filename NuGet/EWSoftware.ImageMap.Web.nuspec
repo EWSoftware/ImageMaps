@@ -8,7 +8,7 @@
 		<owners>Eric Woodruff</owners>
 		<licenseUrl>https://github.com/EWSoftware/ImageMaps/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/EWSoftware/ImageMaps</projectUrl>
-		<iconUrl>https://github.com/EWSoftware/ImageMaps/blob/master/NuGet/EWSImageMaps.png</iconUrl>
+		<iconUrl>https://raw.githubusercontent.com/EWSoftware/ImageMaps/master/NuGet/EWSImageMaps.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>This image map control allows you to define hot spots on an image and perform an action when a defined area is clicked.  See the project website for the code, a help file, and demos.</description>
 		<copyright>Eric Woodruff (c) 2005-2015</copyright>
