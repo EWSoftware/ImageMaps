@@ -137,26 +137,26 @@
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="Content\VersionHistory\" />
-    <Folder Include="Media\" />
+    <Folder Include="media\" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Media\ImageEditor.png">
+    <Image Include="media\ImageEditor.png">
       <AlternateText>Image editor</AlternateText>
       <ImageId>ImageEditor</ImageId>
     </Image>
-    <Image Include="Media\CoordinateEditor.png">
+    <Image Include="media\CoordinateEditor.png">
       <AlternateText>Coordinate editor</AlternateText>
       <ImageId>CoordinateEditor</ImageId>
     </Image>
-    <Image Include="Media\CollectionEditor.png">
+    <Image Include="media\CollectionEditor.png">
       <AlternateText>Collection editor</AlternateText>
       <ImageId>CollectionEditor</ImageId>
     </Image>
-    <Image Include="Media\AreaEditor.png">
+    <Image Include="media\AreaEditor.png">
       <AlternateText>Area editor</AlternateText>
       <ImageId>AreaEditor</ImageId>
     </Image>
-    <Image Include="Media\PayPal.gif">
+    <Image Include="media\PayPal.gif">
       <ImageId>PayPal</ImageId>
       <AlternateText>Pay Pal</AlternateText>
       <CopyToMedia>True</CopyToMedia>
