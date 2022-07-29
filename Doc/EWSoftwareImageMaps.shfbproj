@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
   <PropertyGroup>
     <!-- The configuration and platform will be used to determine which
          assemblies to include from solution and project documentation
@@ -30,7 +30,7 @@
     <CopyrightHref>https://github.com/EWSoftware/ImageMaps</CopyrightHref>
     <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2004-2015, Eric Woodruff, All Rights Reserved</CopyrightText>
     <FeedbackEMailAddress>Eric%40EWoodruff.us</FeedbackEMailAddress>
-    <PresentationStyle>VS2013</PresentationStyle>
+    <PresentationStyle>Default2022</PresentationStyle>
     <SyntaxFilters>Standard</SyntaxFilters>
     <ComponentConfigurations>
       <ComponentConfig id="IntelliSense Component" enabled="True">
@@ -100,7 +100,7 @@
     </PlugInConfigurations>
     <BuildLogFile />
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
-    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
+    <HelpFileFormat>Website</HelpFileFormat>
     <IndentHtml>False</IndentHtml>
     <KeepLogFile>True</KeepLogFile>
     <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
@@ -140,6 +140,28 @@
 &amp;lt%3bdiv data-type=&amp;quot%3bad&amp;quot%3b data-publisher=&amp;quot%3bewsoftware.github.io&amp;quot%3b data-format=&amp;quot%3b728x90&amp;quot%3b data-zone=&amp;quot%3bImageMaps&amp;quot%3b&amp;gt%3b&amp;lt%3b/div&amp;gt%3b
 </WebsiteAdContent>
     <AppendMarkdownFileExtensionsToUrls>False</AppendMarkdownFileExtensionsToUrls>
+    <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
+    <TransformComponentArguments>
+      <Argument Key="RobotsMetadata" Value="" xmlns="" />
+      <Argument Key="BibliographyDataFile" Value="" xmlns="" />
+      <Argument Key="RootBreadcrumbTitleText" Value="Image Maps" xmlns="" />
+      <Argument Key="CollapsibleSections" Value="True" xmlns="" />
+      <Argument Key="LogoFile" Value="" xmlns="" />
+      <Argument Key="LogoHeight" Value="" xmlns="" />
+      <Argument Key="LogoWidth" Value="" xmlns="" />
+      <Argument Key="LogoAltText" Value="" xmlns="" />
+      <Argument Key="LogoPlacement" Value="Left" xmlns="" />
+      <Argument Key="LogoAlignment" Value="Left" xmlns="" />
+      <Argument Key="LogoUrl" Value="" xmlns="" />
+      <Argument Key="MaxVersionParts" Value="" xmlns="" />
+      <Argument Key="DefaultLanguage" Value="cs" xmlns="" />
+      <Argument Key="IncludeEnumValues" Value="True" xmlns="" />
+      <Argument Key="EnumMemberSortOrder" Value="Value" xmlns="" />
+      <Argument Key="FlagsEnumValueFormat" Value="IntegerValue" xmlns="" />
+      <Argument Key="FlagsEnumSeparatorSize" Value="0" xmlns="" />
+      <Argument Key="BaseSourceCodeUrl" Value="" xmlns="" />
+      <Argument Key="RequestExampleUrl" Value="" xmlns="" />
+    </TransformComponentArguments>
   </PropertyGroup>
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
