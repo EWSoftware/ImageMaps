@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : EllipseCoordinateEditor.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the ellipse coordinate editor
 //
@@ -26,6 +25,8 @@ using System.Windows.Forms.Design;
 
 namespace EWSoftware.ImageMaps.Design.Windows.Forms
 {
+#pragma warning disable CA1812
+
     /// <summary>
     /// This provides design time support for the Windows Forms control's
     /// <see cref="EWSoftware.ImageMaps.Windows.Forms.ImageAreaEllipse"/> to let the user set the area
@@ -80,4 +81,5 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
             return value;
         }
     }
+#pragma warning restore CA1812
 }

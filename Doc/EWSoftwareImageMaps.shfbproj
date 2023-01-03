@@ -28,21 +28,11 @@
     <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
     <HelpTitle>EWSoftware.ImageMaps Control Library Documentation</HelpTitle>
     <CopyrightHref>https://github.com/EWSoftware/ImageMaps</CopyrightHref>
-    <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2004-2015, Eric Woodruff, All Rights Reserved</CopyrightText>
+    <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2004-2023, Eric Woodruff, All Rights Reserved</CopyrightText>
     <FeedbackEMailAddress>Eric%40EWoodruff.us</FeedbackEMailAddress>
     <PresentationStyle>Default2022</PresentationStyle>
     <SyntaxFilters>Standard</SyntaxFilters>
     <ComponentConfigurations>
-      <ComponentConfig id="IntelliSense Component" enabled="True">
-        <component id="IntelliSense Component">
-          <!-- Output options (optional)
-  Attributes:
-    Include namespaces (false by default)
-    Namespaces comments filename ("Namespaces" if not specified or empty)
-    Output folder (current folder if not specified or empty) -->
-          <output includeNamespaces="false" namespacesFile="Namespaces" folder="{@ProjectFolder}..\Deployment" />
-        </component>
-      </ComponentConfig>
     </ComponentConfigurations>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\Source\WinForms\WinForms.csproj" />
@@ -54,48 +44,42 @@
       <NamespaceSummaryItem name="EWSoftware.ImageMaps.Web.Controls" isDocumented="True">This namespace contains the classes related to the web server image map control and image areas.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="EWSoftware.ImageMaps.Windows.Forms" isDocumented="True">This namespace contains the classes related to the Windows Forms image map control and image areas.</NamespaceSummaryItem>
     </NamespaceSummaries>
-    <HelpFileVersion>2015.1.19.0</HelpFileVersion>
+    <HelpFileVersion>2022.1.3.0</HelpFileVersion>
     <ApiFilter />
     <PlugInConfigurations>
       <PlugInConfig id="Output Deployment" enabled="True">
         <configuration deleteAfterDeploy="true" verboseLogging="false">
-          <deploymentLocation id="help1x" location="..\Deployment\">
-            <userCredentials useDefault="true" userName="" password="" />
-            <proxyCredentials useProxy="false" proxyServer="">
-              <userCredentials useDefault="true" userName="" password="" />
-            </proxyCredentials>
-          </deploymentLocation>
-          <deploymentLocation id="help2x" location="">
-            <userCredentials useDefault="true" userName="" password="" />
-            <proxyCredentials useProxy="false" proxyServer="">
-              <userCredentials useDefault="true" userName="" password="" />
-            </proxyCredentials>
-          </deploymentLocation>
-          <deploymentLocation id="helpViewer" location="" renameMSHA="false">
-            <userCredentials useDefault="true" userName="" password="" />
-            <proxyCredentials useProxy="false" proxyServer="">
-              <userCredentials useDefault="true" userName="" password="" />
-            </proxyCredentials>
-          </deploymentLocation>
-          <deploymentLocation id="website" location="..\Deployment\DocWebsite\">
-            <userCredentials useDefault="true" userName="" password="" />
-            <proxyCredentials useProxy="false" proxyServer="">
-              <userCredentials useDefault="true" userName="" password="" />
-            </proxyCredentials>
-          </deploymentLocation>
-          <deploymentLocation id="openXml" location="">
-            <userCredentials useDefault="true" userName="" password="" />
-            <proxyCredentials useProxy="false" proxyServer="">
-              <userCredentials useDefault="true" userName="" password="" />
-            </proxyCredentials>
-          </deploymentLocation>
-          <deploymentLocation id="markdown" location="">
-            <userCredentials useDefault="true" userName="" password="" />
-            <proxyCredentials useProxy="false" proxyServer="">
-              <userCredentials useDefault="true" userName="" password="" />
-            </proxyCredentials>
-          </deploymentLocation>
-        </configuration>
+  <deploymentLocation id="help1x" location="">
+    <userCredentials useDefault="true" userName="" password="" />
+    <proxyCredentials useProxy="false" proxyServer="">
+      <userCredentials useDefault="true" userName="" password="" />
+    </proxyCredentials>
+  </deploymentLocation>
+  <deploymentLocation id="helpViewer" location="" renameMSHA="false">
+    <userCredentials useDefault="true" userName="" password="" />
+    <proxyCredentials useProxy="false" proxyServer="">
+      <userCredentials useDefault="true" userName="" password="" />
+    </proxyCredentials>
+  </deploymentLocation>
+  <deploymentLocation id="website" location="..\Deployment\DocWebsite\">
+    <userCredentials useDefault="true" userName="" password="" />
+    <proxyCredentials useProxy="false" proxyServer="">
+      <userCredentials useDefault="true" userName="" password="" />
+    </proxyCredentials>
+  </deploymentLocation>
+  <deploymentLocation id="openXml" location="">
+    <userCredentials useDefault="true" userName="" password="" />
+    <proxyCredentials useProxy="false" proxyServer="">
+      <userCredentials useDefault="true" userName="" password="" />
+    </proxyCredentials>
+  </deploymentLocation>
+  <deploymentLocation id="markdown" location="">
+    <userCredentials useDefault="true" userName="" password="" />
+    <proxyCredentials useProxy="false" proxyServer="">
+      <userCredentials useDefault="true" userName="" password="" />
+    </proxyCredentials>
+  </deploymentLocation>
+</configuration>
       </PlugInConfig>
     </PlugInConfigurations>
     <BuildLogFile />
@@ -207,6 +191,7 @@
     <None Include="Content\Donate.aml" />
     <None Include="Content\License.aml" />
     <None Include="Content\UsageNotes.aml" />
+    <None Include="Content\VersionHistory\v2023.1.3.0.aml" />
     <None Include="Content\VersionHistory\VersionHistory.aml" />
     <None Include="Content\VersionHistory\v1.0.0.0.aml" />
     <None Include="Content\VersionHistory\v1.1.0.0.aml" />

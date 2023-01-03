@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : WebImageAreaCollection.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains a derived image area collection class specific to the web server image map control
 //
@@ -30,7 +29,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
 {
     /// <summary>
     /// This is an <see cref="ImageAreaCollection"/>-derived class that implements
-    /// <see cref="System.Web.UI.IStateManager"/> so that web-based image areas can track their view state.
+    /// <see cref="IStateManager"/> so that web-based image areas can track their view state.
     /// </summary>
     public class WebImageAreaCollection : ImageAreaCollection, IStateManager
     {
@@ -118,7 +117,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         {
             trackViewState = true;
 
-            foreach(EWSoftware.ImageMaps.Web.Controls.ImageAreaBase a in this)
+            foreach(ImageAreaBase a in this)
                 a.TrackViewState();
         }
 
@@ -126,10 +125,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// Indicates whether or not view state is being tracked
         /// </summary>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool IsTrackingViewState
-        {
-            get { return trackViewState; }
-        }
+        public bool IsTrackingViewState => trackViewState;
 
         /// <summary>
         /// Save view state
@@ -219,19 +215,19 @@ namespace EWSoftware.ImageMaps.Web.Controls
                     switch(shapes[idx])
                     {
                         case ImageAreaShape.Rectangle:
-                            a = new EWSoftware.ImageMaps.Web.Controls.ImageAreaRectangle();
+                            a = new ImageAreaRectangle();
                             break;
 
                         case ImageAreaShape.Circle:
-                            a = new EWSoftware.ImageMaps.Web.Controls.ImageAreaCircle();
+                            a = new ImageAreaCircle();
                             break;
 
                         case ImageAreaShape.Polygon:
-                            a = new EWSoftware.ImageMaps.Web.Controls.ImageAreaPolygon();
+                            a = new ImageAreaPolygon();
                             break;
 
                         default:
-                            throw new ArgumentException("Unexpected shape type in view state", "state");
+                            throw new ArgumentException("Unexpected shape type in view state", nameof(state));
                     }
 
                     a.TrackViewState();
@@ -251,26 +247,26 @@ namespace EWSoftware.ImageMaps.Web.Controls
 
                 if(itemIdx < this.Count)
                 {
-                    ((EWSoftware.ImageMaps.Web.Controls.ImageAreaBase)this[itemIdx]).LoadViewState(changedStates[idx]);
+                    ((ImageAreaBase)this[itemIdx]).LoadViewState(changedStates[idx]);
                 }
                 else
                 {
                     switch((ImageAreaShape)changedShapes[idx])
                     {
                         case ImageAreaShape.Rectangle:
-                            a = new EWSoftware.ImageMaps.Web.Controls.ImageAreaRectangle();
+                            a = new ImageAreaRectangle();
                             break;
 
                         case ImageAreaShape.Circle:
-                            a = new EWSoftware.ImageMaps.Web.Controls.ImageAreaCircle();
+                            a = new ImageAreaCircle();
                             break;
 
                         case ImageAreaShape.Polygon:
-                            a = new EWSoftware.ImageMaps.Web.Controls.ImageAreaPolygon();
+                            a = new ImageAreaPolygon();
                             break;
 
                         default:
-                            throw new ArgumentException("Unexpected shape type in view state", "state");
+                            throw new ArgumentException("Unexpected shape type in view state", nameof(state));
                     }
 
                     a.TrackViewState();

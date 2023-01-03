@@ -16,7 +16,7 @@
       <HelpKeyword index="K" term="design-time support" />
     </HelpKeywords>
   </Topic>
-  <Topic id="cfea76cd-95fb-4e01-9452-91ee91ad8b58" visible="True" isSelected="true" title="Making a Donation">
+  <Topic id="cfea76cd-95fb-4e01-9452-91ee91ad8b58" visible="True" title="Making a Donation">
     <HelpKeywords>
       <HelpKeyword index="K" term="donate" />
       <HelpKeyword index="K" term="support, donate" />
@@ -27,7 +27,12 @@
       <HelpKeyword index="K" term="History" />
       <HelpKeyword index="K" term="Version History" />
     </HelpKeywords>
-    <Topic id="7907a67d-8c70-4beb-87f3-0d6b925048e4" visible="True" title="Version 2015.1.19.0">
+    <Topic id="26ed7be6-7722-438f-bd41-f548e68aa918" visible="True" title="Version 2023.1.3.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="versions, 2023.1.3.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="7907a67d-8c70-4beb-87f3-0d6b925048e4" visible="True" isSelected="true" title="Version 2015.1.19.0">
       <HelpKeywords>
         <HelpKeyword index="K" term="versions, 2015.1.19.0" />
       </HelpKeywords>

@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCollection.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains a type-safe collection class and its enumerator that can contain the various
 // IImageArea-derived objects.  It is used by both the Windows Forms and the web server image map controls.
@@ -40,7 +39,7 @@ namespace EWSoftware.ImageMaps
 
         // This is used to reference the parent image map.  It's used by the ImageAreaCoordinateEditor designer
         // class.
-        private IImageMap im;
+        private readonly IImageMap im;
 
         #endregion
 
@@ -52,10 +51,8 @@ namespace EWSoftware.ImageMaps
         /// primary use is by the <c>ImageAreaCoordinateEditor</c> designer class so that it can get the image
         /// information it needs at design time.
         /// </summary>
-        public IImageMap ImageMapControl
-        {
-            get { return im; }
-        }
+        public IImageMap ImageMapControl => im;
+
         #endregion
 
         #region Events
@@ -76,10 +73,7 @@ namespace EWSoftware.ImageMaps
         /// <param name="e">The event arguments.</param>
         private void OnImageAreaChanged(object sender, EventArgs e)
         {
-            var handler = ImageAreaChanged;
-
-            if(handler != null)
-                handler(sender, e);
+            ImageAreaChanged?.Invoke(sender, e);
         }
         #endregion
 
@@ -151,6 +145,9 @@ namespace EWSoftware.ImageMaps
         /// <param name="item">The item inserted</param>
         protected override void InsertItem(int index, IImageArea item)
         {
+            if(item == null)
+                throw new ArgumentNullException(nameof(item));
+
             item.ImageAreaChanged += this.OnImageAreaChanged;
 
             base.InsertItem(index, item);
@@ -179,6 +176,9 @@ namespace EWSoftware.ImageMaps
         /// <param name="item">The item that is stored</param>
         protected override void SetItem(int index, IImageArea item)
         {
+            if(item == null)
+                throw new ArgumentNullException(nameof(item));
+
             IImageArea area = this[index];
 
             area.ImageAreaChanged -= this.OnImageAreaChanged;

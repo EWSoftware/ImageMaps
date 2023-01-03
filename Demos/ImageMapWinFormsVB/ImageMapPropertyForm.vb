@@ -2,9 +2,8 @@
 ' System  : Image Map Control Library
 ' File    : ImageMapPropertyForm.vb
 ' Author  : Eric Woodruff  (Eric@EWoodruff.us)
-' Updated : 07/10/2014
-' Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-' Compiler: Microsoft C#
+' Updated : 01/03/2023
+' Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 '
 ' This form is used to demonstrate the Image Map Windows Forms controls.  This form allows the user to modify
 ' the image map and image area properties interactively and see the effects.
@@ -67,7 +66,7 @@ Public Class ImageMapPropertyForm
     ''' <param name="sender">The sender of the event</param>
     ''' <param name="e">The event arguments</param>
     Private Sub imMap_Click(ByVal sender As Object, ByVal e As ImageMapClickEventArgs) Handles imMap.Click
-        MessageBox.Show(String.Format(CultureInfo.CurrentUICulture, "You clicked area #{0} ({1}) at point " &
+        MessageBox.Show(String.Format(CultureInfo.CurrentCulture, "You clicked area #{0} ({1}) at point " &
             "{2}, {3}", e.AreaIndex + 1, imMap.Areas(e.AreaIndex).ToolTip, e.XCoordinate, e.YCoordinate),
             "Image Map Clicked", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
@@ -78,28 +77,18 @@ Public Class ImageMapPropertyForm
     ''' <param name="sender">The sender of the event</param>
     ''' <param name="e">The event arguments</param>
     Private Sub btnHelp_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnHelp.Click
-        Dim helpFile As String = "..\..\..\..\Deployment\EWSoftware.ImageMaps.chm"
+        Try
+            Process.Start(New ProcessStartInfo With {
+                .FileName = "https://ewsoftware.github.io/ImageMaps",
+                .UseShellExecute = true
+            })
+        Catch ex As Exception
+            MessageBox.Show("Unable to start web browser for URL", "URL Error", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation)
 
-        If Not File.Exists(helpFile)
-            helpFile = "..\..\..\..\Doc\Help\EWSoftware.ImageMaps.chm"
-        End If
-
-        If Not File.Exists(helpFile) Then
-            Using dlg As OpenFileDialog = New OpenFileDialog()
-                dlg.Title = "Please locate the help file"
-                dlg.InitialDirectory = Environment.CurrentDirectory
-                dlg.CheckFileExists = True
-                dlg.FileName = Path.GetFileName(helpFile)
-
-                If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                    helpFile = dlg.FileName
-                End If
-            End Using
-        End If
-
-        If File.Exists(helpFile) Then
-            System.Diagnostics.Process.Start(helpFile)
-        End If
+            ' Log the exception to the debugger for the developer
+            Debug.Write(ex.ToString())
+        End Try
     End Sub
 
     ''' <summary>

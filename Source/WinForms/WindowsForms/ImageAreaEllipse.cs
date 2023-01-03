@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaEllipse.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the ellipse image area class
 //
@@ -50,10 +49,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This is overridden to provide the shape type.
         /// </summary>
         /// <value>It always returns <see cref="ImageAreaShape.Ellipse"/></value>.
-        public override ImageAreaShape Shape
-        {
-            get { return ImageAreaShape.Ellipse; }
-        }
+        public override ImageAreaShape Shape => ImageAreaShape.Ellipse;
 
         /// <summary>
         /// This is overridden to get or set the coordinate values in string form
@@ -67,11 +63,8 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Editor(typeof(EllipseCoordinateEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public override string Coordinates
         {
-            get
-            {
-                return String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}, {3}", this.Ellipse.X,
+            get => String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}, {3}", this.Ellipse.X,
                     this.Ellipse.Y, this.Ellipse.X + this.Ellipse.Width, this.Ellipse.Y + this.Ellipse.Height);
-            }
             set
             {
                 if(value == null || value.Length == 0)
@@ -109,7 +102,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           RefreshProperties(RefreshProperties.Repaint), Description("The ellipse area for the image map")]
         public Rectangle Ellipse
         {
-            get { return r; }
+            get => r;
             set
             {
                 if(r != value)
@@ -163,8 +156,11 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// scrolled).</param>
         public override void DrawFocusFrame(Graphics g, Point offset)
         {
-            UnsafeNativeMethods.DrawReversibleEllipse(g, new Point(r.X, r.Y),
-                new Point(r.X + r.Width, r.Y + r.Height), offset);
+            if(g != null)
+            {
+                UnsafeNativeMethods.DrawReversibleEllipse(g, new Point(r.X, r.Y),
+                    new Point(r.X + r.Width, r.Y + r.Height), offset);
+            }
         }
         #endregion
     }

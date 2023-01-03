@@ -101,17 +101,17 @@ Partial Class ImageMapEventsForm
         Me.imMap.Location = New System.Drawing.Point(0, 0)
         Me.imMap.Name = "imMap"
         Me.imMap.OwnerDraw = true
-        Me.imMap.Size = New System.Drawing.Size(600, 300)
+        Me.imMap.Size = New System.Drawing.Size(978, 544)
         Me.imMap.TabIndex = 0
         Me.imMap.ToolTip = Nothing
         '
         'ImageMapEventsForm
         '
-        Me.AutoScaleBaseSize = New System.Drawing.Size(6, 15)
-        Me.ClientSize = New System.Drawing.Size(600, 300)
+        Me.AutoScaleBaseSize = New System.Drawing.Size(9, 24)
+        Me.ClientSize = New System.Drawing.Size(978, 544)
         Me.Controls.Add(Me.imMap)
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(200, 200)
+        Me.MinimumSize = New System.Drawing.Size(300, 320)
         Me.Name = "ImageMapEventsForm"
         Me.Text = "EWSoftware Image Map Control Demo"
         Me.ResumeLayout(false)

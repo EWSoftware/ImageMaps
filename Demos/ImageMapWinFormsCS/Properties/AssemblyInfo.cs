@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : AssemblyInfo.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/19/2015
-// Note    : Copyright 2004-2015, Eric Woodruff, All rights reserved
-// Compiler: Microsoft C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // Image Map Windows Forms control demo
 //
@@ -28,7 +27,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Image Map Windows Forms Control Demo in C#")]
 [assembly: AssemblyDescription("Demonstrates the use of the Windows Forms Image Map controls.")]
 [assembly: AssemblyCompany("Eric Woodruff")]
-[assembly: AssemblyCopyright("Copyright \xA9 2004-2015, Eric Woodruff, All Rights Reserved")]
+[assembly: AssemblyCopyright("Copyright \xA9 2004-2023, Eric Woodruff, All Rights Reserved")]
 [assembly: AssemblyCulture("")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
@@ -43,7 +42,11 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Resources contained within the assembly are English
-[assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: NeutralResourcesLanguage("en")]
+
+#if NET6_0_OR_GREATER
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
+#endif
 
 // Version numbers.  All version numbers for an assembly consists of the following four values:
 //
@@ -52,5 +55,5 @@ using System.Runtime.InteropServices;
 //      Day of release
 //      Revision (typically zero unless multiple releases are made on the same day)
 //
-[assembly: AssemblyVersion("2015.1.19.0")]
-[assembly: AssemblyFileVersion("15.1.19.0")]
+[assembly: AssemblyVersion("2023.1.3.0")]
+[assembly: AssemblyFileVersion("23.1.3.0")]

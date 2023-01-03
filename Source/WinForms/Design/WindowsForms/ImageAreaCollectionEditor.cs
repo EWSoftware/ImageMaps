@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCollectionEditor.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the image area collection editor
 //
@@ -26,6 +25,8 @@ using System.ComponentModel.Design;
 
 namespace EWSoftware.ImageMaps.Design.Windows.Forms
 {
+#pragma warning disable CA1812
+
     /// <summary>
     /// This provides basic design time support for the <see cref="ImageAreaCollection"/>.
     /// </summary>
@@ -102,4 +103,6 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         }
         #endregion
     }
+
+#pragma warning restore CA1812
 }

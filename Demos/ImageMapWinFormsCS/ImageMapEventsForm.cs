@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMapEventsForm.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/11/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This form is used to demonstrate the handling of the various Image Map Windows Forms control events and the
 // owner draw capabilities.
@@ -37,7 +36,7 @@ namespace ImageMapWinForms
     /// This form is used to demonstrate the handling of the various Image Map Windows Forms control events and
     /// the owner draw capabilities.
 	/// </summary>
-	public partial class ImageMapEventsForm : System.Windows.Forms.Form
+	public partial class ImageMapEventsForm : Form
 	{
         #region Main program entry point
         //=====================================================================
@@ -57,14 +56,15 @@ namespace ImageMapWinForms
         #region Private data members
         //=====================================================================
 
-        private Font buttonFont, hyperlinkFont;
-        private ImageAreaRectangle areaOwnerDrawOnOff, areaVisitWebSite;
-        private StringFormat sfFormat;
+        private readonly Font buttonFont, hyperlinkFont;
+        private readonly ImageAreaRectangle areaOwnerDrawOnOff, areaVisitWebSite;
+        private readonly StringFormat sfFormat;
 
-		private Image imgFiller;
+		private readonly Image imgFiller;
 
-		private ImageAttributes iaNormal, iaDisabled;
-		private ColorMatrix cmNormal, cmDisabled;
+		private readonly ImageAttributes iaNormal, iaDisabled;
+		private readonly ColorMatrix cmNormal, cmDisabled;
+
         #endregion
 
         #region Constructor
@@ -78,24 +78,28 @@ namespace ImageMapWinForms
 			InitializeComponent();
 
             // This is used to format text for various image areas
-            sfFormat = new StringFormat();
-            sfFormat.Alignment = StringAlignment.Center;
-            sfFormat.LineAlignment = StringAlignment.Center;
-            sfFormat.HotkeyPrefix = HotkeyPrefix.Show;
+            sfFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center,
+                HotkeyPrefix = HotkeyPrefix.Show
+            };
 
             // A couple of fonts for some of the image areas
-            buttonFont = new Font("Microsoft Sans Serif", 7.8f, FontStyle.Bold);
-            hyperlinkFont = new Font("Microsoft Sans Serif", 7.8f, FontStyle.Underline);
+            buttonFont = new Font("Segoe UI", 9f, FontStyle.Bold);
+            hyperlinkFont = new Font("Segoe UI", 9f, FontStyle.Underline);
 
             // Get the image for the "buttons" and define the attributes used to given them their various draw
             // state effects.
-			imgFiller = new Bitmap(GetType(), "ImageMapEventsForm.Filler.png");
+			imgFiller = new Bitmap(Properties.Resources.Filler);
 
-			// Image attributes used to lighten normal buttons
-			cmNormal = new ColorMatrix();
-			cmNormal.Matrix33 = 0.5f;
+            // Image attributes used to lighten normal buttons
+            cmNormal = new ColorMatrix
+            {
+                Matrix33 = 0.5f
+            };
 
-			iaNormal = new ImageAttributes();
+            iaNormal = new ImageAttributes();
 			iaNormal.SetColorMatrix(cmNormal, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
 
 			// Image attributes that lighten and desaturate disabled buttons
@@ -177,7 +181,7 @@ namespace ImageMapWinForms
 
                 default:
                     if(imMap.FocusedArea != 0 && imMap.FocusedArea != 3)
-                        MessageBox.Show(String.Format(CultureInfo.CurrentUICulture, "You clicked area " +
+                        MessageBox.Show(String.Format(CultureInfo.CurrentCulture, "You clicked area " +
                             "#{0} ({1}) at point {2}, {3}", e.AreaIndex + 1, imMap.Areas[e.AreaIndex].ToolTip,
                             e.XCoordinate, e.YCoordinate), "Image Map Clicked", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
@@ -330,7 +334,11 @@ namespace ImageMapWinForms
         {
             try
             {
-                System.Diagnostics.Process.Start("https://github.com/EWSoftware/ImageMaps");
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "https://github.com/EWSoftware/ImageMaps",
+                    UseShellExecute = true
+                });
             }
             catch(Exception ex)
             {
@@ -375,7 +383,7 @@ namespace ImageMapWinForms
                 // Translate the brush coordinates to account for the offset
                 using(Matrix m = new Matrix())
                 {
-                    m.Translate((float)r.X, (float)r.Y);
+                    m.Translate(r.X, r.Y);
                     tb.Transform = m;
 
                     // If the area is focused or hot lighted, give it a glow effect
@@ -468,7 +476,7 @@ namespace ImageMapWinForms
         private void MouseArea_MouseMove(object sender, MouseEventArgs e)
         {
             ImageAreaCircle a = (ImageAreaCircle)sender;
-            a.Tag = String.Format(CultureInfo.CurrentUICulture, "Mouse Move ({0},{1})", e.X, e.Y);
+            a.Tag = String.Format(CultureInfo.CurrentCulture, "Mouse Move ({0},{1})", e.X, e.Y);
             imMap.Invalidate();
             imMap.Update();
         }
@@ -545,7 +553,7 @@ namespace ImageMapWinForms
                 // Translate the brush coordinates to account for the offset
                 using(Matrix m = new Matrix())
                 {
-                    m.Translate((float)e.ImageOffset.X, (float)e.ImageOffset.Y);
+                    m.Translate(e.ImageOffset.X, e.ImageOffset.Y);
                     pgb.Transform = m;
 
                     if(e.DrawState == DrawState.Focus)

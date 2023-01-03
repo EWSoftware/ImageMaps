@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : FormImageMap.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/10/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains a derived UserControl class that can be used to display an image map on a Windows form (an
 // image with hyperlink hot spots).
@@ -49,7 +48,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         private static ImageAttributes iaDisabled;
 
         // The image and the image area stuff
-        private Graphics gPanel;
+        private readonly Graphics gPanel;
 		private GraphicsPath pathData;
 
         private Image image;
@@ -73,7 +72,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("The image to display")]
         public virtual Image Image
         {
-            get { return image; }
+            get => image;
             set
             {
                 this.Animate(false);
@@ -103,10 +102,10 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("The cursor shown when the mouse is not over a defined image area")]
         public override Cursor Cursor
         {
-            get { return base.Cursor; }
+            get => base.Cursor;
             set
             {
-                nonAreaCursor = (value == null) ? Cursors.Default : value;
+                nonAreaCursor = value ?? Cursors.Default;
                 base.Cursor = value;
             }
         }
@@ -120,8 +119,8 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("The cursor shown when the mouse is over a defined image area")]
         public Cursor ImageAreaCursor
         {
-            get { return areaCursor; }
-            set { areaCursor = (value == null) ? Cursors.Hand : value; }
+            get => areaCursor;
+            set => areaCursor = value ?? Cursors.Hand;
         }
 
         /// <summary>
@@ -139,7 +138,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("Specify whether or not the control resizes itself to show the entire image")]
         public bool SizeToImage
         {
-            get { return sizeToImage; }
+            get => sizeToImage;
             set
             {
                 int width, height, borderWidth;
@@ -195,7 +194,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("Specify whether or not the control will center the image in its client area")]
         public bool CenterImage
         {
-            get { return centerImage; }
+            get => centerImage;
             set
             {
                 centerImage = value;
@@ -212,8 +211,8 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("get or set the focused image area")]
         public int FocusedArea
         {
-            get { return activeArea; }
-            set { this.Focus(value, false); }
+            get => activeArea;
+            set => this.Focus(value, false);
         }
 
         /// <summary>
@@ -223,10 +222,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// the focused area index returned by the <see cref="FocusedArea"/> property.</value>
         [Bindable(false), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Description("Get the image area that contains the mouse")]
-        public int MouseArea
-        {
-            get { return mouseArea; }
-        }
+        public int MouseArea => mouseArea;
 
         /// <summary>
         /// This is used to turn owner draw mode on and off
@@ -236,10 +232,10 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// if the image map is not.</value>
         /// <seealso cref="ImageAreaBase.DrawImage"/>
         /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex5']/*" />
-		[Category("Behavior"), DefaultValue(false), Bindable(true), Description("Turn owner draw mode on or off")]
+        [Category("Behavior"), DefaultValue(false), Bindable(true), Description("Turn owner draw mode on or off")]
         public bool OwnerDraw
         {
-            get { return ownerDrawn; }
+            get => ownerDrawn;
             set
             {
                 ownerDrawn = value;
@@ -250,7 +246,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
 
         #region Private designer methods
         //=====================================================================
-        
+
         // These are used because the default values for these properties don't work with the DefaultValue
         // attribute.
 
@@ -341,10 +337,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
         Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override Image BackgroundImage
-        {
-            get { return null; }
-        }
+        public override Image BackgroundImage => null;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the base image layout.
@@ -352,10 +345,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
         Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override ImageLayout BackgroundImageLayout
-        {
-            get { return base.BackgroundImageLayout; }
-        }
+        public override ImageLayout BackgroundImageLayout => base.BackgroundImageLayout;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns false.
@@ -363,10 +353,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool AllowDrop
-        {
-            get { return false; }
-        }
+        public override bool AllowDrop => false;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns true.
@@ -374,10 +361,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool AutoScroll
-        {
-            get { return true; }
-        }
+        public override bool AutoScroll => true;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the base margin.
@@ -385,10 +369,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public new Size AutoScrollMargin
-        {
-            get { return base.AutoScrollMargin; }
-        }
+        public new Size AutoScrollMargin => base.AutoScrollMargin;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the base size.
@@ -396,10 +377,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public new Size AutoScrollMinSize
-        {
-            get { return base.AutoScrollMinSize; }
-        }
+        public new Size AutoScrollMinSize => base.AutoScrollMinSize;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the value of the
@@ -408,10 +386,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
         Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool AutoSize
-        {
-            get { return this.SizeToImage; }
-        }
+        public override bool AutoSize => this.SizeToImage;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the base auto-size mode.
@@ -419,10 +394,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public new AutoSizeMode AutoSizeMode
-        {
-            get { return base.AutoSizeMode; }
-        }
+        public new AutoSizeMode AutoSizeMode => base.AutoSizeMode;
 
 #pragma warning disable 0067
         /// <summary>
@@ -548,10 +520,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnClick(ImageMapClickEventArgs e)
         {
-            var handler = Click;
-
-            if(handler != null)
-                handler(this, e);
+            Click?.Invoke(this, e);
         }
         #endregion
 
@@ -573,10 +542,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnDoubleClick(ImageMapClickEventArgs e)
         {
-            var handler = DoubleClick;
-
-            if(handler != null)
-                handler(this, e);
+            DoubleClick?.Invoke(this, e);
         }
 
         /// <summary>
@@ -599,8 +565,11 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                 handler(this, e);
             else
             {
-                e.Graphics.FillRectangle(Brushes.White, this.ClientRectangle);
-                e.Graphics.DrawString("ImageMap: DrawImageEvent not implemented", base.Font, Brushes.Black, 0, 0);
+                if(e != null)
+                {
+                    e.Graphics.FillRectangle(Brushes.White, this.ClientRectangle);
+                    e.Graphics.DrawString("ImageMap: DrawImageEvent not implemented", base.Font, Brushes.Black, 0, 0);
+                }
             }
         }
         #endregion
@@ -646,18 +615,14 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                 if(pathData.PointCount > 0)
                     pathData.SetMarkers();
 
-                ImageAreaRectangle r = a as ImageAreaRectangle;
-
-                if(r != null)
+                if(a is ImageAreaRectangle r)
                 {
                     if(r.Rectangle.Width > 0 && r.Rectangle.Height > 0)
                         pathData.AddRectangle(r.Rectangle);
                 }
                 else
                 {
-                    ImageAreaCircle c = a as ImageAreaCircle;
-
-                    if(c != null)
+                    if(a is ImageAreaCircle c)
                     {
                         if(c.Radius > 0)
                             pathData.AddEllipse(c.CenterPoint.X - c.Radius, c.CenterPoint.Y - c.Radius,
@@ -665,9 +630,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     }
                     else
                     {
-                        ImageAreaEllipse e = a as ImageAreaEllipse;
-
-                        if(e != null)
+                        if(a is ImageAreaEllipse e)
                         {
                             if(e.Ellipse.Width > 0 && e.Ellipse.Height > 0)
                                 pathData.AddEllipse(e.Ellipse);
@@ -1150,11 +1113,13 @@ namespace EWSoftware.ImageMaps.Windows.Forms
 
             // See if TabStop needs to be turned on or off
             foreach(ImageAreaBase a in this.Areas)
+            {
                 if(a.Enabled && a.TabIndex != 0 && a.Action == AreaClickAction.FireEvent)
                 {
                     tabStop = true;
                     break;
                 }
+            }
 
             if(base.TabStop != tabStop)
                 base.TabStop = tabStop;
@@ -1396,6 +1361,9 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             ImageAreaBase a;
             bool drawFrame = true, designMode = this.DesignMode, focused = this.Focused, enabled = this.Enabled;
 
+            if(e == null)
+                throw new ArgumentNullException(nameof(e));
+
             Graphics g = e.Graphics;
             Point p = CalculateImageOffset();
 
@@ -1507,7 +1475,9 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments.</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            this.RaiseMouseClickEvent(ImageAreaEvent.MouseDown, new Point(e.X, e.Y), e);
+            if(e != null)
+                this.RaiseMouseClickEvent(ImageAreaEvent.MouseDown, new Point(e.X, e.Y), e);
+
             base.OnMouseDown(e);
         }
 
@@ -1518,7 +1488,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         protected override void OnMouseUp(MouseEventArgs e)
         {
             // MouseUp fires after Click.  If the click event disposes of us, don't fire the MouseUp event.
-            if(pathData != null)
+            if(pathData != null && e != null)
                 this.RaiseMouseClickEvent(ImageAreaEvent.MouseUp, new Point(e.X, e.Y), e);
 
             base.OnMouseUp(e);
@@ -1544,6 +1514,9 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         protected override void OnMouseMove(MouseEventArgs e)
         {
             ImageAreaBase a = null;
+
+            if(e == null)
+                throw new ArgumentNullException(nameof(e));
 
             Point p = CalculateImageOffset();
 

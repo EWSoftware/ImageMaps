@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaRectangle.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the rectangle image area class
 //
@@ -48,10 +47,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This is overridden to provide the shape type
         /// </summary>
         /// <value>It always returns <see cref="ImageAreaShape.Rectangle"/></value>.
-        public override ImageAreaShape Shape
-        {
-            get { return ImageAreaShape.Rectangle; }
-        }
+        public override ImageAreaShape Shape => ImageAreaShape.Rectangle;
 
         /// <summary>
         /// This is overridden to get or set the coordinate values in string form
@@ -64,12 +60,9 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         [DefaultValue("0, 0, 0, 0"), Description("The rectangle area's upper left and lower right coordinates")]
         public override string Coordinates
         {
-            get
-            {
-                return String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}, {3}", this.Rectangle.X,
+            get => String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}, {3}", this.Rectangle.X,
                     this.Rectangle.Y, this.Rectangle.X + this.Rectangle.Width,
                     this.Rectangle.Y + this.Rectangle.Height);
-            }
             set
             {
                 if(value == null || value.Length == 0)
@@ -107,7 +100,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           RefreshProperties(RefreshProperties.Repaint), Description("The rectangle area for the image map")]
         public Rectangle Rectangle
         {
-            get { return r; }
+            get => r;
             set
             {
                 if(r != value)
@@ -162,8 +155,11 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// scrolled).</param>
         public override void DrawFocusFrame(Graphics g, Point offset)
         {
-            UnsafeNativeMethods.DrawReversibleRectangle(g, new Point(r.X, r.Y),
-                new Point(r.X + r.Width, r.Y + r.Height), offset);
+            if(g != null)
+            {
+                UnsafeNativeMethods.DrawReversibleRectangle(g, new Point(r.X, r.Y),
+                    new Point(r.X + r.Width, r.Y + r.Height), offset);
+            }
         }
         #endregion
     }

@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaPolygon.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the polygon image area class
 //
@@ -49,10 +48,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This is overridden to provide the shape type
         /// </summary>
         /// <value>It always returns <see cref="ImageAreaShape.Polygon"/></value>.
-        public override ImageAreaShape Shape
-        {
-            get { return ImageAreaShape.Polygon; }
-        }
+        public override ImageAreaShape Shape => ImageAreaShape.Polygon;
 
         /// <summary>
         /// This is overridden to get or set the coordinate values in string form
@@ -63,7 +59,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// a multiple of two, there are less than three pairs of coordinates, or if non-numeric values are
         /// found.</exception>
         /// <seealso cref="Points"/>
-		[DefaultValue(""), Description("The polygon area's coordinates")]
+        [DefaultValue(""), Description("The polygon area's coordinates")]
         public override string Coordinates
         {
             get
@@ -76,7 +72,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     if(sb.Length > 0)
                         sb.Append(", ");
 
-                    sb.AppendFormat("{0}, {1}", p.X, p.Y);
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0}, {1}", p.X, p.Y);
                 }
 
                 return sb.ToString();
@@ -226,7 +222,8 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         public override void DrawFocusFrame(Graphics g, Point offset)
         {
             // Note that the polygon is closed
-            UnsafeNativeMethods.DrawReversiblePolygon(g, points, true, offset);
+            if(g != null)
+                UnsafeNativeMethods.DrawReversiblePolygon(g, points, true, offset);
         }
         #endregion
     }

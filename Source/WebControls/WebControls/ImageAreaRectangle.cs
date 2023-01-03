@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaRectangle.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/10/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the rectangle image area class
 //
@@ -17,6 +16,8 @@
 // ==============================================================================================================
 // 07/01/2004  EFW  Created the code
 //===============================================================================================================
+
+// Ignore Spelling: rect
 
 using System;
 using System.ComponentModel;

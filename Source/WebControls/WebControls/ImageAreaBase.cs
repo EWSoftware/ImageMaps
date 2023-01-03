@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaBase.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/10/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the abstract image area base class
 //
@@ -42,10 +41,12 @@ namespace EWSoftware.ImageMaps.Web.Controls
         //=====================================================================
 
         // The StateBag objects that allows you to save and restore view state and attribute information
-        private StateBag viewState, attrState;
+        private readonly StateBag viewState;
+        private StateBag attrState;
 
         // The attributes collection for custom attributes
         private System.Web.UI.AttributeCollection attributes;
+
         #endregion
 
         #region Properties
@@ -95,13 +96,13 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The access key for the area")]
         public string AccessKey
         {
-            get { return (string)viewState["AccessKey"]; }
+            get => (string)viewState["AccessKey"];
             set
             {
                 if(value != null)
                 {
                     if(value.Length > 1)
-                        throw new ArgumentOutOfRangeException("value");
+                        throw new ArgumentOutOfRangeException(nameof(value));
 
                     if(value.Length == 0)
                         value = null;
@@ -125,9 +126,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
             get
             {
                 object action = viewState["Action"];
-                return (action == null) ? AreaClickAction.Navigate : (AreaClickAction)action;
+                return action != null ? (AreaClickAction)action : AreaClickAction.Navigate;
             }
-            set { viewState["Action"] = value; }
+            set => viewState["Action"] = value;
         }
 
         /// <summary>
@@ -140,9 +141,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
             get
             {
                 object enabled = viewState["Enabled"];
-                return (enabled == null) ? true : (bool)enabled;
+                return (enabled == null) || (bool)enabled;
             }
-            set { viewState["Enabled"] = value; }
+            set => viewState["Enabled"] = value;
         }
 
         /// <summary>
@@ -161,7 +162,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
                 object tabIndex = viewState["TabIndex"];
                 return (tabIndex == null) ? 0 : (int)tabIndex;
             }
-            set { viewState["TabIndex"] = value; }
+            set => viewState["TabIndex"] = value;
         }
 
         /// <summary>
@@ -178,7 +179,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The URL to which to navigate when clicked")]
         public string NavigateUrl
         {
-            get { return (string)viewState["NavigateUrl"]; }
+            get => (string)viewState["NavigateUrl"];
             set
             {
                 if(!String.IsNullOrWhiteSpace(value))
@@ -195,7 +196,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The tool tip to display when the mouse hovers over the area")]
         public string ToolTip
         {
-            get { return (string)viewState["ToolTip"]; }
+            get => (string)viewState["ToolTip"];
             set
             {
                 if(!String.IsNullOrWhiteSpace(value))
@@ -216,8 +217,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
           DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object Tag
         {
-            get { return viewState["Tag"]; }
-            set { viewState["Tag"] = value; }
+            get => viewState["Tag"];
+            set => viewState["Tag"] = value;
         }
 
         /// <summary>
@@ -234,9 +235,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
             get
             {
                 object tag = viewState["Tag"];
-                return (tag == null) ? null : tag.ToString();
+                return tag?.ToString();
             }
-            set { viewState["Tag"] = value; }
+            set => viewState["Tag"] = value;
         }
 
         /// <summary>
@@ -279,7 +280,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The name of the target frame or window when Target is set to Other")]
         public string TargetName
         {
-            get { return (string)viewState["TargetName"]; }
+            get => (string)viewState["TargetName"];
             set
             {
                 viewState["TargetName"] = value;
@@ -327,10 +328,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <summary>
         /// This allows derived classes to store data in the control's view state
         /// </summary>
-        protected StateBag ViewState
-        {
-            get { return viewState; }
-        }
+        protected StateBag ViewState => viewState;
+
         #endregion
 
         #region Events
@@ -493,10 +492,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// Indicates whether or not view state is being tracked
         /// </summary>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool IsTrackingViewState
-        {
-            get { return ((IStateManager)viewState).IsTrackingViewState; }
-        }
+        public bool IsTrackingViewState => ((IStateManager)viewState).IsTrackingViewState;
 
         /// <summary>
         /// Save view state

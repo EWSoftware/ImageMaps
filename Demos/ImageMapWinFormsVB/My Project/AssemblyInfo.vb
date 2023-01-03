@@ -2,9 +2,8 @@
 ' System  : Image Map Control Library
 ' File    : AssemblyInfo.vb
 ' Author  : Eric Woodruff  (Eric@EWoodruff.us)
-' Updated : 01/19/2015
-' Note    : Copyright 2004-2015, Eric Woodruff, All rights reserved
-' Compiler: Microsoft C#
+' Updated : 01/03/2023
+' Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 '
 ' Image Map Windows Forms control demo
 '
@@ -18,7 +17,6 @@
 ' 07/01/2004  EFW  Created the code
 '================================================================================================================
 
-Imports System
 Imports System.Reflection
 Imports System.Resources
 Imports System.Runtime.InteropServices
@@ -28,7 +26,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("Image Map Windows Forms Control Demo in C#")>
 <Assembly: AssemblyDescription("Demonstrates the use of the Windows Forms Image Map controls.")>
 <Assembly: AssemblyCompany("Eric Woodruff")>
-<Assembly: AssemblyCopyright("Copyright \xA9 2004-2015, Eric Woodruff, All Rights Reserved")>
+<Assembly: AssemblyCopyright("Copyright \xA9 2004-2023, Eric Woodruff, All Rights Reserved")>
 <Assembly: AssemblyCulture("")>
 #If DEBUG
 <Assembly: AssemblyConfiguration("Debug")>
@@ -43,7 +41,11 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 ' Resources contained within the assembly are English
-<Assembly: NeutralResourcesLanguageAttribute("en")>
+<Assembly: NeutralResourcesLanguage("en")>
+
+#If NET6_0_OR_GREATER
+<Assembly: Runtime.Versioning.SupportedOSPlatform("windows")>
+#End If
 
 ' Version numbers.  All version numbers for an assembly consists of the following four values:
 '
@@ -52,5 +54,5 @@ Imports System.Runtime.InteropServices
 '   Day of release
 '   Revision (typically zero unless multiple releases are made on the same day)
 '
-<Assembly: AssemblyVersion("2015.1.19.0")>
-<Assembly: AssemblyFileVersion("15.1.19.0")>
+<Assembly: AssemblyVersion("2023.1.3.0")>
+<Assembly: AssemblyFileVersion("23.1.3.0")>

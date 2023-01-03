@@ -1,10 +1,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ImageMapWebCS", "ImageMapWebCS\", "{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{9953b38b-5a36-4b3c-9fe7-5898eae3d487}|EWSoftware.ImageMaps.Web.Controls.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/ImageMapWebCS"
 		Debug.AspNetCompiler.PhysicalPath = "ImageMapWebCS\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ImageMapWebCS\"
@@ -26,6 +27,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ImageMapWebVB", "ImageMapWebVB\", "{26986589-2EBA-402A-9658-D0D16C1E8269}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{9953b38b-5a36-4b3c-9fe7-5898eae3d487}|EWSoftware.ImageMaps.Web.Controls.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/ImageMapWebVB"
 		Debug.AspNetCompiler.PhysicalPath = "ImageMapWebVB\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ImageMapWebVB\"
@@ -50,16 +52,36 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		EWSImageMapDemos.ruleset = EWSImageMapDemos.ruleset
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebControls", "..\Source\WebControls\WebControls.csproj", "{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
 		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5227BC-41D0-4BE9-8DD4-43A1713DEC03}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{26986589-2EBA-402A-9658-D0D16C1E8269}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{26986589-2EBA-402A-9658-D0D16C1E8269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26986589-2EBA-402A-9658-D0D16C1E8269}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26986589-2EBA-402A-9658-D0D16C1E8269}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{26986589-2EBA-402A-9658-D0D16C1E8269}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{26986589-2EBA-402A-9658-D0D16C1E8269}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Debug|.NET.Build.0 = Debug|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Release|.NET.ActiveCfg = Release|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Release|.NET.Build.0 = Release|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9953B38B-5A36-4B3C-9FE7-5898EAE3D487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

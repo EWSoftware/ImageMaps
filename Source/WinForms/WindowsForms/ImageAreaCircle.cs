@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCircle.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the circle image area class
 //
@@ -49,10 +48,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This is overridden to provide the shape type
         /// </summary>
         /// <value>It always returns <see cref="ImageAreaShape.Circle"/></value>.
-        public override ImageAreaShape Shape
-        {
-            get { return ImageAreaShape.Circle; }
-        }
+        public override ImageAreaShape Shape => ImageAreaShape.Circle;
 
         /// <summary>
         /// This is overridden to get or set the coordinate values in string form
@@ -66,11 +62,8 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         [DefaultValue("0, 0, 0"), Description("The circle area's center point and radius")]
         public override string Coordinates
         {
-            get
-            {
-                return String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}", this.CenterPoint.X,
+            get => String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}", this.CenterPoint.X,
                     this.CenterPoint.Y, this.Radius);
-            }
             set
             {
                 if(value == null || value.Length == 0)
@@ -119,7 +112,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           RefreshProperties(RefreshProperties.Repaint), Description("The center point for the area on the image map")]
         public Point CenterPoint
         {
-            get { return centerPoint; }
+            get => centerPoint;
             set
             {
                 if(centerPoint != value)
@@ -139,7 +132,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("The radius of the area on the image map")]
         public int Radius
         {
-            get { return radius; }
+            get => radius;
             set
             {
                 if(radius != value)
@@ -196,7 +189,8 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// scrolled).</param>
         public override void DrawFocusFrame(Graphics g, Point offset)
         {
-            UnsafeNativeMethods.DrawReversibleCircle(g, centerPoint, radius, offset);
+            if(g != null)
+                UnsafeNativeMethods.DrawReversibleCircle(g, centerPoint, radius, offset);
         }
         #endregion
     }

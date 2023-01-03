@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : AssemblyInfo.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // Image map control library attributes
 //
@@ -24,7 +23,6 @@ using System.Web.UI;
 
 // General assembly information
 [assembly: AssemblyTitle("EWSoftware Web Server Image Map Control Library")]
-[assembly: AssemblyDescription("ASP.NET web server controls that implement image maps")]
 
 // Allow partially trusted callers when running with less than full trust
 [assembly: AllowPartiallyTrustedCallers()]
@@ -34,3 +32,7 @@ using System.Web.UI;
 
 // ASP.NET tag prefix for the custom controls
 [assembly: TagPrefix("EWSoftware.ImageMaps.Web.Controls", "ewsi")]
+
+#if NET6_0_OR_GREATER
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
+#endif

@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : UnsafeNativeMethods.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This internal class is used for access to some Win32 functions used to draw the focus frame on the image
 // areas in the designer and Windows Forms image map control.
@@ -43,8 +42,6 @@ namespace EWSoftware.ImageMaps
         private const int R2_NOTXORPEN = 10;
         private const int NULL_BRUSH = 5;
 
-        private const uint TME_HOVER = 1;
-        private const uint HOVER_DEFAULT = 0xFFFFFFFF;
         #endregion
 
         #region Common native Win32 functions
@@ -241,6 +238,8 @@ namespace EWSoftware.ImageMaps
         //=====================================================================
 
 #if !IMAGEMAPWEB
+        private const uint TME_HOVER = 1;
+        private const uint HOVER_DEFAULT = 0xFFFFFFFF;
 
         private struct TRACKMOUSEEVENT
         {
@@ -260,12 +259,14 @@ namespace EWSoftware.ImageMaps
         /// <param name="handle">The handle of the control in which to reset hover notification</param>
         internal static void ResetMouseHover(IntPtr handle)
         {
-            TRACKMOUSEEVENT tme = new TRACKMOUSEEVENT();
+            TRACKMOUSEEVENT tme = new TRACKMOUSEEVENT
+            {
+                hwndTrack = handle,
+                dwFlags = TME_HOVER,
+                dwHoverTime = HOVER_DEFAULT,
+            };
 
-            tme.hwndTrack = handle;
-            tme.dwFlags = TME_HOVER;
-            tme.dwHoverTime = HOVER_DEFAULT;
-            tme.cbSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(tme);
+            tme.cbSize = (uint)Marshal.SizeOf(tme);
 
             TrackMouseEvent(ref tme);
         }

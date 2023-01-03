@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCollectionEditor.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the image area collection editor class
 //
@@ -66,9 +65,9 @@ namespace EWSoftware.ImageMaps.Design.Web
         protected override Type[] CreateNewItemTypes()
         {
             return new Type[] {
-                typeof(EWSoftware.ImageMaps.Web.Controls.ImageAreaRectangle),
-                typeof(EWSoftware.ImageMaps.Web.Controls.ImageAreaCircle),
-                typeof(EWSoftware.ImageMaps.Web.Controls.ImageAreaPolygon) };
+                typeof(ImageAreaRectangle),
+                typeof(ImageAreaCircle),
+                typeof(ImageAreaPolygon) };
         }
 
         /// <summary>

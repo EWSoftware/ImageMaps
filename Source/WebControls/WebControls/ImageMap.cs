@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMap.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains a derived WebControl class that can be used to render an image map on a web form (an image
 // with hyperlink hot spots).
@@ -20,6 +19,8 @@
 // 2.0.0.0  06/28/2006  EFW  Reworked code for use with .NET 2.0
 // 2.0.0.1  07/07/2007  EFW  Added ForceScriptRegistration property
 //===============================================================================================================
+
+// Ignore Spelling: runat javascript typeof usemap coords accesskey tabindex nohref href onclick
 
 using System;
 using System.ComponentModel;
@@ -66,7 +67,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
                 object oAlign = this.ViewState["ImageAlign"];
                 return (oAlign == null) ? ImageAlign.NotSet : (ImageAlign)oAlign;
             }
-            set { this.ViewState["ImageAlign"] = value; }
+            set => this.ViewState["ImageAlign"] = value;
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
                 object oURL = this.ViewState["ImageUrl"];
                 return (oURL == null) ? String.Empty : (string)oURL;
             }
-            set { this.ViewState["ImageUrl"] = value; }
+            set => this.ViewState["ImageUrl"] = value;
         }
 
         /// <summary>
@@ -95,9 +96,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
             get
             {
                 object oValidate = this.ViewState["CausesValidation"];
-                return (oValidate == null) ? false : (bool)oValidate;
+                return oValidate != null && (bool)oValidate;
             }
-            set { this.ViewState["CausesValidation"] = value; }
+            set => this.ViewState["CausesValidation"] = value;
         }
 
         /// <summary>
@@ -116,9 +117,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
             get
             {
                 object oForceScript = this.ViewState["ForceScript"];
-                return (oForceScript == null) ? false : (bool)oForceScript;
+                return oForceScript != null && (bool)oForceScript;
             }
-            set { this.ViewState["ForceScript"] = value; }
+            set => this.ViewState["ForceScript"] = value;
         }
 
         /// <summary>
@@ -131,8 +132,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The form ID to use as an override if necessary for post back image areas")]
         public string FormId
         {
-            get { return (string)this.ViewState["FormId"]; }
-            set { this.ViewState["FormId"] = value; }
+            get => (string)this.ViewState["FormId"];
+            set => this.ViewState["FormId"] = value;
         }
         #endregion
 
@@ -147,10 +148,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override FontInfo Font
-        {
-            get { return base.Font; }
-        }
+        public override FontInfo Font => base.Font;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the base class background
@@ -159,10 +157,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override Color BackColor
-        {
-            get { return base.BackColor; }
-        }
+        public override Color BackColor => base.BackColor;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the base class foreground
@@ -171,50 +166,47 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override Color ForeColor
-        {
-            get { return base.ForeColor; }
-        }
+        public override Color ForeColor => base.ForeColor;
 
-		/// <summary>
-		/// This is used by the <see cref="ImageMapWidth"/> property that is implemented as part of the
+        /// <summary>
+        /// This is used by the <see cref="ImageMapWidth"/> property that is implemented as part of the
         /// <see cref="IImageMap"/> interface.  As such, this property is hidden.
-		/// </summary>
-		/// <exception cref="ArgumentException">This is thrown if the width is not specified in pixels</exception>
+        /// </summary>
+        /// <exception cref="ArgumentException">This is thrown if the width is not specified in pixels</exception>
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
 		public override Unit Width
-		{
-			get { return base.Width; }
-			set
+        {
+            get => base.Width;
+            set
             {
-				if(value != Unit.Empty && value.Type != UnitType.Pixel)
-					throw new ArgumentException("Image map width must be specified in pixels", "value");
+                if(value != Unit.Empty && value.Type != UnitType.Pixel)
+                    throw new ArgumentException("Image map width must be specified in pixels", nameof(value));
 
-				base.Width = value;
-			}
-		}
+                base.Width = value;
+            }
+        }
 
-		/// <summary>
-		/// This is used by the <see cref="ImageMapHeight"/> property that is implemented as part of the
+        /// <summary>
+        /// This is used by the <see cref="ImageMapHeight"/> property that is implemented as part of the
         /// <see cref="IImageMap"/> interface.  As such, this property is hidden.
-		/// </summary>
-		/// <exception cref="ArgumentException">This is thrown if the height is not specified in pixels</exception>
+        /// </summary>
+        /// <exception cref="ArgumentException">This is thrown if the height is not specified in pixels</exception>
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
           Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
 		public override Unit Height
-		{
-			get { return base.Height; }
-			set
-			{
-				if(value != Unit.Empty && value.Type != UnitType.Pixel)
-					throw new ArgumentException("Image map height must be specified in pixels", "value");
+        {
+            get => base.Height;
+            set
+            {
+                if(value != Unit.Empty && value.Type != UnitType.Pixel)
+                    throw new ArgumentException("Image map height must be specified in pixels", nameof(value));
 
-				base.Height = value;
-			}
-		}
+                base.Height = value;
+            }
+        }
         #endregion
 
         #region Private designer methods
@@ -293,8 +285,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Category("Appearance"), DefaultValue("")]
         public override string ToolTip
         {
-            get { return base.ToolTip; }
-            set { base.ToolTip = value; }
+            get => base.ToolTip;
+            set => base.ToolTip = value;
         }
 
         /// <summary>
@@ -305,7 +297,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
 		[Bindable(true), Category("Layout"), DefaultValue(0), Description("Specify the image map width in pixels")]
         public int ImageMapWidth
         {
-            get { return (int)this.Width.Value; }
+            get => (int)this.Width.Value;
             set
             {
                 if(value == 0)
@@ -323,7 +315,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
 		[Bindable(true), Category("Layout"), DefaultValue(0), Description("Specify the image map height in pixels")]
         public int ImageMapHeight
         {
-            get { return (int)this.Height.Value; }
+            get => (int)this.Height.Value;
             set
             {
                 if(value == 0)
@@ -375,10 +367,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <param name="e">The event arguments</param>
         protected virtual void OnClick(ImageMapClickEventArgs e)
         {
-            var handler = Click;
-
-            if(handler != null)
-                handler(this, e);
+            Click?.Invoke(this, e);
         }
         #endregion
 
@@ -465,7 +454,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </remarks>
         protected override void OnPreRender(EventArgs e)
         {
-            string formID = null, script;
+            string script;
             bool registerScript = this.ForceScriptRegistration;
 
             base.OnPreRender(e);
@@ -478,19 +467,22 @@ namespace EWSoftware.ImageMaps.Web.Controls
 
                 // If not forced, only register the script if there are postback areas that need it
                 if(!registerScript)
+                {
                     foreach(ImageAreaBase a in this.Areas)
                         if(a.Action == AreaClickAction.PostBack)
                         {
                             registerScript = true;
                             break;
                         }
+                }
 
                 if(registerScript)
                 {
                     this.Page.ClientScript.RegisterHiddenField("EWSIM_AREA", "-1");
                     this.Page.ClientScript.RegisterHiddenField("EWSIM_XCOORD", "-1");
                     this.Page.ClientScript.RegisterHiddenField("EWSIM_YCOORD", "-1");
-                    formID = this.FormId;
+
+                    string formID = this.FormId;
 
                     if(formID == null || formID.Length == 0)
                         foreach(Control ctl in this.Page.Controls)
@@ -533,8 +525,7 @@ function EWSIM_OnAreaClick(nArea)
         /// <param name="writer">The output stream to which the HTML is rendered</param>
         protected override void AddAttributesToRender(HtmlTextWriter writer)
         {
-            if(this.Page != null)
-                this.Page.VerifyRenderingInServerForm(this);
+            this.Page?.VerifyRenderingInServerForm(this);
 
             base.AddAttributesToRender(writer);
 

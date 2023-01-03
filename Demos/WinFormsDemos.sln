@@ -1,16 +1,17 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMapWinFormsCS", "ImageMapWinFormsCS\ImageMapWinFormsCS.csproj", "{5B91EAC1-0C18-4720-BF03-72FCFAA2FD53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageMapWinFormsCS", "ImageMapWinFormsCS\ImageMapWinFormsCS.csproj", "{5B91EAC1-0C18-4720-BF03-72FCFAA2FD53}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ImageMapWinFormsVB", "ImageMapWinFormsVB\ImageMapWinFormsVB.vbproj", "{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12356D6B-AF7F-4150-9FCF-61D8213FEAB5}"
 	ProjectSection(SolutionItems) = preProject
-		..\Source\.editorconfig = ..\Source\.editorconfig
-		EWSImageMapDemos.ruleset = EWSImageMapDemos.ruleset
+		..\.editorconfig = ..\.editorconfig
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms", "..\Source\WinForms\WinForms.csproj", "{58E19882-6070-4589-A1C1-D901F2970B31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +27,10 @@ Global
 		{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD1802CA-F79D-4BFB-8EEB-E0C254F27148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E19882-6070-4589-A1C1-D901F2970B31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E19882-6070-4589-A1C1-D901F2970B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E19882-6070-4589-A1C1-D901F2970B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E19882-6070-4589-A1C1-D901F2970B31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

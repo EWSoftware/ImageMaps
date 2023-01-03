@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : AssemblyInfo.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/19/2015
-// Note    : Copyright 2004-2015, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // Image map control library common assembly attributes
 //
@@ -24,30 +23,18 @@
 
 using System;
 using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
 
 // NOTE: See AssemblyInfo.cs for project-specific assembly attributes
 
 // General assembly information
-[assembly: AssemblyProduct("EWSoftware Windows Forms Image Map Controls")]
-[assembly: AssemblyCompany("Eric Woodruff")]
-[assembly: AssemblyCopyright("Copyright \xA9 2004-2015, Eric Woodruff, All Rights Reserved")]
 [assembly: AssemblyCulture("")]
-#if DEBUG
-[assembly: AssemblyConfiguration("Debug")]
-#else
-[assembly: AssemblyConfiguration("Release")]
-#endif
 
 // The assembly is CLS compliant
 [assembly: CLSCompliant(true)]
 
 // Not visible to COM
 [assembly: ComVisible(false)]
-
-// Resources contained within the assembly are English
-[assembly: NeutralResourcesLanguageAttribute("en")]
 
 // Version numbers.  All version numbers for an assembly consists of the following four values:
 //
@@ -68,10 +55,10 @@ using System.Runtime.InteropServices;
 //
 // This is used to set the assembly file version.  This will change with each new release.  MSIs only support a
 // Major value between 0 and 255 so we drop the century from the year on this one.
-[assembly: AssemblyFileVersion("15.1.19.0")]
+[assembly: AssemblyFileVersion("23.1.3.0")]
 
 // Common product version
 //
 // This may contain additional text to indicate Alpha or Beta states.  The version number will always match the
 // file version above but includes the century on the year.
-[assembly: AssemblyInformationalVersion("2015.1.19.0")]
+[assembly: AssemblyInformationalVersion("2023.1.3.0")]

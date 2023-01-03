@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMapAreaEditorDlg.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the form class used to edit image map areas in a more user-friendly format
 //
@@ -60,7 +59,7 @@ namespace EWSoftware.ImageMaps.Design
         //=====================================================================
 
         // The coordinate points collection
-        private PointCollection points;
+        private readonly PointCollection points;
 
         // The image to display and its height and width
         private string imageName;
@@ -97,25 +96,19 @@ namespace EWSoftware.ImageMaps.Design
         /// This read-only property is used to get a reference to the image area collection based on the control
         /// being edited.
         /// </summary>
-        private static ImageAreaCollection Areas
-        {
-            get
-            {
 #if IMAGEMAPWEB
-                return Web.ImageAreaCollectionEditor.Areas;
+        private static ImageAreaCollection Areas => Web.ImageAreaCollectionEditor.Areas;
 #else
-                return Windows.Forms.ImageAreaCollectionEditor.Areas;
+        private static ImageAreaCollection Areas => Windows.Forms.ImageAreaCollectionEditor.Areas;
 #endif
-            }
-        }
 
         /// <summary>
         /// This is used to get or set the actual shape of the image area
         /// </summary>
         public ImageAreaShape Shape
         {
-            get { return shape; }
-            set { shape = value; }
+            get => shape;
+            set => shape = value;
         }
 
         /// <summary>
@@ -138,12 +131,12 @@ namespace EWSoftware.ImageMaps.Design
                     if(sb.Length > 0)
                         sb.Append(", ");
 
-                    sb.AppendFormat("{0}, {1}", p.X, p.Y);
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0}, {1}", p.X, p.Y);
                 }
 
                 // If it's a circle, append the radius
                 if(shape == ImageAreaShape.Circle && sb.Length > 0)
-                    sb.AppendFormat(", {0}", radius);
+                    sb.AppendFormat(CultureInfo.InvariantCulture, ", {0}", radius);
 
                 return sb.ToString();
             }
@@ -205,7 +198,7 @@ namespace EWSoftware.ImageMaps.Design
         /// <see cref="Image"/> property is set to null.</remarks>
         public string ImageFilename
         {
-            get { return imageName; }
+            get => imageName;
             set
             {
                 imageName = value;
@@ -220,7 +213,7 @@ namespace EWSoftware.ImageMaps.Design
         /// <see cref="ImageFilename"/> property is set to null.</remarks>
         public Image Image
         {
-            get { return image; }
+            get => image;
             set
             {
                 image = value;
@@ -233,8 +226,8 @@ namespace EWSoftware.ImageMaps.Design
         /// </summary>
         public int ImageHeight
         {
-            get { return imageHeight; }
-            set { imageHeight= value; }
+            get => imageHeight;
+            set => imageHeight = value;
         }
 
         /// <summary>
@@ -242,17 +235,17 @@ namespace EWSoftware.ImageMaps.Design
         /// </summary>
         public int ImageWidth
         {
-            get { return imageWidth; }
-            set { imageWidth = value; }
+            get => imageWidth;
+            set => imageWidth = value;
         }
         #endregion
 
         #region Constructor
         //=====================================================================
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ImageMapAreaEditorDlg()
 		{
 			InitializeComponent();
@@ -291,8 +284,10 @@ namespace EWSoftware.ImageMaps.Design
                         ImageAnimator.Animate(image, this.OnFrameChanged);
                 }
                 else
+                {
                     if(image != null)
                         ImageAnimator.StopAnimate(image, this.OnFrameChanged);
+                }
             }
         }
 

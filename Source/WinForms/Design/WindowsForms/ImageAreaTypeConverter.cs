@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaTypeConverter.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the image area type converter
 //
@@ -28,6 +27,8 @@ using System.Reflection;
 
 namespace EWSoftware.ImageMaps.Design.Windows.Forms
 {
+#pragma warning disable CA1812
+
     /// <summary>
     /// This type converter is used on the Windows Forms image area objects so that they can be serialized to
     /// code.
@@ -102,4 +103,5 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }
+#pragma warning restore CA1812
 }

@@ -112,7 +112,7 @@ namespace ImageMapWinForms
             this.imMap.Location = new System.Drawing.Point(0, 0);
             this.imMap.Name = "imMap";
             this.imMap.OwnerDraw = true;
-            this.imMap.Size = new System.Drawing.Size(600, 300);
+            this.imMap.Size = new System.Drawing.Size(978, 544);
             this.imMap.TabIndex = 0;
             this.imMap.ToolTip = null;
             this.imMap.Click += new System.EventHandler<EWSoftware.ImageMaps.ImageMapClickEventArgs>(this.imMap_Click);
@@ -120,11 +120,11 @@ namespace ImageMapWinForms
             // 
             // ImageMapEventsForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
-            this.ClientSize = new System.Drawing.Size(600, 300);
+            this.AutoScaleBaseSize = new System.Drawing.Size(9, 24);
+            this.ClientSize = new System.Drawing.Size(978, 544);
             this.Controls.Add(this.imMap);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(200, 200);
+            this.MinimumSize = new System.Drawing.Size(300, 320);
             this.Name = "ImageMapEventsForm";
             this.Text = "EWSoftware Image Map Control Demo";
             this.ResumeLayout(false);

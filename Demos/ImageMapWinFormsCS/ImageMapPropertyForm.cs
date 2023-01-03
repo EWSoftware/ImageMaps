@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMapPropertyForm.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/10/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This form is used to demonstrate the Image Map Windows Forms controls.  This form allows the user to modify
 // the image map and image area properties interactively and see the effects.
@@ -22,7 +21,6 @@
 
 using System;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
 
 using EWSoftware.ImageMaps;
@@ -33,7 +31,7 @@ namespace ImageMapWinForms
     /// This form is used to demonstrate the Image Map Windows Forms controls.  This form allows the user to
     /// modify the image map and image area properties interactively and see the effects.
 	/// </summary>
-	public partial class ImageMapPropertyForm : System.Windows.Forms.Form
+	public partial class ImageMapPropertyForm : Form
 	{
         #region Constructor
         //=====================================================================
@@ -71,7 +69,7 @@ namespace ImageMapWinForms
         /// <param name="e">The event arguments</param>
         private void imMap_Click(object sender, ImageMapClickEventArgs e)
         {
-            MessageBox.Show(String.Format(CultureInfo.CurrentUICulture, "You clicked area #{0} ({1}) at " +
+            MessageBox.Show(String.Format(CultureInfo.CurrentCulture, "You clicked area #{0} ({1}) at " +
                 "point {2}, {3}", e.AreaIndex + 1, imMap.Areas[e.AreaIndex].ToolTip, e.XCoordinate, e.YCoordinate),
                 "Image Map Clicked", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -83,25 +81,22 @@ namespace ImageMapWinForms
         /// <param name="e">The event arguments</param>
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            string helpFile = @"..\..\..\..\Deployment\EWSoftware.ImageMaps.chm";
-
-            if(!File.Exists(helpFile))
-                helpFile = @"..\..\..\..\Doc\Help\EWSoftware.ImageMaps.chm";
-
-            if(!File.Exists(helpFile))
-                using(OpenFileDialog dlg = new OpenFileDialog())
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                 {
-                    dlg.Title = "Please locate the help file";
-                    dlg.InitialDirectory = Environment.CurrentDirectory;
-                    dlg.CheckFileExists = true;
-                    dlg.FileName = Path.GetFileName(helpFile);
+                    FileName = "https://ewsoftware.github.io/ImageMaps",
+                    UseShellExecute = true
+                });
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Unable to start web browser for URL", "URL Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-                    if(dlg.ShowDialog() == DialogResult.OK)
-                        helpFile = dlg.FileName;
-                }
-
-            if(File.Exists(helpFile))
-                System.Diagnostics.Process.Start(helpFile);
+                // Log the exception to the debugger for the developer
+                System.Diagnostics.Debug.Write(ex.ToString());
+            }
         }
 
         /// <summary>

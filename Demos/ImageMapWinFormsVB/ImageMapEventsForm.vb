@@ -2,9 +2,8 @@
 ' System  : Image Map Control Library
 ' File    : ImageMapEventsForm.vb
 ' Author  : Eric Woodruff  (Eric@EWoodruff.us)
-' Updated : 07/11/2014
-' Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-' Compiler: Microsoft C#
+' Updated : 01/03/2023
+' Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 '
 ' This form is used to demonstrate the handling of the various Image Map Windows Forms control events and the
 ' owner draw capabilities.
@@ -35,14 +34,14 @@ Public Class ImageMapEventsForm
     '==========================================================================
 
     ' Private data members for the demo
-    Private buttonFont, hyperlinkFont As Font
-    Private areaOwnerDrawOnOff, areaVisitWebSite As ImageAreaRectangle
-    Private sfFormat As StringFormat
+    Private ReadOnly buttonFont, hyperlinkFont As Font
+    Private ReadOnly areaOwnerDrawOnOff, areaVisitWebSite As ImageAreaRectangle
+    Private ReadOnly sfFormat As StringFormat
 
-	Private imgFiller As Image
+	Private ReadOnly imgFiller As Image
 
-	Private iaNormal, iaDisabled As ImageAttributes
-	Private cmNormal, cmDisabled As ColorMatrix
+	Private ReadOnly iaNormal, iaDisabled As ImageAttributes
+	Private ReadOnly cmNormal, cmDisabled As ColorMatrix
 
     #End Region
 
@@ -58,40 +57,43 @@ Public Class ImageMapEventsForm
         InitializeComponent()
 
         ' This is used to format text for various image areas
-        sfFormat = New StringFormat()
-        sfFormat.Alignment = StringAlignment.Center
-        sfFormat.LineAlignment = StringAlignment.Center
-        sfFormat.HotkeyPrefix = HotkeyPrefix.Show
+        sfFormat = New StringFormat With {
+            .Alignment = StringAlignment.Center,
+            .LineAlignment = StringAlignment.Center,
+            .HotkeyPrefix = HotkeyPrefix.Show
+        }
 
-        ' A couple of fonts for some of the image areas
-        buttonFont = New Font("Microsoft Sans Serif", 7.8!, FontStyle.Bold)
-        hyperlinkFont = New Font("Microsoft Sans Serif", 7.8!, FontStyle.Underline)
+            ' A couple of fonts for some of the image areas
+        buttonFont = New Font("Segoe UI", 9!, FontStyle.Bold)
+        hyperlinkFont = New Font("Segoe UI", 9!, FontStyle.Underline)
 
         ' Get the image for the "buttons" and define the attributes
         ' used to given them their various draw state effects.
-		imgFiller = New Bitmap(MyBase.GetType, "ImageMapEventsForm.Filler.png")
+		imgFiller = New Bitmap(My.Resources.Filler)
 
-		' Image attributes used to lighten normal buttons
-		cmNormal = New ColorMatrix()
-		cmNormal.Matrix33 = 0.5!
+        ' Image attributes used to lighten normal buttons
+        cmNormal = New ColorMatrix With {
+            .Matrix33 = 0.5!
+        }
 
-		iaNormal = New ImageAttributes()
+        iaNormal = New ImageAttributes()
 		iaNormal.SetColorMatrix(cmNormal, ColorMatrixFlag.Default, ColorAdjustType.Bitmap)
 
-		' Image attributes that lighten and desaturate disabled buttons
-		cmDisabled = New ColorMatrix()
-		cmDisabled.Matrix00 = 0.33!
-		cmDisabled.Matrix01 = 0.33!
-		cmDisabled.Matrix02 = 0.33!
-		cmDisabled.Matrix10 = 0.33!
-		cmDisabled.Matrix11 = 0.33!
-		cmDisabled.Matrix12 = 0.33!
-		cmDisabled.Matrix20 = 0.33!
-		cmDisabled.Matrix21 = 0.33!
-		cmDisabled.Matrix22 = 0.33!
-		cmDisabled.Matrix33 = 0.5!
+        ' Image attributes that lighten and desaturate disabled buttons
+        cmDisabled = New ColorMatrix With {
+            .Matrix00 = 0.33!,
+            .Matrix01 = 0.33!,
+            .Matrix02 = 0.33!,
+            .Matrix10 = 0.33!,
+            .Matrix11 = 0.33!,
+            .Matrix12 = 0.33!,
+            .Matrix20 = 0.33!,
+            .Matrix21 = 0.33!,
+            .Matrix22 = 0.33!,
+            .Matrix33 = 0.5!
+        }
 
-		iaDisabled = New ImageAttributes()
+        iaDisabled = New ImageAttributes()
 		iaDisabled.SetColorMatrix(cmDisabled, ColorMatrixFlag.Default, ColorAdjustType.Bitmap)
 
         ' Hook up the event handlers.  Since they are not accessible in the designer, we must do it manually.
@@ -157,7 +159,7 @@ Public Class ImageMapEventsForm
 
             Case Else
                 If imMap.FocusedArea <> 0 And imMap.FocusedArea <> 3 Then
-                    MessageBox.Show(String.Format(CultureInfo.CurrentUICulture, "You clicked area #{0} " &
+                    MessageBox.Show(String.Format(CultureInfo.CurrentCulture, "You clicked area #{0} " &
                         "({1}) at point {2}, {3}", e.AreaIndex + 1, imMap.Areas(e.AreaIndex).ToolTip,
                         e.XCoordinate, e.YCoordinate), "Image Map Clicked", MessageBoxButtons.OK,
                         MessageBoxIcon.Information)
@@ -311,14 +313,16 @@ Public Class ImageMapEventsForm
     ''' <param name="e">The event arguments</param>
     Private Sub VisitWebSite_DoubleClick(sender As Object, e As ImageMapClickEventArgs)
         Try
-            System.Diagnostics.Process.Start("https://github.com/EWSoftware/ImageMaps")
-
+            Process.Start(New ProcessStartInfo With {
+                .FileName = "https://github.com/EWSoftware/ImageMaps",
+                .UseShellExecute = true
+            })
         Catch ex As Exception
             MessageBox.Show("Unable to start web browser for URL", "URL Error", MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation)
 
             ' Log the exception to the debugger for the developer
-            System.Diagnostics.Debug.Write(ex.ToString())
+            Debug.Write(ex.ToString())
         End Try
     End Sub
 
@@ -442,7 +446,7 @@ Public Class ImageMapEventsForm
     ''' <param name="e">The event arguments</param>
     Private Sub MouseArea_MouseMove(sender As Object, e As MouseEventArgs)
         Dim a As ImageAreaCircle = DirectCast(sender, ImageAreaCircle)
-        a.Tag = String.Format(CultureInfo.CurrentUICulture, "Mouse Move ({0},{1})", e.X, e.Y)
+        a.Tag = String.Format(CultureInfo.CurrentCulture, "Mouse Move ({0},{1})", e.X, e.Y)
         imMap.Invalidate()
         imMap.Update()
     End Sub

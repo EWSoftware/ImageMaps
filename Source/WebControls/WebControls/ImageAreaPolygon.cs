@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaPolygon.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/10/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the polygon image area class
 //
@@ -17,6 +16,8 @@
 // ==============================================================================================================
 // 07/01/2004  EFW  Created the code
 //===============================================================================================================
+
+// Ignore Spelling: poly
 
 using System;
 using System.ComponentModel;
@@ -39,20 +40,14 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// This is overridden to provide the shape type
         /// </summary>
         /// <value>It always returns <see cref="ImageAreaShape.Polygon"/></value>.
-        public override ImageAreaShape Shape
-        {
-            get { return ImageAreaShape.Polygon; }
-        }
+        public override ImageAreaShape Shape => ImageAreaShape.Polygon;
 
         /// <summary>
         /// This is overridden to specify the HTML shape name
         /// </summary>
         /// <value>It always returns "<c>poly</c>"</value>.
         /// <seealso cref="Shape"/>
-        public override string ShapeText
-        {
-            get { return "poly"; }
-        }
+        public override string ShapeText => "poly";
 
         /// <summary>
         /// This is overridden to get or set the coordinate values in string form
@@ -63,7 +58,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// a multiple of two, there are less than three pairs of coordinates, or if non-numeric values are
         /// found.</exception>
         /// <seealso cref="Points"/>
-		[DefaultValue(""), Description("The polygon area's coordinates")]
+        [DefaultValue(""), Description("The polygon area's coordinates")]
         public override string Coordinates
         {
             get

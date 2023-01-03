@@ -18,6 +18,8 @@
 // 07/01/2004  EFW  Created the code
 //===============================================================================================================
 
+// Ignore Spelling: circ
+
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -38,20 +40,14 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// This is overridden to provide the shape type
         /// </summary>
         /// <value>It always returns <see cref="ImageAreaShape.Circle"/></value>.
-        public override ImageAreaShape Shape
-        {
-            get { return ImageAreaShape.Circle; }
-        }
+        public override ImageAreaShape Shape => ImageAreaShape.Circle;
 
         /// <summary>
         /// This is overridden to specify the HTML shape name
         /// </summary>
         /// <value>It always returns "<c>circ</c>"</value>.
         /// <seealso cref="Shape"/>
-        public override string ShapeText
-        {
-            get { return "circ"; }
-        }
+        public override string ShapeText => "circ";
 
         /// <summary>
         /// This is overridden to get or set the coordinate values in string form
@@ -66,11 +62,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The circle area's center point and radius")]
         public override string Coordinates
         {
-            get
-            {
-                return String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}", this.CenterPoint.X,
+            get => String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}", this.CenterPoint.X,
                     this.CenterPoint.Y, this.Radius);
-            }
             set
             {
                 if(value == null || value.Length == 0)
@@ -110,8 +103,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
           RefreshProperties(RefreshProperties.Repaint), Description("The center point for the area on the image map")]
         public Point CenterPoint
         {
-            get { return (Point)this.ViewState["CenterPoint"]; }
-            set { this.ViewState["CenterPoint"] = value; }
+            get => (Point)this.ViewState["CenterPoint"];
+            set => this.ViewState["CenterPoint"] = value;
         }
 
         /// <summary>
@@ -123,8 +116,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The radius of the area on the image map")]
         public int Radius
         {
-            get { return (int)this.ViewState["Radius"]; }
-            set { this.ViewState["Radius"] = value; }
+            get => (int)this.ViewState["Radius"];
+            set => this.ViewState["Radius"] = value;
         }
         #endregion
 

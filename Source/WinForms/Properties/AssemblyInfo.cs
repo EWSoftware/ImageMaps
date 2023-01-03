@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : AssemblyInfo.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // Image map control library attributes
 //
@@ -22,6 +21,9 @@ using System.Reflection;
 
 // General assembly information
 [assembly: AssemblyTitle("EWSoftware Windows Forms Image Map Control Library")]
-[assembly: AssemblyDescription("Windows Forms controls that implement image maps")]
+
+#if NET6_0_OR_GREATER
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
+#endif
 
 // See AssemblyInfoShared.cs for the shared attributes common to all projects in the solution

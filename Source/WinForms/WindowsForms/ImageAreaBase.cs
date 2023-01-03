@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaBase.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 01/03/2023
+// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
 //
 // This file contains the abstract image area base class
 //
@@ -24,6 +23,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 
@@ -102,7 +102,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             set
             {
                 if(value != null && value.Length > 1)
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException(nameof(value));
 
                 if(String.IsNullOrEmpty(value))
                     accessKey = Char.MinValue;
@@ -125,7 +125,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         [Category("Behavior"), DefaultValue(true), Bindable(true), Description("Enable or disable the area")]
         public bool Enabled
         {
-            get { return enabled; }
+            get => enabled;
             set
             {
                 if(enabled != value)
@@ -147,7 +147,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         [Category("Behavior"), DefaultValue(false), Bindable(true), Description("Turn owner draw mode on or off")]
         public bool OwnerDraw
         {
-            get { return ownerDrawn; }
+            get => ownerDrawn;
             set
             {
                 if(ownerDrawn != value)
@@ -171,11 +171,11 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("The tab index of the area within the image map")]
         public int TabIndex
         {
-            get { return tabIndex; }
+            get => tabIndex;
             set
             {
                 if(value < 0)
-                    throw new ArgumentOutOfRangeException("value", value,
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
                         "TabIndex must be greater than or equal to zero");
 
                 tabIndex = value;
@@ -189,7 +189,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
           Description("The tool tip to display when the mouse hovers over the area")]
         public string ToolTip
         {
-            get { return toolTip; }
+            get => toolTip;
             set
             {
                 if(!String.IsNullOrWhiteSpace(value))
@@ -224,10 +224,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnImageAreaChanged(EventArgs e)
         {
-            var handler = ImageAreaChanged;
-
-            if(handler != null)
-                handler(this, e);
+            ImageAreaChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -242,10 +239,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnClick(ImageMapClickEventArgs e)
         {
-            var handler = Click;
-
-            if(handler != null)
-                handler(this, e);
+            Click?.Invoke(this, e);
         }
 
         /// <summary>
@@ -260,10 +254,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnDoubleClick(ImageMapClickEventArgs e)
         {
-            var handler = DoubleClick;
-
-            if(handler != null)
-                handler(this, e);
+            DoubleClick?.Invoke(this, e);
         }
 
         /// <summary>
@@ -278,10 +269,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnMouseDown(MouseEventArgs e)
         {
-            var handler = MouseDown;
-
-            if(handler != null)
-                handler(this, e);
+            MouseDown?.Invoke(this, e);
         }
 
         /// <summary>
@@ -296,10 +284,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnMouseUp(MouseEventArgs e)
         {
-            var handler = MouseUp;
-
-            if(handler != null)
-                handler(this, e);
+            MouseUp?.Invoke(this, e);
         }
 
         /// <summary>
@@ -314,10 +299,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnMouseEnter(EventArgs e)
         {
-            var handler = MouseEnter;
-
-            if(handler != null)
-                handler(this, e);
+            MouseEnter?.Invoke(this, e);
         }
 
         /// <summary>
@@ -332,10 +314,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnMouseLeave(EventArgs e)
         {
-            var handler = MouseLeave;
-
-            if(handler != null)
-                handler(this, e);
+            MouseLeave?.Invoke(this, e);
         }
 
         /// <summary>
@@ -353,10 +332,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnMouseHover(EventArgs e)
         {
-            var handler = MouseHover;
-
-            if(handler != null)
-                handler(this, e);
+            MouseHover?.Invoke(this, e);
         }
 
         /// <summary>
@@ -371,10 +347,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnMouseMove(MouseEventArgs e)
         {
-            var handler = MouseMove;
-
-            if(handler != null)
-                handler(this, e);
+            MouseMove?.Invoke(this, e);
         }
 
         /// <summary>
@@ -389,10 +362,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnEnter(EventArgs e)
         {
-            var handler = Enter;
-
-            if(handler != null)
-                handler(this, e);
+            Enter?.Invoke(this, e);
         }
 
         /// <summary>
@@ -407,10 +377,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected virtual void OnLeave(EventArgs e)
         {
-            var handler = Leave;
-
-            if(handler != null)
-                handler(this, e);
+            Leave?.Invoke(this, e);
         }
 
         /// <summary>
@@ -429,6 +396,9 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         {
             ImageAreaCircle c;
             var handler = DrawImage;
+
+            if(e == null)
+                throw new ArgumentNullException(nameof(e));
 
             if(handler != null)
                 handler(this, e);
@@ -513,12 +483,8 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <returns>Returns true if the object equals this instance, false if it does not</returns>
         public override bool Equals(object obj)
         {
-            ImageAreaBase a = obj as ImageAreaBase;
-
-            if(a == null)
-                return false;
-
-            return (this.Shape == a.Shape && this.Coordinates == a.Coordinates &&
+            return obj is ImageAreaBase a &&
+                (this.Shape == a.Shape && this.Coordinates == a.Coordinates &&
                 this.AccessKey == a.AccessKey && this.Action == a.Action && this.Enabled == a.Enabled &&
                 this.TabIndex == a.TabIndex && this.ToolTip == a.ToolTip &&
                 ((this.Tag == null && a.Tag == null) || (this.Tag != null && this.Tag.Equals(a.Tag))));
@@ -547,7 +513,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                 sb.Append(", ");
             }
 
-            sb.AppendFormat("{0} at {1}", this.Shape.ToString(), this.Coordinates);
+            sb.AppendFormat(CultureInfo.InvariantCulture, "{0} at {1}", this.Shape.ToString(), this.Coordinates);
 
             return sb.ToString();
         }
@@ -568,6 +534,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
 
             // No other events are fired if disabled
             if(enabled)
+            {
                 switch(areaEvent)
                 {
                     case ImageAreaEvent.Click:
@@ -610,6 +577,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                         this.OnLeave((EventArgs)args);
                         break;
                 }
+            }
         }
         #endregion
     }
