@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCircle.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/10/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the circle image area class
 //
@@ -73,7 +72,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
                     return;
                 }
 
-                string[] strCoords = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] strCoords = value.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
                 if(strCoords.Length != 3)
                     throw new ArgumentException("There must be exactly two coordinates and a radius value");
@@ -150,7 +149,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <param name="center">The center point</param>
         /// <param name="radius">The radius of the circle</param>
         /// <param name="url">The URL to which to navigate when clicked</param>
-        public ImageAreaCircle(Point center, int radius, string url) : this(center, radius, url, null)
+        public ImageAreaCircle(Point center, int radius, string? url) : this(center, radius, url, null)
         {
         }
 
@@ -163,7 +162,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <param name="url">The URL to which to navigate when clicked</param>
         /// <param name="toolTip">The tool tip to show when the mouse
         /// hovers over the area</param>
-        public ImageAreaCircle(Point center, int radius, string url, string toolTip) : base(url, toolTip)
+        public ImageAreaCircle(Point center, int radius, string? url, string? toolTip) : base(url, toolTip)
         {
             this.CenterPoint = center;
             this.Radius = radius;

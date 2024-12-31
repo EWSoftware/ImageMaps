@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaPolygon.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the polygon image area class
 //
@@ -37,7 +37,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         #region Private data members
         //=====================================================================
 
-        private PointCollection points;
+        private PointCollection? points;
 
         #endregion
 
@@ -65,7 +65,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             get
             {
                 PointCollection pts = this.Points;
-                StringBuilder sb = new StringBuilder(256);
+                StringBuilder sb = new(256);
 
                 foreach(Point p in pts)
                 {
@@ -88,7 +88,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     return;
                 }
 
-                string[] coordinates = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] coordinates = value.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
                 if(coordinates.Length < 6)
                     throw new ArgumentException("There must be at least three pairs of polygon coordinates");
@@ -124,8 +124,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         {
             get
             {
-                if(points == null)
-                    points = new PointCollection();
+                points ??= [];
 
                 return points;
             }
@@ -223,7 +222,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         {
             // Note that the polygon is closed
             if(g != null)
-                UnsafeNativeMethods.DrawReversiblePolygon(g, points, true, offset);
+                UnsafeNativeMethods.DrawReversiblePolygon(g, this.Points, true, offset);
         }
         #endregion
     }

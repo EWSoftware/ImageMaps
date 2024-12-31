@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : FormImageMap.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains a derived UserControl class that can be used to display an image map on a Windows form (an
 // image with hyperlink hot spots).
@@ -39,20 +39,20 @@ namespace EWSoftware.ImageMaps.Windows.Forms
     /// </summary>
     /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex3']/*" />
 	[DefaultProperty("Image"), DefaultEvent("Click"), Designer(typeof(ImageMapDesigner))]
-	public partial class ImageMap : System.Windows.Forms.UserControl, IImageMap
+	public partial class ImageMap : UserControl, IImageMap
 	{
         #region Private data members
         //=====================================================================
 
         // This is static and is shared by all image maps to display them in a disabled state
-        private static ImageAttributes iaDisabled;
+        private static ImageAttributes? iaDisabled;
 
         // The image and the image area stuff
         private readonly Graphics gPanel;
 		private GraphicsPath pathData;
 
-        private Image image;
-        private ImageAreaCollection imageAreas;
+        private Image? image;
+        private ImageAreaCollection? imageAreas;
 
         private int imageMapWidth, imageMapHeight, activeArea, mouseArea;
         private bool sizeToImage, centerImage, currentlyAnimating, ownerDrawn;
@@ -70,7 +70,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         [DefaultValue(null), Category("Appearance"), RefreshProperties(RefreshProperties.All),
           Description("The image to display")]
-        public virtual Image Image
+        public virtual Image? Image
         {
             get => image;
             set
@@ -103,7 +103,9 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         public override Cursor Cursor
         {
             get => base.Cursor;
+#pragma warning disable CS8765
             set
+#pragma warning restore CS8765
             {
                 nonAreaCursor = value ?? Cursors.Default;
                 base.Cursor = value;
@@ -169,7 +171,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     height = image.Height + borderWidth;
 
                     // Keep it within the parent
-                    if(this.Left + width > this.Parent.ClientSize.Width)
+                    if(this.Left + width > this.Parent!.ClientSize.Width)
                         width = this.Parent.ClientSize.Width - this.Left;
 
                     if(this.Top + height > this.Parent.ClientSize.Height)
@@ -337,7 +339,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <exclude/>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
         Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public override Image BackgroundImage => null;
+        public override Image BackgroundImage => null!;
 
         /// <summary>
         /// Image maps do not use this property so it is hidden.  It always returns the base image layout.
@@ -402,14 +404,14 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         /// <exclude/>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler BackgroundImageChanged;
+        public new event EventHandler? BackgroundImageChanged;
 
         /// <summary>
         /// Image maps do not use the default paint event so it is hidden
         /// </summary>
         /// <exclude/>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public new event PaintEventHandler Paint;
+        public new event PaintEventHandler? Paint;
 
 #pragma warning restore 0067
         #endregion
@@ -421,7 +423,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This is used to get or set the tool tip text displayed for all undefined areas of the image
         /// </summary>
         [Bindable(true), Description("Tool tip text for the image"), Category("Appearance"), DefaultValue("")]
-        public string ToolTip { get; set; }
+        public string ToolTip { get; set; } = String.Empty;
 
         /// <summary>
 		/// Gets or sets the width of the image in the image map control in pixels
@@ -512,7 +514,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when a hot spot on the image map is clicked
         /// </summary>
 		[Category("Action"), Description("Fires when a hot spot on the image map is clicked")]
-        public new event EventHandler<ImageMapClickEventArgs> Click;
+        public new event EventHandler<ImageMapClickEventArgs>? Click;
 
         /// <summary>
         /// This raises the image map <see cref="Click"/> event
@@ -534,7 +536,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when a hot spot on the image map is double-clicked
         /// </summary>
 		[Category("Action"), Description("Fires when a hot spot on the image map is double-clicked")]
-        public new event EventHandler<ImageMapClickEventArgs> DoubleClick;
+        public new event EventHandler<ImageMapClickEventArgs>? DoubleClick;
 
         /// <summary>
         /// This raises the image map <see cref="DoubleClick"/> event
@@ -550,7 +552,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex5']/*" />
 		[Category("Action"), Description("Fires when owner draw mode is on and the image map needs to be drawn")]
-        public event EventHandler<DrawImageEventArgs> DrawImage;
+        public event EventHandler<DrawImageEventArgs>? DrawImage;
 
         /// <summary>
         /// This raises the image map <see cref="DrawImage"/> event
@@ -668,21 +670,20 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             if(pathData.PointCount == 0)
                 this.SetImageAreaPaths();
 
-			using(GraphicsPath p = new GraphicsPath())
-			    using(GraphicsPathIterator i = new GraphicsPathIterator(pathData))
-                {
-			        i.Rewind();
+            using GraphicsPath p = new();
+            using GraphicsPathIterator i = new(pathData);
 
-			        for(idx = 0; idx < i.SubpathCount; idx++)
-			        {
-				        i.NextMarker(p);
+			i.Rewind();
 
-				        if(p.IsVisible(pt, gPanel) && this.Areas[idx].Enabled)
-				            break;
-			        }
+			for(idx = 0; idx < i.SubpathCount; idx++)
+			{
+				i.NextMarker(p);
 
-                    return (idx < i.SubpathCount) ? idx : -1;
-                }
+				if(p.IsVisible(pt, gPanel) && this.Areas[idx].Enabled)
+				    break;
+			}
+
+            return (idx < i.SubpathCount) ? idx : -1;
 		}
 
         /// <summary>
@@ -938,43 +939,45 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="areaEvent">The image area mouse event to raise</param>
         /// <param name="clickLocation">The mouse cursor click location</param>
         /// <param name="args">The event arguments</param>
-        private void RaiseMouseClickEvent(ImageAreaEvent areaEvent, Point clickLocation, object args)
+        private void RaiseMouseClickEvent(ImageAreaEvent areaEvent, Point clickLocation, object? args)
         {
-            ImageMapClickEventArgs ce = null;
+            ImageMapClickEventArgs? ce = null;
 
             Point offset = CalculateImageOffset();
 
-            int nArea = this.ImageAreaAtPoint(new Point(clickLocation.X - offset.X, clickLocation.Y - offset.Y));
+            int area = this.ImageAreaAtPoint(new Point(clickLocation.X - offset.X, clickLocation.Y - offset.Y));
 
-            if(nArea != -1)
+            if(area != -1)
             {
-                ImageAreaBase a = (ImageAreaBase)this.Areas[nArea];
+                ImageAreaBase a = (ImageAreaBase)this.Areas[area];
 
                 if(a.Action == AreaClickAction.FireEvent)
                 {
-                    if(activeArea != nArea)
-                        this.Focus(nArea, true);
+                    if(activeArea != area)
+                        this.Focus(area, true);
 
                     // Create ImageMapClickEventArgs if the passed arguments parameter is null
                     if(args == null)
-                        ce = new ImageMapClickEventArgs(nArea, clickLocation.X - offset.X,
+                    {
+                        ce = new ImageMapClickEventArgs(area, clickLocation.X - offset.X,
                             clickLocation.Y - offset.Y);
+                    }
 
                     switch(areaEvent)
                     {
                         case ImageAreaEvent.Click:
-                            a.RaiseEvent(areaEvent, ce);
-                            this.OnClick(ce);
+                            a.RaiseEvent(areaEvent, ce!);
+                            this.OnClick(ce!);
                             break;
 
                         case ImageAreaEvent.DoubleClick:
-                            a.RaiseEvent(areaEvent, ce);
-                            this.OnDoubleClick(ce);
+                            a.RaiseEvent(areaEvent, ce!);
+                            this.OnDoubleClick(ce!);
                             break;
 
                         case ImageAreaEvent.MouseDown:
                         case ImageAreaEvent.MouseUp:
-                            a.RaiseEvent(areaEvent, args);
+                            a.RaiseEvent(areaEvent, args!);
                             break;
 
                         default:
@@ -1012,13 +1015,14 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             // Create the disabled image attributes on first use
             if(iaDisabled == null)
             {
-                float[][] afColorMatrix = new float[5][];
-
-                afColorMatrix[0] = new float[5] { 0.2125f, 0.2125f, 0.2125f, 0f, 0f };
-                afColorMatrix[1] = new float[5] { 0.2577f, 0.2577f, 0.2577f, 0f, 0f };
-                afColorMatrix[2] = new float[5] { 0.0361f, 0.0361f, 0.0361f, 0f, 0f };
-                afColorMatrix[3] = new float[5] { 0f, 0f, 0f, 1f, 0f };
-                afColorMatrix[4] = new float[5] { 0.38f, 0.38f, 0.38f, 0f, 1f};
+                float[][] afColorMatrix =
+                [
+                    [0.2125f, 0.2125f, 0.2125f, 0f, 0f],
+                    [0.2577f, 0.2577f, 0.2577f, 0f, 0f],
+                    [0.0361f, 0.0361f, 0.0361f, 0f, 0f],
+                    [0f, 0f, 0f, 1f, 0f],
+                    [0.38f, 0.38f, 0.38f, 0f, 1f],
+                ];
 
                 iaDisabled = new ImageAttributes();
                 iaDisabled.ClearColorKey();
@@ -1105,7 +1109,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// the image map such as its size or position.
         /// </summary>
         /// <remarks>When called, this will refresh the cached image area information</remarks>
-        private void ImageAreaChanged(object sender, EventArgs e)
+        private void ImageAreaChanged(object? sender, EventArgs e)
         {
             bool tabStop = false;
 
@@ -1133,7 +1137,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         /// <param name="sender">The sender of the event</param>
         /// <param name="e">The event parameters</param>
-        private void OnFrameChanged(object sender, EventArgs e)
+        private void OnFrameChanged(object? sender, EventArgs e)
         {
             this.Invalidate();
         }
@@ -1252,7 +1256,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             if(activeArea != -1 && (charCode == '\r' || charCode == ' '))
             {
                 ImageAreaBase a = (ImageAreaBase)this.Areas[activeArea];
-                ImageMapClickEventArgs ce = new ImageMapClickEventArgs(activeArea, -1, -1);
+                ImageMapClickEventArgs ce = new(activeArea, -1, -1);
 
                 a.RaiseEvent(ImageAreaEvent.Click, ce);
                 this.OnClick(ce);
@@ -1318,7 +1322,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     result = true;
                     this.Focus(idx, true);
 
-                    ImageMapClickEventArgs ce = new ImageMapClickEventArgs(idx, -1, -1);
+                    ImageMapClickEventArgs ce = new(idx, -1, -1);
 
                     a.RaiseEvent(ImageAreaEvent.Click, ce);
                     this.OnClick(ce);
@@ -1367,7 +1371,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             Graphics g = e.Graphics;
             Point p = CalculateImageOffset();
 
-            DrawImageEventArgs drawArgs = new DrawImageEventArgs(g, DrawState.Normal, p, true);
+            DrawImageEventArgs drawArgs = new(g, DrawState.Normal, p, true);
 
             // Set the image area paths if they need recalculating
             if(pathData.PointCount == 0)
@@ -1478,7 +1482,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             if(e != null)
                 this.RaiseMouseClickEvent(ImageAreaEvent.MouseDown, new Point(e.X, e.Y), e);
 
-            base.OnMouseDown(e);
+            base.OnMouseDown(e!);
         }
 
         /// <summary>
@@ -1491,7 +1495,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
             if(pathData != null && e != null)
                 this.RaiseMouseClickEvent(ImageAreaEvent.MouseUp, new Point(e.X, e.Y), e);
 
-            base.OnMouseUp(e);
+            base.OnMouseUp(e!);
         }
 
         /// <summary>
@@ -1513,7 +1517,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="e">The event arguments</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            ImageAreaBase a = null;
+            ImageAreaBase? a = null;
 
             if(e == null)
                 throw new ArgumentNullException(nameof(e));
@@ -1531,12 +1535,12 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                 if(mouseArea != -1)
                     ((ImageAreaBase)this.Areas[mouseArea]).RaiseEvent(ImageAreaEvent.MouseLeave, EventArgs.Empty);
 
-                if(area > -1)
+                if(area != -1)
                 {
                     mouseArea = area;
 
                     // If the action is none, use the normal cursor
-                    if(a.Action == AreaClickAction.None)
+                    if(a!.Action == AreaClickAction.None)
                         base.Cursor = nonAreaCursor;
                     else
                         base.Cursor = areaCursor;
@@ -1558,7 +1562,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
 
             // Raise the MouseMove event if over an area
             if(area != -1)
-                a.RaiseEvent(ImageAreaEvent.MouseMove, e);
+                a!.RaiseEvent(ImageAreaEvent.MouseMove, e);
 
             base.OnMouseMove(e);
 

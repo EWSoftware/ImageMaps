@@ -33,6 +33,6 @@ using System.Web.UI;
 // ASP.NET tag prefix for the custom controls
 [assembly: TagPrefix("EWSoftware.ImageMaps.Web.Controls", "ewsi")]
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
 [assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
 #endif

@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCollection.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains a type-safe collection class and its enumerator that can contain the various
 // IImageArea-derived objects.  It is used by both the Windows Forms and the web server image map controls.
@@ -39,7 +39,7 @@ namespace EWSoftware.ImageMaps
 
         // This is used to reference the parent image map.  It's used by the ImageAreaCoordinateEditor designer
         // class.
-        private readonly IImageMap im;
+        private readonly IImageMap? im;
 
         #endregion
 
@@ -51,7 +51,7 @@ namespace EWSoftware.ImageMaps
         /// primary use is by the <c>ImageAreaCoordinateEditor</c> designer class so that it can get the image
         /// information it needs at design time.
         /// </summary>
-        public IImageMap ImageMapControl => im;
+        public IImageMap? ImageMapControl => im;
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace EWSoftware.ImageMaps
         /// This event is raised when an image area property changes that affects its visual presentation in the
         /// image map control such as its position or enabled state.
         /// </summary>
-        public event EventHandler ImageAreaChanged;
+        public event EventHandler? ImageAreaChanged;
 
         /// <summary>
         /// This raises the <see cref="ImageAreaChanged "/> event on behalf of an image area in the collection
@@ -71,7 +71,7 @@ namespace EWSoftware.ImageMaps
         /// collection is cleared via the <see cref="Collection{T}.Clear"/> method, it will be the collection
         /// object itself.</param>
         /// <param name="e">The event arguments.</param>
-        private void OnImageAreaChanged(object sender, EventArgs e)
+        private void OnImageAreaChanged(object? sender, EventArgs e)
         {
             ImageAreaChanged?.Invoke(sender, e);
         }
@@ -118,8 +118,10 @@ namespace EWSoftware.ImageMaps
         public void AddRange(IEnumerable<IImageArea> areas)
         {
             if(areas != null)
+            {
                 foreach(IImageArea a in areas)
                     this.Add(a);
+            }
         }
         #endregion
 

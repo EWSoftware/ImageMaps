@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMap.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains a derived WebControl class that can be used to render an image map on a web form (an image
 // with hyperlink hot spots).
@@ -13,11 +13,11 @@
 // This notice, the author's name, and all copyright notices must remain intact in all applications,
 // documentation, and source files.
 //
-// Version     Date     Who  Comments
+//    Date     Who  Comments
 // ==============================================================================================================
-// 1.0.0.0  07/01/2004  EFW  Created the code
-// 2.0.0.0  06/28/2006  EFW  Reworked code for use with .NET 2.0
-// 2.0.0.1  07/07/2007  EFW  Added ForceScriptRegistration property
+// 07/01/2004  EFW  Created the code
+// 06/28/2006  EFW  Reworked code for use with .NET 2.0
+// 07/07/2007  EFW  Added ForceScriptRegistration property
 //===============================================================================================================
 
 // Ignore Spelling: runat javascript typeof usemap coords accesskey tabindex nohref href onclick
@@ -48,7 +48,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         #region Private data members
         //=====================================================================
 
-        private WebImageAreaCollection imageAreas;
+        private WebImageAreaCollection imageAreas = null!;
 
         #endregion
 
@@ -347,8 +347,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
             get
             {
                 // Create on first use
-                if(imageAreas == null)
-                    imageAreas = new WebImageAreaCollection(this);
+                imageAreas ??= new WebImageAreaCollection(this);
 
                 return imageAreas;
             }
@@ -359,7 +358,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </summary>
         /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex1']/*" />
 		[Category("Action"), Description("Fires when a hot spot on the image map is clicked")]
-        public event EventHandler<ImageMapClickEventArgs> Click;
+        public event EventHandler<ImageMapClickEventArgs>? Click;
 
         /// <summary>
         /// This raises the image map <see cref="Click"/> event
@@ -383,7 +382,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <remarks>The script changes based on the value of the <see cref="CausesValidation"/> property</remarks>
         private string FormatOnClickScript(int area)
         {
-            StringBuilder sb = new StringBuilder("javascript: ", 256);
+            StringBuilder sb = new("javascript: ", 256);
 
             // The utility method normally used to get the validation prefix code is an internal member so we
             // can't call it.  As such, we have to hard code things here.
@@ -403,9 +402,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// This is overridden to load view state for the control
         /// </summary>
         /// <param name="savedState">The view state for the control</param>
-        protected override void LoadViewState(object savedState)
+        protected override void LoadViewState(object? savedState)
         {
-            Pair p = (savedState as Pair);
+            Pair? p = (savedState as Pair);
 
             if(p != null)
             {
@@ -418,10 +417,10 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// This is overridden to save view state for the control
         /// </summary>
         /// <returns>The view state for the control</returns>
-        protected override object SaveViewState()
+        protected override object? SaveViewState()
         {
-            object controlState = base.SaveViewState();
-            object areas = ((WebImageAreaCollection)this.Areas).SaveViewState();
+            object? controlState = base.SaveViewState();
+            object? areas = ((WebImageAreaCollection)this.Areas).SaveViewState();
 
             if(controlState != null || areas != null)
                 return new Pair(controlState, areas);
@@ -469,11 +468,13 @@ namespace EWSoftware.ImageMaps.Web.Controls
                 if(!registerScript)
                 {
                     foreach(ImageAreaBase a in this.Areas)
+                    {
                         if(a.Action == AreaClickAction.PostBack)
                         {
                             registerScript = true;
                             break;
                         }
+                    }
                 }
 
                 if(registerScript)
@@ -485,12 +486,16 @@ namespace EWSoftware.ImageMaps.Web.Controls
                     string formID = this.FormId;
 
                     if(formID == null || formID.Length == 0)
+                    {
                         foreach(Control ctl in this.Page.Controls)
+                        {
                             if(ctl is System.Web.UI.HtmlControls.HtmlForm)
                             {
                                 formID = ctl.UniqueID;
                                 break;
                             }
+                        }
+                    }
 
                     // If not found, default to the first form on the page
                     if(formID == null || formID.Length == 0)
@@ -607,10 +612,12 @@ function EWSIM_OnAreaClick(nArea)
                             writer.WriteAttribute("href", a.NavigateUrl);
 
                             if(a.Target != WindowTarget.Self)
+                            {
                                 if(a.Target == WindowTarget.Other)
                                     writer.WriteAttribute("target", a.TargetName);
                                 else
                                     writer.WriteAttribute("target", "_" + a.Target.ToString().ToLowerInvariant());
+                            }
                         }
                         break;
 

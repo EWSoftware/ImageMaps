@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaRectangle.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the rectangle image area class
 //
@@ -71,7 +71,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     return;
                 }
 
-                string[] coordinates = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] coordinates = value.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
                 if(coordinates.Length != 4)
                     throw new ArgumentException("There must be exactly four rectangle coordinates");
@@ -138,7 +138,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="rect">The rectangle coordinates</param>
         /// <param name="toolTip">The tool tip to show when the mouse
         /// hovers over the area</param>
-        public ImageAreaRectangle(Rectangle rect, string toolTip) : base(toolTip)
+        public ImageAreaRectangle(Rectangle rect, string? toolTip) : base(toolTip)
         {
             r = rect;
         }

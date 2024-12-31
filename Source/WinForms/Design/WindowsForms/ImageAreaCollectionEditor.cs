@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCollectionEditor.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the image area collection editor
 //
@@ -40,7 +40,7 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         /// </summary>
         /// <value>Through the area collection, we can get a reference to the parent image map.  The coordinate
         /// editor uses this to get the image to display and it's size information.</value>
-        public static ImageAreaCollection Areas { get; private set; }
+        public static ImageAreaCollection? Areas { get; private set; }
 
         #endregion
 
@@ -66,11 +66,11 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         /// collection.</returns>
         protected override Type[] CreateNewItemTypes()
         {
-            return new Type[] {
-                typeof(EWSoftware.ImageMaps.Windows.Forms.ImageAreaRectangle),
-                typeof(EWSoftware.ImageMaps.Windows.Forms.ImageAreaCircle),
-                typeof(EWSoftware.ImageMaps.Windows.Forms.ImageAreaEllipse),
-                typeof(EWSoftware.ImageMaps.Windows.Forms.ImageAreaPolygon) };
+            return [
+                typeof(ImageMaps.Windows.Forms.ImageAreaRectangle),
+                typeof(ImageMaps.Windows.Forms.ImageAreaCircle),
+                typeof(ImageMaps.Windows.Forms.ImageAreaEllipse),
+                typeof(ImageMaps.Windows.Forms.ImageAreaPolygon) ];
         }
 
         /// <summary>
@@ -103,6 +103,4 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         }
         #endregion
     }
-
-#pragma warning restore CA1812
 }

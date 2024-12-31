@@ -1,5 +1,5 @@
-EWSoftware Image Map Control Library
-------------------------------------
+# EWSoftware Image Map Control Library
+
 This image map control allows you to define hot spots on an image and perform an action when a defined area is
 clicked.
 

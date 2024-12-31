@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaRectangle.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the rectangle image area class
 //
@@ -39,20 +39,14 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// This is overridden to provide the shape type
         /// </summary>
         /// <value>It always returns <see cref="ImageAreaShape.Rectangle"/></value>.
-        public override ImageAreaShape Shape
-        {
-            get { return ImageAreaShape.Rectangle; }
-        }
+        public override ImageAreaShape Shape => ImageAreaShape.Rectangle;
 
         /// <summary>
         /// This is overridden to specify the HTML shape name
         /// </summary>
         /// <value>It always returns "<c>rect</c>"</value>.
         /// <seealso cref="Shape"/>
-        public override string ShapeText
-        {
-            get { return "rect"; }
-        }
+        public override string ShapeText => "rect";
 
         /// <summary>
         /// This is overridden to get or set the coordinate values in string form
@@ -66,12 +60,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
           Description("The rectangle area's upper left and lower right coordinates")]
         public override string Coordinates
         {
-            get
-            {
-                return String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}, {3}", this.Rectangle.X,
+            get => String.Format(CultureInfo.InvariantCulture, "{0}, {1}, {2}, {3}", this.Rectangle.X,
                     this.Rectangle.Y, this.Rectangle.X + this.Rectangle.Width,
                     this.Rectangle.Y + this.Rectangle.Height);
-            }
             set
             {
                 if(value == null || value.Length == 0)
@@ -80,7 +71,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
                     return;
                 }
 
-                string[] coordinates = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] coordinates = value.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
                 if(coordinates.Length != 4)
                     throw new ArgumentException("There must be exactly four rectangle coordinates");
@@ -109,8 +100,8 @@ namespace EWSoftware.ImageMaps.Web.Controls
           RefreshProperties(RefreshProperties.Repaint), Description("The area rectangle for the image map")]
         public Rectangle Rectangle
         {
-            get { return (Rectangle)this.ViewState["Rectangle"]; }
-            set { this.ViewState["Rectangle"] = value; }
+            get => (Rectangle)this.ViewState["Rectangle"];
+            set => this.ViewState["Rectangle"] = value;
         }
         #endregion
 
@@ -140,7 +131,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </summary>
         /// <param name="rect">The rectangle coordinates</param>
         /// <param name="url">The URL to which to navigate when clicked</param>
-        public ImageAreaRectangle(Rectangle rect, string url) : this(rect, url, null)
+        public ImageAreaRectangle(Rectangle rect, string? url) : this(rect, url, null)
         {
         }
 
@@ -151,7 +142,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <param name="rect">The rectangle coordinates</param>
         /// <param name="url">The URL to which to navigate when clicked</param>
         /// <param name="toolTip">The tool tip to show when the mouse hovers over the area</param>
-        public ImageAreaRectangle(Rectangle rect, string url, string toolTip) : base(url, toolTip)
+        public ImageAreaRectangle(Rectangle rect, string? url, string? toolTip) : base(url, toolTip)
         {
             this.Rectangle = rect;
         }

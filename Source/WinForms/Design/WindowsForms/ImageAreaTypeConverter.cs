@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaTypeConverter.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the image area type converter
 //
@@ -42,7 +42,7 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         /// <param name="context">The format context</param>
         /// <param name="destinationType">The type to which to convert</param>
         /// <returns>Returns true if it can perform the conversion or false if it cannot</returns>
-        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+        public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
         {
             if(destinationType == typeof(InstanceDescriptor))
                 return true;
@@ -58,43 +58,43 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         /// <param name="value">The object to convert</param>
         /// <param name="destinationType">The type to which to convert</param>
         /// <returns>The converted object</returns>
-        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
+        public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value,
           Type destinationType)
         {
             if(destinationType == typeof(InstanceDescriptor))
             {
-                if((value as EWSoftware.ImageMaps.Windows.Forms.ImageAreaRectangle) != null)
+                if((value as ImageMaps.Windows.Forms.ImageAreaRectangle) != null)
                 {
                     ConstructorInfo ctor =
-                        typeof(EWSoftware.ImageMaps.Windows.Forms.ImageAreaRectangle).GetConstructor(
-                        Type.EmptyTypes);
+                        typeof(ImageMaps.Windows.Forms.ImageAreaRectangle).GetConstructor(
+                        Type.EmptyTypes)!;
 
                     return new InstanceDescriptor(ctor, null, false);
                 }
 
-                if((value as EWSoftware.ImageMaps.Windows.Forms.ImageAreaCircle) != null)
+                if((value as ImageMaps.Windows.Forms.ImageAreaCircle) != null)
                 {
                     ConstructorInfo ctor = typeof(
-                        EWSoftware.ImageMaps.Windows.Forms.ImageAreaCircle).GetConstructor(
-                        Type.EmptyTypes);
+                        ImageMaps.Windows.Forms.ImageAreaCircle).GetConstructor(
+                        Type.EmptyTypes)!;
 
                     return new InstanceDescriptor(ctor, null, false);
                 }
 
-                if((value as EWSoftware.ImageMaps.Windows.Forms.ImageAreaEllipse) != null)
+                if((value as ImageMaps.Windows.Forms.ImageAreaEllipse) != null)
                 {
                     ConstructorInfo ctor = typeof(
-                        EWSoftware.ImageMaps.Windows.Forms.ImageAreaEllipse).GetConstructor(
-                        Type.EmptyTypes);
+                        ImageMaps.Windows.Forms.ImageAreaEllipse).GetConstructor(
+                        Type.EmptyTypes)!;
 
                     return new InstanceDescriptor(ctor, null, false);
                 }
 
-                if((value as EWSoftware.ImageMaps.Windows.Forms.ImageAreaPolygon) != null)
+                if((value as ImageMaps.Windows.Forms.ImageAreaPolygon) != null)
                 {
                     ConstructorInfo ctor = typeof(
-                        EWSoftware.ImageMaps.Windows.Forms.ImageAreaPolygon).GetConstructor(
-                        Type.EmptyTypes);
+                        ImageMaps.Windows.Forms.ImageAreaPolygon).GetConstructor(
+                        Type.EmptyTypes)!;
 
                     return new InstanceDescriptor(ctor, null, false);
                 }
@@ -103,5 +103,4 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }
-#pragma warning restore CA1812
 }

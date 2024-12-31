@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMapDesigner.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/09/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the image map designer class
 //
@@ -27,33 +26,32 @@ namespace EWSoftware.ImageMaps.Design.Web
 {
 	/// <summary>
 	/// This provides design time support for the web server
-    /// <see cref="EWSoftware.ImageMaps.Web.Controls.ImageMap"/> control.
+    /// <see cref="ImageMaps.Web.Controls.ImageMap"/> control.
 	/// </summary>
     internal sealed class ImageMapDesigner : System.Web.UI.Design.ControlDesigner
 	{
 		/// <summary>
-		/// This returns the design time HTML for the <see cref="EWSoftware.ImageMaps.Web.Controls.ImageMap"/>
+		/// This returns the design time HTML for the <see cref="ImageMaps.Web.Controls.ImageMap"/>
         /// control.
 		/// </summary>
 		/// <returns>The design time HTML</returns>
         public override string GetDesignTimeHtml()
 		{
-            EWSoftware.ImageMaps.Web.Controls.ImageMap im = (EWSoftware.ImageMaps.Web.Controls.ImageMap)this.Component;
+            ImageMaps.Web.Controls.ImageMap im = (ImageMaps.Web.Controls.ImageMap)this.Component;
             bool isVisible = im.Visible;
 
 			try
 			{
-                using(StringWriter tw = new StringWriter(CultureInfo.InvariantCulture))
-	    		    using(HtmlTextWriter writer = new HtmlTextWriter(tw))
-                    {
-                        if(!isVisible)
-                            im.Visible = true;
+                using StringWriter tw = new(CultureInfo.InvariantCulture);
+                using HtmlTextWriter writer = new(tw);
+                
+                if(!isVisible)
+                    im.Visible = true;
 
-		    	        im.RenderControl(writer);
+                im.RenderControl(writer);
 
-			            return tw.ToString();
-                    }
-			}
+                return tw.ToString();
+            }
 			catch(Exception ex)
 			{
 				return GetErrorDesignTimeHtml(ex);

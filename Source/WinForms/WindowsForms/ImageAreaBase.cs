@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaBase.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the abstract image area base class
 //
@@ -48,7 +48,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         private bool enabled;           // True if enabled, false if not
         private bool ownerDrawn;        // True if owner drawn, false if not
         private int tabIndex;           // The tab index of area within map
-        private string toolTip;         // The tool tip for the image area
+        private string? toolTip;         // The tool tip for the image area
         private char accessKey;         // The access key
 
         #endregion
@@ -90,7 +90,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// string.</exception>
         [Category("Behavior"), Bindable(true), DefaultValue(null), MergableProperty(false),
           Description("The access key for the area")]
-        public string AccessKey
+        public string? AccessKey
         {
             get
             {
@@ -107,7 +107,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                 if(String.IsNullOrEmpty(value))
                     accessKey = Char.MinValue;
                 else
-                    accessKey = Char.ToUpperInvariant(value[0]);
+                    accessKey = Char.ToUpperInvariant(value![0]);
             }
         }
 
@@ -187,7 +187,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         [Category("Appearance"), DefaultValue(null), Bindable(true),
           Description("The tool tip to display when the mouse hovers over the area")]
-        public string ToolTip
+        public string? ToolTip
         {
             get => toolTip;
             set
@@ -204,7 +204,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         [Category("Data"), DefaultValue(null), Bindable(true), TypeConverter(typeof(StringConverter)),
           Description("User-defined data associated with the control")]
-        public object Tag { get; set; }
+        public object? Tag { get; set; }
 
         #endregion
 
@@ -216,7 +216,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// image map control such as its position or enabled state.
         /// </summary>
         [Category("Action"), Description("Fires when a property changes that affects its visual presentation")]
-        public event EventHandler ImageAreaChanged;
+        public event EventHandler? ImageAreaChanged;
 
         /// <summary>
         /// This raises the ImageAreaChanged event
@@ -231,7 +231,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when the image area is clicked
         /// </summary>
         [Category("Action"), Description("Fires when the image area is clicked")]
-        public event EventHandler<ImageMapClickEventArgs> Click;
+        public event EventHandler<ImageMapClickEventArgs>? Click;
 
         /// <summary>
         /// This raises the image area <see cref="Click"/> event
@@ -246,7 +246,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when the image area is double-clicked
         /// </summary>
         [Category("Action"), Description("Fires when the image area is double-clicked")]
-        public event EventHandler<ImageMapClickEventArgs> DoubleClick;
+        public event EventHandler<ImageMapClickEventArgs>? DoubleClick;
 
         /// <summary>
         /// This raises the image area <see cref="DoubleClick"/> event
@@ -261,7 +261,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when a mouse button is pressed while the mouse is inside the image area
         /// </summary>
         [Category("Mouse"), Description("Fires when a mouse button is pressed when the mouse is in the image area")]
-        public event MouseEventHandler MouseDown;
+        public event MouseEventHandler? MouseDown;
 
         /// <summary>
         /// This raises the image area <see cref="MouseDown"/> event
@@ -276,7 +276,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when a mouse button is released while the mouse is inside the image area
         /// </summary>
         [Category("Mouse"), Description("Fires when a mouse button is released when the mouse is in the image area")]
-        public event MouseEventHandler MouseUp;
+        public event MouseEventHandler? MouseUp;
 
         /// <summary>
         /// This raises the image area <see cref="MouseUp"/> event
@@ -291,7 +291,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when the mouse enters the image area
         /// </summary>
         [Category("Mouse"), Description("Fires when the mouse enters the image area")]
-        public event EventHandler MouseEnter;
+        public event EventHandler? MouseEnter;
 
         /// <summary>
         /// This raises the image area <see cref="MouseEnter"/> event
@@ -306,7 +306,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when the mouse leaves the image area
         /// </summary>
         [Category("Mouse"), Description("Fires when the mouse leaves the image area")]
-        public event EventHandler MouseLeave;
+        public event EventHandler? MouseLeave;
 
         /// <summary>
         /// This raises the image area <see cref="MouseLeave"/> event
@@ -324,7 +324,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// of an image area.</remarks>
         [Category("Mouse"),
           Description("Fires when the mouse remains stationary inside the image area for an amount of time")]
-        public event EventHandler MouseHover;
+        public event EventHandler? MouseHover;
 
         /// <summary>
         /// This raises the image area <see cref="MouseHover"/> event
@@ -339,7 +339,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when the mouse moves in the image area
         /// </summary>
         [Category("Mouse"), Description("Fires when the mouse moves in the image area")]
-        public event MouseEventHandler MouseMove;
+        public event MouseEventHandler? MouseMove;
 
         /// <summary>
         /// This raises the image area <see cref="MouseMove"/> event
@@ -354,7 +354,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when the image area gains the focus
         /// </summary>
         [Category("Focus"), Description("Fires when the image area gains the focus")]
-        public event EventHandler Enter;
+        public event EventHandler? Enter;
 
         /// <summary>
         /// This raises the image area <see cref="Enter"/> event
@@ -369,7 +369,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This event is raised when the image area loses the focus
         /// </summary>
         [Category("Focus"), Description("Fires when the image area loses the focus")]
-        public event EventHandler Leave;
+        public event EventHandler? Leave;
 
         /// <summary>
         /// This raises the image area <see cref="Leave"/> event
@@ -385,7 +385,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex4']/*" />
         [Category("Action"), Description("Fires when owner draw mode is on and the image area needs to be drawn")]
-        public event EventHandler<DrawImageEventArgs> DrawImage;
+        public event EventHandler<DrawImageEventArgs>? DrawImage;
 
         /// <summary>
         /// This raises the image area <see cref="DrawImage"/> event
@@ -433,12 +433,11 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                 r.X += e.ImageOffset.X;
                 r.Y += e.ImageOffset.Y;
 
-                using(Font font = new Font("Microsoft Sans Serif", 7.8f))
-                {
-                    e.Graphics.FillRectangle(Brushes.Beige, r);
-                    e.Graphics.DrawString("ImageArea: DrawImageEvent not implemented", font, Brushes.Black,
-                        r.X, r.Y);
-                }
+                using Font font = new("Microsoft Sans Serif", 7.8f);
+
+                e.Graphics.FillRectangle(Brushes.Beige, r);
+                e.Graphics.DrawString("ImageArea: DrawImageEvent not implemented", font, Brushes.Black,
+                    r.X, r.Y);
             }
         }
         #endregion
@@ -459,7 +458,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// This version of the constructor takes a tool tip
         /// </summary>
         /// <param name="toolTip">The tool tip to associate with the image area</param>
-        protected ImageAreaBase(string toolTip) : this()
+        protected ImageAreaBase(string? toolTip) : this()
         {
             this.ToolTip = toolTip;
         }
@@ -481,7 +480,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         /// <param name="obj">The object to which this instance is compared</param>
         /// <returns>Returns true if the object equals this instance, false if it does not</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is ImageAreaBase a &&
                 (this.Shape == a.Shape && this.Coordinates == a.Coordinates &&
@@ -505,7 +504,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <returns>Returns the description of the image area.</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder(80);
+            StringBuilder sb = new(80);
 
             if(this.ToolTip != null)
             {

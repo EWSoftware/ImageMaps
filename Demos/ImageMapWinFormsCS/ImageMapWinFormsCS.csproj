@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net6.0-windows;net40</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows;net40</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateAssemblyTitleAttribute>False</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyVersionAttribute>False</GenerateAssemblyVersionAttribute>
@@ -18,7 +18,8 @@
 		<AssemblyName>ImageMapWinForms</AssemblyName>
 		<RootNamespace>ImageMapWinForms</RootNamespace>
 		<ApplicationIcon>App.ico</ApplicationIcon>
-  </PropertyGroup>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
   <ItemGroup>
     <Content Include="App.ico" />
     <Content Include="Shapes.JPG" />

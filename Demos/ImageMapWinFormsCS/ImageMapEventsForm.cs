@@ -169,7 +169,7 @@ namespace ImageMapWinForms
             switch(imMap.FocusedArea)
             {
                 case 5:     // Show the interactive property demo
-                    using(ImageMapPropertyForm dlg = new ImageMapPropertyForm())
+                    using(ImageMapPropertyForm dlg = new())
                     {
                         dlg.ShowDialog();
                     }
@@ -205,11 +205,10 @@ namespace ImageMapWinForms
             // Offset the drawing rectangle by the image offset in the event
             // arguments.  This indicates the true position of the image when
             // centered or scrolled.
-            Rectangle r = new Rectangle(e.ImageOffset.X, e.ImageOffset.Y,
+            Rectangle r = new(e.ImageOffset.X, e.ImageOffset.Y,
                 imMap.ImageMapWidth, imMap.ImageMapHeight);
 
-            using(LinearGradientBrush lgBrush = new LinearGradientBrush(r,
-              Color.White, Color.SteelBlue, LinearGradientMode.ForwardDiagonal))
+            using(LinearGradientBrush lgBrush = new(r, Color.White, Color.SteelBlue, LinearGradientMode.ForwardDiagonal))
             {
                 e.Graphics.FillRectangle(lgBrush, r);
             }
@@ -375,45 +374,39 @@ namespace ImageMapWinForms
             else
                 ia = iaNormal;
 
-            using(TextureBrush tb = new TextureBrush(imgFiller,
-              new Rectangle(0, 0, imgFiller.Width, imgFiller.Height), ia))
+            using TextureBrush tb = new(imgFiller, new Rectangle(0, 0, imgFiller.Width, imgFiller.Height), ia);
+
+            tb.WrapMode = WrapMode.Tile;
+
+            // Translate the brush coordinates to account for the offset
+            using Matrix m = new();
+
+            m.Translate(r.X, r.Y);
+            tb.Transform = m;
+
+            // If the area is focused or hot lighted, give it a glow effect
+            if(e.DrawState == DrawState.Focus || e.DrawState == DrawState.HotLight)
             {
-                tb.WrapMode = WrapMode.Tile;
+                using GraphicsPath pth = new();
+                
+                pth.AddEllipse(r);
 
-                // Translate the brush coordinates to account for the offset
-                using(Matrix m = new Matrix())
-                {
-                    m.Translate(r.X, r.Y);
-                    tb.Transform = m;
+                using PathGradientBrush pgb = new(pth);
+                pgb.CenterColor = Color.LightSteelBlue;
 
-                    // If the area is focused or hot lighted, give it a glow effect
-                    if(e.DrawState == DrawState.Focus || e.DrawState == DrawState.HotLight)
-                    {
-                        using(GraphicsPath pth = new GraphicsPath())
-                        {
-                            pth.AddEllipse(r);
+                if(e.DrawState == DrawState.Focus)
+                    pgb.SurroundColors = [Color.Yellow];
+                else
+                    pgb.SurroundColors = [Color.Blue];
 
-                            using(PathGradientBrush pgb = new PathGradientBrush(pth))
-                            {
-                                pgb.CenterColor = Color.LightSteelBlue;
+                pgb.FocusScales = new PointF(0.8f, 0.8f);
 
-                                if(e.DrawState == DrawState.Focus)
-                                    pgb.SurroundColors = new Color[] { Color.Yellow };
-                                else
-                                    pgb.SurroundColors = new Color[] { Color.Blue };
-
-                                pgb.FocusScales = new PointF(0.8f, 0.8f);
-
-                                g.FillEllipse(pgb, r);
-                            }
-                        }
-                    }
-
-                    // Draw the filler
-                    g.FillEllipse(tb, r);
-                    g.DrawString((string)a.Tag, buttonFont, Brushes.Black, r, sfFormat);
-                }
+                g.FillEllipse(pgb, r);
             }
+
+            // Draw the filler
+            g.FillEllipse(tb, r);
+            g.DrawString((string)a.Tag, buttonFont, Brushes.Black, r, sfFormat);
         }
         #endregion
 
@@ -428,30 +421,27 @@ namespace ImageMapWinForms
             ImageAreaCircle a = (ImageAreaCircle)sender;
             int nShineOffset = a.Radius / 2;
 
-            Rectangle r = new Rectangle(a.CenterPoint.X - a.Radius, a.CenterPoint.Y - a.Radius, a.Radius * 2,
-                a.Radius * 2);
+            Rectangle r = new(a.CenterPoint.X - a.Radius, a.CenterPoint.Y - a.Radius, a.Radius * 2, a.Radius * 2);
 
             r.Inflate(-2, -2);
 
             // Offset the area rectangle by the draw event offset
             r.Offset(e.ImageOffset.X, e.ImageOffset.Y);
 
-            using(GraphicsPath pth = new GraphicsPath())
-            {
-                pth.AddEllipse(r);
+            using GraphicsPath pth = new();
 
-                using(PathGradientBrush pgb = new PathGradientBrush(pth))
-                {
-                    pgb.CenterColor = Color.White;
-                    pgb.SurroundColors = new Color [] { Color.BurlyWood };
-                    Point shine = new Point(a.CenterPoint.X - nShineOffset, a.CenterPoint.Y - nShineOffset);
-                    shine.Offset(e.ImageOffset.X, e.ImageOffset.Y);
-                    pgb.CenterPoint = shine;
+            pth.AddEllipse(r);
 
-                    g.FillEllipse(pgb, r);
-                    g.DrawString((string)a.Tag, buttonFont, Brushes.Black, r, sfFormat);
-                }
-            }
+            using PathGradientBrush pgb = new(pth);
+
+            pgb.CenterColor = Color.White;
+            pgb.SurroundColors = [Color.BurlyWood];
+            Point shine = new(a.CenterPoint.X - nShineOffset, a.CenterPoint.Y - nShineOffset);
+            shine.Offset(e.ImageOffset.X, e.ImageOffset.Y);
+            pgb.CenterPoint = shine;
+
+            g.FillEllipse(pgb, r);
+            g.DrawString((string)a.Tag, buttonFont, Brushes.Black, r, sfFormat);
 
             // We'll let the image map draw the focus frame when needed
             e.DrawFocus = true;
@@ -548,26 +538,24 @@ namespace ImageMapWinForms
             Point[] pts = new Point[a.Points.Count];
             a.Points.CopyTo(pts, 0);
 
-            using(PathGradientBrush pgb = new PathGradientBrush(pts))
-            {
-                // Translate the brush coordinates to account for the offset
-                using(Matrix m = new Matrix())
-                {
-                    m.Translate(e.ImageOffset.X, e.ImageOffset.Y);
-                    pgb.Transform = m;
+            using PathGradientBrush pgb = new(pts);
 
-                    if(e.DrawState == DrawState.Focus)
-                        pgb.SurroundColors = new Color[] { Color.DarkOrange };
-                    else
-                        pgb.SurroundColors = new Color[] { Color.Navy };
+            // Translate the brush coordinates to account for the offset
+            using Matrix m = new();
 
-                    pgb.CenterColor = Color.Gray;
-                    g.FillRectangle(pgb, r);
+            m.Translate(e.ImageOffset.X, e.ImageOffset.Y);
+            pgb.Transform = m;
 
-                    r.Y += 20;
-                    g.DrawString((string)a.Tag, buttonFont, Brushes.Yellow, r, sfFormat);
-                }
-            }
+            if(e.DrawState == DrawState.Focus)
+                pgb.SurroundColors = [Color.DarkOrange];
+            else
+                pgb.SurroundColors = [Color.Navy];
+
+            pgb.CenterColor = Color.Gray;
+            g.FillRectangle(pgb, r);
+
+            r.Y += 20;
+            g.DrawString((string)a.Tag, buttonFont, Brushes.Yellow, r, sfFormat);
         }
 
         /// <summary>

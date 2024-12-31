@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCollectionEditor.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the image area collection editor class
 //
@@ -38,7 +38,7 @@ namespace EWSoftware.ImageMaps.Design.Web
         /// </summary>
         /// <value>Through the area collection, we can get a reference to the parent image map.  The coordinate
         /// editor uses this to get the image to display and its size information.</value>
-        public static WebImageAreaCollection Areas { get; private set; }
+        public static WebImageAreaCollection? Areas { get; private set; }
 
         #endregion
 
@@ -64,10 +64,10 @@ namespace EWSoftware.ImageMaps.Design.Web
         /// collection.</returns>
         protected override Type[] CreateNewItemTypes()
         {
-            return new Type[] {
+            return [
                 typeof(ImageAreaRectangle),
                 typeof(ImageAreaCircle),
-                typeof(ImageAreaPolygon) };
+                typeof(ImageAreaPolygon) ];
         }
 
         /// <summary>

@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaBase.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the abstract image area base class
 //
@@ -42,10 +42,10 @@ namespace EWSoftware.ImageMaps.Web.Controls
 
         // The StateBag objects that allows you to save and restore view state and attribute information
         private readonly StateBag viewState;
-        private StateBag attrState;
+        private StateBag? attrState;
 
         // The attributes collection for custom attributes
-        private System.Web.UI.AttributeCollection attributes;
+        private System.Web.UI.AttributeCollection attributes = null!;
 
         #endregion
 
@@ -94,9 +94,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// string.</exception>
         [Category("Behavior"), Bindable(true), DefaultValue(null), MergableProperty(false),
           Description("The access key for the area")]
-        public string AccessKey
+        public string? AccessKey
         {
-            get => (string)viewState["AccessKey"];
+            get => (string?)viewState["AccessKey"];
             set
             {
                 if(value != null)
@@ -177,7 +177,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex2']/*" />
         [Category("Navigation"), DefaultValue(null), Bindable(true),
           Description("The URL to which to navigate when clicked")]
-        public string NavigateUrl
+        public string? NavigateUrl
         {
             get => (string)viewState["NavigateUrl"];
             set
@@ -194,7 +194,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </summary>
         [Category("Appearance"), DefaultValue(null), Bindable(true),
           Description("The tool tip to display when the mouse hovers over the area")]
-        public string ToolTip
+        public string? ToolTip
         {
             get => (string)viewState["ToolTip"];
             set
@@ -215,7 +215,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         [Category("Data"), DefaultValue(null), Bindable(true), Browsable(false),
           TypeConverter(typeof(StringConverter)), Description("User-defined data associated with the control"),
           DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public object Tag
+        public object? Tag
         {
             get => viewState["Tag"];
             set => viewState["Tag"] = value;
@@ -230,13 +230,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// design-time HTML, use this property instead.</remarks>
         [Category("Data"), DefaultValue(null), Bindable(true),
           Description("User-defined data associated with the control")]
-        public string TagString
+        public string? TagString
         {
-            get
-            {
-                object tag = viewState["Tag"];
-                return tag?.ToString();
-            }
+            get => viewState["Tag"]?.ToString();
             set => viewState["Tag"] = value;
         }
 
@@ -278,7 +274,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex2']/*" />
         [Category("Navigation"), DefaultValue(null), Bindable(true), RefreshProperties(RefreshProperties.Repaint),
           Description("The name of the target frame or window when Target is set to Other")]
-        public string TargetName
+        public string? TargetName
         {
             get => (string)viewState["TargetName"];
             set
@@ -347,7 +343,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </remarks>
         /// <exclude/>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ImageAreaChanged;
+        public event EventHandler? ImageAreaChanged;
 
 #pragma warning restore 0067
 
@@ -362,14 +358,14 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <overloads>There are three overloads for the constructor</overloads>
         protected ImageAreaBase()
         {
-            viewState = new StateBag();
+            viewState = [];
         }
 
         /// <summary>
         /// This version of the constructor takes a URL
         /// </summary>
         /// <param name="url">The URL to associate with the image area</param>
-        protected ImageAreaBase(string url) : this()
+        protected ImageAreaBase(string? url) : this()
         {
             this.NavigateUrl = url;
         }
@@ -379,7 +375,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </summary>
         /// <param name="url">The URL to associate with the image area</param>
         /// <param name="toolTip">The tool tip to associate with the image area</param>
-        protected ImageAreaBase(string url, string toolTip) : this(url)
+        protected ImageAreaBase(string? url, string? toolTip) : this(url)
         {
             this.ToolTip = toolTip;
         }
@@ -402,11 +398,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </summary>
         /// <param name="obj">The object to which this instance is compared.</param>
         /// <returns>Returns true if the object equals this instance, false if it does not</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            ImageAreaBase a = (obj as ImageAreaBase);
-
-            if(a == null)
+            if(obj is not ImageAreaBase a)
                 return false;
 
             return (this.Shape == a.Shape && this.Coordinates == a.Coordinates &&
@@ -432,7 +426,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// <returns>Returns the description of the image area</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder(80);
+            StringBuilder sb = new(80);
 
             if(this.ToolTip != null)
                 sb.Append(this.ToolTip);
@@ -469,8 +463,10 @@ namespace EWSoftware.ImageMaps.Web.Controls
                 viewState.SetItemDirty(s, true);
 
             if(attrState != null)
+            {
                 foreach(string s in attrState.Keys)
                     attrState.SetItemDirty(s, true);
+            }
         }
         #endregion
 
@@ -483,9 +479,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         public void TrackViewState()
         {
             ((IStateManager)viewState).TrackViewState();
-
-            if(attrState != null)
-                ((IStateManager)attrState).TrackViewState();
+            ((IStateManager?)attrState)?.TrackViewState();
         }
 
         /// <summary>
@@ -498,9 +492,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// Save view state
         /// </summary>
         /// <returns>The view state for the object</returns>
-        public object SaveViewState()
+        public object? SaveViewState()
         {
-            object state, attrs;
+            object? state, attrs;
 
             state = ((IStateManager)viewState).SaveViewState();
 
@@ -519,11 +513,11 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// Load view state
         /// </summary>
         /// <param name="state">The saved view state</param>
-        public void LoadViewState(object state)
+        public void LoadViewState(object? state)
         {
             if(state != null)
             {
-                Pair p = (state as Pair);
+                Pair? p = (state as Pair);
 
                 if(p != null)
                 {

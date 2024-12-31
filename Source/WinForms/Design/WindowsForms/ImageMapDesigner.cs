@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMapDesigner.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the image map designer
 //
@@ -24,7 +23,7 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
 {
     /// <summary>
     /// This provides design time support for the Windows Forms
-    /// <see cref="EWSoftware.ImageMaps.Windows.Forms.ImageMap"/> control.
+    /// <see cref="ImageMaps.Windows.Forms.ImageMap"/> control.
     /// </summary>
     internal sealed class ImageMapDesigner : System.Windows.Forms.Design.ControlDesigner
     {
@@ -35,10 +34,7 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         {
             get
             {
-                EWSoftware.ImageMaps.Windows.Forms.ImageMap im =
-                    (this.Control as EWSoftware.ImageMaps.Windows.Forms.ImageMap);
-
-                if(im != null)
+                if(this.Control is ImageMaps.Windows.Forms.ImageMap im)
                     return im.Areas;
 
                 return base.AssociatedComponents;

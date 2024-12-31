@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : EllipseCoordinateEditor.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the ellipse coordinate editor
 //
@@ -47,39 +47,35 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         /// <returns>The edited image area coordinates</returns>
         /// <exception cref="ArgumentException">This is thrown if the area collection is not owned by an image
         /// map control.</exception>
-        public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
+        public override object? EditValue(ITypeDescriptorContext? context, IServiceProvider provider, object? value)
         {
-            IWindowsFormsEditorService srv = null;
+            IWindowsFormsEditorService? srv = null;
 
             // Get the forms editor service from the provider to display the form
             if(provider != null)
-                srv = (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
+                srv = (IWindowsFormsEditorService?)provider.GetService(typeof(IWindowsFormsEditorService));
 
             if(srv != null)
             {
-                using(ImageMapAreaEditorDlg dlg = new ImageMapAreaEditorDlg())
-                {
-                    IImageMap im = ImageAreaCollectionEditor.Areas.ImageMapControl;
+                using ImageMapAreaEditorDlg dlg = new();
 
-                    if(im == null)
-                        throw new ArgumentException("The area collection is not owned by an ImageMap");
+                IImageMap? im = ImageAreaCollectionEditor.Areas?.ImageMapControl ??
+                    throw new ArgumentException("The area collection is not owned by an ImageMap");
 
-                    dlg.Image = ((EWSoftware.ImageMaps.Windows.Forms.ImageMap)im).Image;
-                    dlg.ImageHeight = im.ImageMapHeight;
-                    dlg.ImageWidth = im.ImageMapWidth;
-                    dlg.Coordinates = (string)value;
+                dlg.Image = ((ImageMaps.Windows.Forms.ImageMap)im).Image;
+                dlg.ImageHeight = im.ImageMapHeight;
+                dlg.ImageWidth = im.ImageMapWidth;
+                dlg.Coordinates = (string?)value ?? String.Empty;
 
-                    // The Coordinates property infers the shape from the number of coordinates.  As such, set
-                    // the shape after setting the coordinates.
-                    dlg.Shape = ImageAreaShape.Ellipse;
+                // The Coordinates property infers the shape from the number of coordinates.  As such, set
+                // the shape after setting the coordinates.
+                dlg.Shape = ImageAreaShape.Ellipse;
 
-                    if(srv.ShowDialog(dlg) == DialogResult.OK)
-                        return dlg.Coordinates;
-                }
+                if(srv.ShowDialog(dlg) == DialogResult.OK)
+                    return dlg.Coordinates;
             }
 
             return value;
         }
     }
-#pragma warning restore CA1812
 }

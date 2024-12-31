@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCircle.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the circle image area class
 //
@@ -78,7 +78,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     return;
                 }
 
-                string[] coordinates = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] coordinates = value.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
                 if(coordinates.Length != 3)
                     throw new ArgumentException("There must be exactly two coordinates and a radius value");
@@ -171,7 +171,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// <param name="centerPoint">The center point</param>
         /// <param name="radius">The radius of the circle</param>
         /// <param name="toolTip">The tool tip to show when the mouse hovers over the area</param>
-        public ImageAreaCircle(Point centerPoint, int radius, string toolTip) : base(toolTip)
+        public ImageAreaCircle(Point centerPoint, int radius, string? toolTip) : base(toolTip)
         {
             this.centerPoint = centerPoint;
             this.radius = radius;

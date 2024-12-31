@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : IImageArea.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains an interface containing common elements for the Windows Forms and the web server control
 // image map area classes.
@@ -49,7 +48,7 @@ namespace EWSoftware.ImageMaps
         /// This is used to get or set the access key (a shortcut key or mnemonic) for the image area
         /// </summary>
         /// <value>The value should be a single alphanumeric character</value>
-        string AccessKey { get; set; }
+        string? AccessKey { get; set; }
 
         /// <summary>
         /// This is used to get or set the enabled state of the image area
@@ -64,12 +63,12 @@ namespace EWSoftware.ImageMaps
         /// <summary>
         /// This is used to get or set the tool tip for the image area
         /// </summary>
-        string ToolTip { get; set; }
+        string? ToolTip { get; set; }
 
         /// <summary>
         /// This is used to get or set an object that contains additional user-defined data for the image area
         /// </summary>
-        object Tag { get; set; }
+        object? Tag { get; set; }
 
         #endregion
 

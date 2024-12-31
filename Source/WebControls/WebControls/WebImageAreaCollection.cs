@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : WebImageAreaCollection.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains a derived image area collection class specific to the web server image map control
 //
@@ -131,9 +131,9 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// Save view state
         /// </summary>
         /// <returns>The view state for the object</returns>
-        public object SaveViewState()
+        public object? SaveViewState()
         {
-            EWSoftware.ImageMaps.Web.Controls.ImageAreaBase area;
+            ImageAreaBase area;
             int idx, count = this.Count;
 
             if(count == 0)
@@ -144,7 +144,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
             if(saveAll)
             {
                 ImageAreaShape[] shapes = new ImageAreaShape[count];
-                object[] states = new object[count];
+                object?[] states = new object[count];
 
                 for(idx = 0; idx < count; idx++)
                 {
@@ -160,14 +160,14 @@ namespace EWSoftware.ImageMaps.Web.Controls
             }
 
             // If not saving all, just save the changed items
-            ArrayList changedIndices = new ArrayList(count);
-            ArrayList changedShapes = new ArrayList(count);
-            ArrayList changedStates = new ArrayList(count);
-            object state;
+            ArrayList changedIndices = new(count);
+            ArrayList changedShapes = new(count);
+            ArrayList changedStates = new(count);
+            object? state;
 
             for(idx = 0; idx < count; idx++)
             {
-                state = ((EWSoftware.ImageMaps.Web.Controls.ImageAreaBase)this[idx]).SaveViewState();
+                state = ((ImageAreaBase)this[idx]).SaveViewState();
 
                 if(state != null)
                 {
@@ -191,7 +191,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// state.</exception>
         public void LoadViewState(object state)
         {
-            EWSoftware.ImageMaps.Web.Controls.ImageAreaBase a;
+            ImageAreaBase a;
             Triplet t;
             int idx, count, itemIdx;
 
@@ -201,7 +201,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
             t = (Triplet)state;
 
             // Restore all items?
-            if(!(t.First is ArrayList))
+            if(t.First is not ArrayList)
             {
                 saveAll = true;
                 this.Clear();

@@ -2,9 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaCoordinateEditor.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 07/08/2014
-// Note    : Copyright 2004-2014, Eric Woodruff, All rights reserved
-// Compiler: Microsoft Visual C#
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the image area coordinate editor
 //
@@ -39,7 +38,7 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         /// </summary>
         /// <param name="context">The descriptor context</param>
         /// <returns>Always returns Modal</returns>
-        public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
+        public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext? context)
         {
             return UITypeEditorEditStyle.Modal;
         }
@@ -55,31 +54,26 @@ namespace EWSoftware.ImageMaps.Design.Windows.Forms
         /// <returns>The edited image area coordinates</returns>
         /// <exception cref="ArgumentException">This is thrown if the area collection is not owned by an image
         /// map control.</exception>
-        public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
+        public override object? EditValue(ITypeDescriptorContext? context, IServiceProvider provider, object? value)
         {
-            IWindowsFormsEditorService srv = null;
-
             // Get the forms editor service from the provider to display the form
-            if(provider != null)
-                srv = (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
+            var srv = (IWindowsFormsEditorService?)provider.GetService(typeof(IWindowsFormsEditorService));
 
             if(srv != null)
             {
-                using(ImageMapAreaEditorDlg dlg = new ImageMapAreaEditorDlg())
+                IImageMap im = ImageAreaCollectionEditor.Areas?.ImageMapControl ??
+                    throw new ArgumentException("The area collection is not owned by an ImageMap");
+
+                using ImageMapAreaEditorDlg dlg = new()
                 {
-                    IImageMap im = ImageAreaCollectionEditor.Areas.ImageMapControl;
+                    Image = ((ImageMaps.Windows.Forms.ImageMap)im).Image,
+                    ImageHeight = im.ImageMapHeight,
+                    ImageWidth = im.ImageMapWidth,
+                    Coordinates = (string?)value ?? String.Empty
+                };
 
-                    if(im == null)
-                        throw new ArgumentException("The area collection is not owned by an ImageMap");
-
-                    dlg.Image = ((EWSoftware.ImageMaps.Windows.Forms.ImageMap)im).Image;
-                    dlg.ImageHeight = im.ImageMapHeight;
-                    dlg.ImageWidth = im.ImageMapWidth;
-                    dlg.Coordinates = (string)value;
-
-                    if(srv.ShowDialog(dlg) == DialogResult.OK)
-                        return dlg.Coordinates;
-                }
+                if(srv.ShowDialog(dlg) == DialogResult.OK)
+                    return dlg.Coordinates;
             }
 
             return value;

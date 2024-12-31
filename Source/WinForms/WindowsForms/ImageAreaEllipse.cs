@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaEllipse.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the ellipse image area class
 //
@@ -33,7 +33,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
     /// coordinates and thus can be stretched vertically or horizontally.</remarks>
     /// <include file="IMExamples.xml" path="Examples/ImageMap/HelpEx[@name='Ex3']/*" />
     [TypeConverter(typeof(ImageAreaTypeConverter))]
-    public class ImageAreaEllipse : EWSoftware.ImageMaps.Windows.Forms.ImageAreaBase
+    public class ImageAreaEllipse : ImageAreaBase
     {
         #region Private data members
         //=====================================================================
@@ -73,7 +73,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
                     return;
                 }
 
-                string[] coordinates = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] coordinates = value.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
                 if(coordinates.Length != 4)
                     throw new ArgumentException("There must be exactly four ellipse coordinates");
@@ -139,7 +139,7 @@ namespace EWSoftware.ImageMaps.Windows.Forms
         /// </summary>
         /// <param name="rect">The ellipse coordinates</param>
         /// <param name="toolTip">The tool tip to show when the mouse hovers over the area</param>
-        public ImageAreaEllipse(Rectangle rect, string toolTip) : base(toolTip)
+        public ImageAreaEllipse(Rectangle rect, string? toolTip) : base(toolTip)
         {
             r = rect;
         }

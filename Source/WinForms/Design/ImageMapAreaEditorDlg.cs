@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageMapAreaEditorDlg.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the form class used to edit image map areas in a more user-friendly format
 //
@@ -32,7 +32,7 @@ namespace EWSoftware.ImageMaps.Design
 	/// <summary>
 	/// This is the dialog used to edit image map areas in a more user-friendly format
 	/// </summary>
-	internal partial class ImageMapAreaEditorDlg : System.Windows.Forms.Form
+	internal sealed partial class ImageMapAreaEditorDlg : Form
 	{
         #region Buffered panel control
         //=====================================================================
@@ -42,7 +42,7 @@ namespace EWSoftware.ImageMaps.Design
         /// redraw.
         /// </summary>
         [ToolboxItem(false)]
-        internal class BufferedPanel : System.Windows.Forms.Panel
+        internal sealed class BufferedPanel : Panel
         {
             /// <summary>
             /// Constructor
@@ -62,7 +62,7 @@ namespace EWSoftware.ImageMaps.Design
         private readonly PointCollection points;
 
         // The image to display and its height and width
-        private string imageName;
+        private string? imageName;
         private int imageHeight, imageWidth;
 
         // The index of the area in the collection being edited
@@ -75,7 +75,7 @@ namespace EWSoftware.ImageMaps.Design
         private int radius;
 
         // The image and supporting stuff
-        private Image image;
+        private Image? image;
         private bool currentlyAnimating;
 
         // This flag indicted whether or not an image area is being selected
@@ -83,9 +83,11 @@ namespace EWSoftware.ImageMaps.Design
         private Point origin;       // The origin of the selection operation
 
         // Timer and active control for the adjustment buttons
-        private Timer timer;
-        private Button adjustButton;
+        private Timer? timer;
+        private Button? adjustButton;
         private bool suppressClick;
+
+        private static readonly char[] separator = [','];
 
         #endregion
 
@@ -97,9 +99,9 @@ namespace EWSoftware.ImageMaps.Design
         /// being edited.
         /// </summary>
 #if IMAGEMAPWEB
-        private static ImageAreaCollection Areas => Web.ImageAreaCollectionEditor.Areas;
+        private static ImageAreaCollection? Areas => Web.ImageAreaCollectionEditor.Areas;
 #else
-        private static ImageAreaCollection Areas => Windows.Forms.ImageAreaCollectionEditor.Areas;
+        private static ImageAreaCollection? Areas => Windows.Forms.ImageAreaCollectionEditor.Areas;
 #endif
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace EWSoftware.ImageMaps.Design
         {
             get
             {
-                StringBuilder sb = new StringBuilder(256);
+                StringBuilder sb = new(256);
 
                 foreach(Point p in points)
                 {
@@ -146,7 +148,7 @@ namespace EWSoftware.ImageMaps.Design
 
                 points.Clear();
 
-                string[] coordinates = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] coordinates = (value ?? String.Empty).Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
                 try
                 {
@@ -196,7 +198,7 @@ namespace EWSoftware.ImageMaps.Design
         /// </summary>
         /// <remarks>Set this property or the <see cref="Image"/> property.  If this is set, the
         /// <see cref="Image"/> property is set to null.</remarks>
-        public string ImageFilename
+        public string? ImageFilename
         {
             get => imageName;
             set
@@ -211,7 +213,7 @@ namespace EWSoftware.ImageMaps.Design
         /// </summary>
         /// <remarks>Set this property or the <see cref="ImageFilename"/> property.  If this is set, the
         /// <see cref="ImageFilename"/> property is set to null.</remarks>
-        public Image Image
+        public Image? Image
         {
             get => image;
             set
@@ -250,7 +252,7 @@ namespace EWSoftware.ImageMaps.Design
 		{
 			InitializeComponent();
 
-            points = new PointCollection();
+            points = [];
             areaIndex = -1;
         }
         #endregion
@@ -383,12 +385,11 @@ namespace EWSoftware.ImageMaps.Design
                         if(this.ImageWidth == 0)
                             this.ImageWidth = 500;
 
-                        Bitmap bm = new Bitmap(this.ImageWidth, this.ImageHeight);
+                        Bitmap bm = new(this.ImageWidth, this.ImageHeight);
 
-                        using(Graphics g = Graphics.FromImage(bm))
-                        {
-                            g.FillRectangle(Brushes.White, 0, 0, this.ImageWidth, this.ImageHeight);
-                        }
+                        using Graphics g = Graphics.FromImage(bm);
+
+                        g.FillRectangle(Brushes.White, 0, 0, this.ImageWidth, this.ImageHeight);
 
                         image = (Image)bm;
                     }
@@ -446,11 +447,11 @@ namespace EWSoftware.ImageMaps.Design
             // Locate the image area in the collection being edited based on the shape and coordinates.  We use
             // this to know which area not to draw when the "Show All" option is on.  We turn that on
             // automatically if the image map is a Windows Forms image map control and it is set to owner drawn.
-            ImageAreaCollection ic =  ImageMapAreaEditorDlg.Areas;
+            ImageAreaCollection ic =  Areas!;
 
 #if !IMAGEMAPWEB
-            EWSoftware.ImageMaps.Windows.Forms.ImageMap im =
-                (ic.ImageMapControl as EWSoftware.ImageMaps.Windows.Forms.ImageMap);
+            ImageMaps.Windows.Forms.ImageMap? im =
+                (ic.ImageMapControl as ImageMaps.Windows.Forms.ImageMap);
 
             if(im != null && im.OwnerDraw)
                 chkShowAll.Checked = true;
@@ -458,7 +459,7 @@ namespace EWSoftware.ImageMaps.Design
             string coordinates = this.Coordinates;
             int idx = 0;
 
-            foreach(IImageArea a in ic)
+            foreach(IImageArea a in ic!)
             {
                 if(a.Shape == shape && a.Coordinates == coordinates)
                     areaIndex = idx;
@@ -487,7 +488,7 @@ namespace EWSoftware.ImageMaps.Design
         private void pnlImage_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            Point ptOffset = new Point(pnlImage.AutoScrollPosition.X, pnlImage.AutoScrollPosition.Y);
+            Point ptOffset = new(pnlImage.AutoScrollPosition.X, pnlImage.AutoScrollPosition.Y);
 
             if(image != null)
             {
@@ -500,14 +501,17 @@ namespace EWSoftware.ImageMaps.Design
             // Draw the other areas for reference if requested
             if(chkShowAll.Checked)
             {
-                ImageAreaCollection ic = ImageMapAreaEditorDlg.Areas;
+                ImageAreaCollection ic = Areas!;
 
                 for(int nIdx = 0; nIdx < ic.Count; nIdx++)
+                {
                     if(nIdx != areaIndex)
                         ic[nIdx].DrawFocusFrame(g, ptOffset);
+                }
             }
 
             if(points.Count > 0)
+            {
                 switch(shape)
                 {
                     case ImageAreaShape.Rectangle:
@@ -527,6 +531,7 @@ namespace EWSoftware.ImageMaps.Design
                         UnsafeNativeMethods.DrawReversiblePolygon(g, points, false, ptOffset);
                         break;
                 }
+            }
         }
 
         /// <summary>
@@ -562,6 +567,7 @@ namespace EWSoftware.ImageMaps.Design
                 origin = p;
             }
             else    // Extend or adjust the existing one
+            {
                 if(shape != ImageAreaShape.Rectangle && shape != ImageAreaShape.Ellipse)
                     pnlImage_MouseMove(sender, e);
                 else
@@ -576,12 +582,14 @@ namespace EWSoftware.ImageMaps.Design
                         p2 = p;
                     }
                     else
+                    {
                         if(p.X < p1.X && p.Y < p1.Y)
                         {
                             p1 = p;
                             origin = p2;
                         }
                         else
+                        {
                             if(p.X < p1.X && p.Y >= p1.Y)
                             {
                                 origin.X = p2.X;
@@ -596,10 +604,13 @@ namespace EWSoftware.ImageMaps.Design
                                 p2.X = p.X;
                                 p1.Y = p.Y;
                             }
+                        }
+                    }
 
                     points[0] = ValidatePoint(p1);
                     points[1] = ValidatePoint(p2);
                 }
+            }
 
             pnlImage.Invalidate();
             pnlImage.Update();
@@ -619,7 +630,7 @@ namespace EWSoftware.ImageMaps.Design
                 // Add the point if it's a polygon
                 if(shape == ImageAreaShape.Polygon)
                 {
-                    Point p = new Point(e.X, e.Y);
+                    Point p = new(e.X, e.Y);
                     p.Offset(pnlImage.AutoScrollPosition.X * -1, pnlImage.AutoScrollPosition.Y * -1);
 
                     // Ignore it if outside the image
@@ -709,7 +720,7 @@ namespace EWSoftware.ImageMaps.Design
         /// </summary>
         /// <param name="sender">The sender of the event</param>
         /// <param name="e">The event parameters</param>
-        private void OnFrameChanged(object sender, EventArgs e)
+        private void OnFrameChanged(object? sender, EventArgs e)
         {
             pnlImage.Invalidate();
         }
@@ -752,7 +763,7 @@ namespace EWSoftware.ImageMaps.Design
         private void btnAdjustStop(object sender, MouseEventArgs e)
         {
             // Suppress the final click event if a timer tick occurred
-            if(timer.Interval == 20)
+            if(timer!.Interval == 20)
                 suppressClick = true;
 
             timer.Stop();
@@ -765,10 +776,10 @@ namespace EWSoftware.ImageMaps.Design
         /// </summary>
         /// <param name="sender">The sender of the event</param>
         /// <param name="e">The event parameters</param>
-        private void AdjustmentTick(object sender, EventArgs e)
+        private void AdjustmentTick(object? sender, EventArgs e)
         {
             // Reduce the interval after the first tick so that it goes faster
-            timer.Interval = 20;
+            timer!.Interval = 20;
 
             if(adjustButton == btnLeftUp || adjustButton == btnUp || adjustButton ==  btnRightUp ||
               adjustButton == btnLeft || adjustButton == btnRight || adjustButton == btnLeftDown ||
@@ -885,6 +896,7 @@ namespace EWSoftware.ImageMaps.Design
                     }
 
                     if(idx >= points.Count)
+                    {
                         for(idx = 0; idx < points.Count; idx++)
                         {
                             p1 = points[idx];
@@ -894,6 +906,7 @@ namespace EWSoftware.ImageMaps.Design
                             p1.Y += bottom;
                             points[idx] = p1;
                         }
+                    }
                     break;
             }
 

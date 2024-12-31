@@ -2,8 +2,8 @@
 // System  : Image Map Control Library
 // File    : ImageAreaPolygon.cs
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 01/03/2023
-// Note    : Copyright 2004-2023, Eric Woodruff, All rights reserved
+// Updated : 12/31/2024
+// Note    : Copyright 2004-2024, Eric Woodruff, All rights reserved
 //
 // This file contains the polygon image area class
 //
@@ -64,7 +64,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
             get
             {
                 PointCollection pts = this.Points;
-                StringBuilder sb = new StringBuilder(256);
+                StringBuilder sb = new(256);
 
                 foreach(Point p in pts)
                 {
@@ -84,7 +84,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
                 if(value == null || value.Length == 0)
                     return;
 
-                string[] coordinates = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] coordinates = value.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
                 if(coordinates.Length < 6)
                     throw new ArgumentException("There must be at least three pairs of polygon coordinates");
@@ -162,7 +162,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// Constructor.  This version takes the URL to which to navigate when clicked.
         /// </summary>
         /// <param name="url">The URL to which to navigate when clicked</param>
-		public ImageAreaPolygon(string url) : this(url, null)
+		public ImageAreaPolygon(string? url) : this(url, null)
 		{
 		}
 
@@ -171,7 +171,7 @@ namespace EWSoftware.ImageMaps.Web.Controls
         /// </summary>
         /// <param name="url">The URL to which to navigate when clicked</param>
         /// <param name="toolTip">The tool tip to show when the mouse hovers over the area</param>
-		public ImageAreaPolygon(string url, string toolTip) : base(url, toolTip)
+		public ImageAreaPolygon(string? url, string? toolTip) : base(url, toolTip)
 		{
 		}
         #endregion

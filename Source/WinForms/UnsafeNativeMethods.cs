@@ -259,7 +259,7 @@ namespace EWSoftware.ImageMaps
         /// <param name="handle">The handle of the control in which to reset hover notification</param>
         internal static void ResetMouseHover(IntPtr handle)
         {
-            TRACKMOUSEEVENT tme = new TRACKMOUSEEVENT
+            TRACKMOUSEEVENT tme = new()
             {
                 hwndTrack = handle,
                 dwFlags = TME_HOVER,
