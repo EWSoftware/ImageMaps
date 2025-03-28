@@ -40,6 +40,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="ImageMap.bmp" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="..\..\EWSImageMaps.png" Link="EWSImageMaps.png" Pack="true" PackagePath="\" />
 		<None Include="ReadMe.md" Pack="True" PackagePath="\" />
 	</ItemGroup>

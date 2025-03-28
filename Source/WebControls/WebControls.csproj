@@ -66,6 +66,7 @@
 
 	<ItemGroup>
 	  <EmbeddedResource Include="..\WinForms\Design\ImageMapAreaEditorDlg.resx" Link="Design\ImageMapAreaEditorDlg.resx" />
+	  <EmbeddedResource Include="ImageMap.bmp" />
 	</ItemGroup>
 
 	<ItemGroup>
