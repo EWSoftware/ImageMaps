@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-windows;net40</TargetFrameworks>
+		<TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -21,7 +21,7 @@
 		<PackageTags>Windows Forms control image map</PackageTags>
 		<PackageProjectUrl>https://github.com/EWSoftware/ImageMaps</PackageProjectUrl>
 		<PackageLicenseExpression>MS-PL</PackageLicenseExpression>
-		<PackageReleaseNotes>Targets .NET Framework 4.0 and later and .NET 8.0 and later (Windows platform only)</PackageReleaseNotes>
+		<PackageReleaseNotes>Targets .NET Framework 4.8 and later and .NET 8.0 and later (Windows platform only)</PackageReleaseNotes>
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 		<GenerateAssemblyTitleAttribute>False</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyVersionAttribute>False</GenerateAssemblyVersionAttribute>
@@ -48,7 +48,7 @@
 		<None Include="ReadMe.md" Pack="True" PackagePath="\" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
 		<Reference Include="System.Design" />
 	</ItemGroup>
 </Project>

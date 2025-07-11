@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
   <PropertyGroup>
+    <!-- A target framework version is required by Visual Studio.  It can be any version with a targeting pack installed. -->
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <!-- The configuration and platform will be used to determine which
          assemblies to include from solution and project documentation
          sources -->
@@ -25,7 +27,7 @@
     </HtmlHelp1xCompilerPath>
     <WorkingPath>
     </WorkingPath>
-    <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
+    <FrameworkVersion>.NET Framework 4.8</FrameworkVersion>
     <HelpTitle>EWSoftware.ImageMaps Control Library Documentation</HelpTitle>
     <CopyrightHref>https://github.com/EWSoftware/ImageMaps</CopyrightHref>
     <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2004-2023, Eric Woodruff, All Rights Reserved</CopyrightText>
@@ -49,37 +51,37 @@
     <PlugInConfigurations>
       <PlugInConfig id="Output Deployment" enabled="True">
         <configuration deleteAfterDeploy="true" verboseLogging="false">
-  <deploymentLocation id="help1x" location="">
-    <userCredentials useDefault="true" userName="" password="" />
-    <proxyCredentials useProxy="false" proxyServer="">
-      <userCredentials useDefault="true" userName="" password="" />
-    </proxyCredentials>
-  </deploymentLocation>
-  <deploymentLocation id="helpViewer" location="" renameMSHA="false">
-    <userCredentials useDefault="true" userName="" password="" />
-    <proxyCredentials useProxy="false" proxyServer="">
-      <userCredentials useDefault="true" userName="" password="" />
-    </proxyCredentials>
-  </deploymentLocation>
-  <deploymentLocation id="website" location="..\Deployment\DocWebsite\">
-    <userCredentials useDefault="true" userName="" password="" />
-    <proxyCredentials useProxy="false" proxyServer="">
-      <userCredentials useDefault="true" userName="" password="" />
-    </proxyCredentials>
-  </deploymentLocation>
-  <deploymentLocation id="openXml" location="">
-    <userCredentials useDefault="true" userName="" password="" />
-    <proxyCredentials useProxy="false" proxyServer="">
-      <userCredentials useDefault="true" userName="" password="" />
-    </proxyCredentials>
-  </deploymentLocation>
-  <deploymentLocation id="markdown" location="">
-    <userCredentials useDefault="true" userName="" password="" />
-    <proxyCredentials useProxy="false" proxyServer="">
-      <userCredentials useDefault="true" userName="" password="" />
-    </proxyCredentials>
-  </deploymentLocation>
-</configuration>
+          <deploymentLocation id="help1x" location="">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="helpViewer" location="" renameMSHA="false">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="website" location="..\Deployment\DocWebsite\">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="openXml" location="">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+          <deploymentLocation id="markdown" location="">
+            <userCredentials useDefault="true" userName="" password="" />
+            <proxyCredentials useProxy="false" proxyServer="">
+              <userCredentials useDefault="true" userName="" password="" />
+            </proxyCredentials>
+          </deploymentLocation>
+        </configuration>
       </PlugInConfig>
     </PlugInConfigurations>
     <BuildLogFile />
