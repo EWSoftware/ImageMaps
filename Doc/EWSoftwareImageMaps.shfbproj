@@ -49,7 +49,7 @@
     <HelpFileVersion>2022.1.3.0</HelpFileVersion>
     <ApiFilter />
     <PlugInConfigurations>
-      <PlugInConfig id="Output Deployment" enabled="False">
+      <PlugInConfig id="Output Deployment" enabled="True">
         <configuration deleteAfterDeploy="true" verboseLogging="false">
           <deploymentLocation id="help1x" location="">
             <userCredentials useDefault="true" userName="" password="" />
