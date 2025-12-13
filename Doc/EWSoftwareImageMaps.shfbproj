@@ -119,7 +119,8 @@
       <Argument Key="RobotsMetadata" Value="" />
       <Argument Key="BibliographyDataFile" Value="" />
       <Argument Key="RootBreadcrumbTitleText" Value="Image Maps" />
-      <Argument Key="CollapsibleSections" Value="True" />
+      <Argument Key="ResizableTocColumn" Value="False" />
+      <Argument Key="CollapsibleSections" Value="False" />
       <Argument Key="LogoFile" Value="" />
       <Argument Key="LogoHeight" Value="" />
       <Argument Key="LogoWidth" Value="" />
@@ -133,8 +134,11 @@
       <Argument Key="EnumMemberSortOrder" Value="Value" />
       <Argument Key="FlagsEnumValueFormat" Value="IntegerValue" />
       <Argument Key="FlagsEnumSeparatorSize" Value="0" />
+      <Argument Key="IncludeIntegerEnumSeparators" Value="true" />
       <Argument Key="BaseSourceCodeUrl" Value="https://github.com/EWSoftware/ImageMaps/blob/master/Source/" />
       <Argument Key="RequestExampleUrl" Value="https://github.com/EWSoftware/ImageMaps/issues/new" />
+      <Argument Key="ShowParametersOnAllMethods" Value="False" />
+      <Argument Key="AlwaysShowTopLevelAutoOutline" Value="False" />
     </TransformComponentArguments>
     <SourceCodeBasePath>..\Source\</SourceCodeBasePath>
     <WarnOnMissingSourceContext>False</WarnOnMissingSourceContext>
@@ -177,22 +181,22 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\DesignTimeSupport.aml" />
-    <None Include="Content\Donate.aml" />
-    <None Include="Content\License.aml" />
-    <None Include="Content\UsageNotes.aml" />
-    <None Include="Content\VersionHistory\v2023.1.3.0.aml" />
-    <None Include="Content\VersionHistory\VersionHistory.aml" />
-    <None Include="Content\VersionHistory\v1.0.0.0.aml" />
-    <None Include="Content\VersionHistory\v1.1.0.0.aml" />
-    <None Include="Content\VersionHistory\v1.2.0.0.aml" />
-    <None Include="Content\VersionHistory\v1.3.0.0.aml" />
-    <None Include="Content\VersionHistory\v1.4.0.0.aml" />
-    <None Include="Content\VersionHistory\v2.0.0.0.aml" />
-    <None Include="Content\VersionHistory\v2.0.0.1.aml" />
-    <None Include="Content\VersionHistory\v2.0.0.2.aml" />
-    <None Include="Content\VersionHistory\v2.0.0.3.aml" />
-    <None Include="Content\VersionHistory\v2015.1.19.0.aml" />
+    <None Include="Content\VersionHistory\v1.3.0.0.md" />
+    <None Include="Content\VersionHistory\v1.0.0.0.md" />
+    <None Include="Content\VersionHistory\v1.1.0.0.md" />
+    <None Include="Content\VersionHistory\v1.2.0.0.md" />
+    <None Include="Content\VersionHistory\v1.4.0.0.md" />
+    <None Include="Content\VersionHistory\v2.0.0.0.md" />
+    <None Include="Content\VersionHistory\v2.0.0.1.md" />
+    <None Include="Content\VersionHistory\v2.0.0.2.md" />
+    <None Include="Content\VersionHistory\v2.0.0.3.md" />
+    <None Include="Content\VersionHistory\v2015.1.19.0.md" />
+    <None Include="Content\VersionHistory\v2023.1.3.0.md" />
+    <None Include="Content\VersionHistory\VersionHistory.md" />
+    <None Include="Content\Donate.md" />
+    <None Include="Content\DesignTimeSupport.md" />
+    <None Include="Content\License.md" />
+    <None Include="Content\UsageNotes.md" />
   </ItemGroup>
   <ItemGroup>
     <ContentLayout Include="ContentLayout.content" />
